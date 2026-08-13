@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "astro dev",
     "check": "astro check",
-    "test:unit": "vitest run",
+    "test:unit": "vitest run tests/unit tests/scripts",
     "test:e2e:studio": "cross-env CI=1 PLAYWRIGHT_SURFACE=studio playwright test tests/e2e/studio.spec.ts",
     "test:e2e:muslim": "cross-env CI=1 PLAYWRIGHT_SURFACE=muslim playwright test tests/e2e/muslim.spec.ts",
     "build:studio": "node scripts/build-surface.mjs studio",
