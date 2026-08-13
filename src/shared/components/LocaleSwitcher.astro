@@ -1,0 +1,26 @@
+---
+import { localePath } from '../i18n/routes';
+import { LOCALES, type Locale } from '../i18n/types';
+
+interface Props {
+  locale: Locale;
+  path: string;
+}
+
+const { locale, path } = Astro.props;
+const labels: Record<Locale, string> = {
+  id: 'Bahasa Indonesia',
+  en: 'English',
+};
+---
+
+<nav aria-label={locale === 'id' ? 'Pilihan bahasa' : 'Language selector'}>
+  {LOCALES.map((alternateLocale) => (
+    <a
+      href={localePath(alternateLocale, path)}
+      aria-current={alternateLocale === locale ? 'page' : undefined}
+    >
+      {labels[alternateLocale]}
+    </a>
+  ))}
+</nav>
