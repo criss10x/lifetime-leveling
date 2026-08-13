@@ -18,7 +18,7 @@
 - Use the supplied purple dragon crest only after copying it into `public/studio/brand/lifetime-leveling-crest.png`.
 - Use studio violet only on studio surfaces; Muslim Leveling remains green and gold in the featured field.
 - Do not build a fake multi-product catalogue, email waitlist, user metric, testimonial, iOS mention, or generic SaaS card grid.
-- Use `Archivo Expanded` for studio display text and `Manrope` for interface/body text, from the Fontsource packages installed in the foundation plan.
+- Use `Archivo Variable` for studio display text and `Manrope Variable` for interface/body text, from the Fontsource packages installed in the foundation plan. Use Archivo's `wdth` axis to create the wide display treatment.
 - Keep the initial viewport meaningful at 360 px and avoid text embedded solely in images.
 
 ---

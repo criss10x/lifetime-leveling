@@ -183,7 +183,7 @@ Create a private ESM package with this script set:
 }
 ```
 
-Install `astro`, `@astrojs/sitemap`, `@fontsource-variable/archivo-expanded`, and `@fontsource-variable/manrope` as production dependencies. Install `typescript`, `@astrojs/check`, `vitest`, `@playwright/test`, and `cross-env` as development dependencies.
+Install `astro`, `@astrojs/sitemap`, `@fontsource-variable/archivo`, and `@fontsource-variable/manrope` as production dependencies. Install `typescript`, `@astrojs/check`, `vitest`, `@playwright/test`, and `cross-env` as development dependencies.
 
 Implement `astro.config.ts` so `getSurface()` sets `site`, `srcDir`, `publicDir`, and `outDir`, while `output` stays `static` and `sitemap()` stays enabled:
 
@@ -329,7 +329,7 @@ Allow: /
 Sitemap: https://muslim.lifetimeleveling.com/sitemap-index.xml
 ```
 
-In `foundations.css`, import the two local Fontsource variable fonts, set `color-scheme: dark`, preserve readable text selection, create a high-contrast `:focus-visible` outline, and disable non-essential transitions under `@media (prefers-reduced-motion: reduce)`.
+In `foundations.css`, import `@fontsource-variable/archivo/wght.css` and `@fontsource-variable/manrope/wght.css`, set `color-scheme: dark`, preserve readable text selection, create a high-contrast `:focus-visible` outline, and disable non-essential transitions under `@media (prefers-reduced-motion: reduce)`. The studio surface may use Archivo's documented `wdth` axis for display text.
 
 - [ ] **Step 4: Run the unit and static checks.**
 
