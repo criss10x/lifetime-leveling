@@ -1,0 +1,12 @@
+---
+import { studioContent } from '@shared/content/studio';
+import StudioHero from '../components/StudioHero.astro';
+import StudioShell from '../components/StudioShell.astro';
+
+const locale = 'id' as const;
+const content = studioContent[locale];
+---
+
+<StudioShell {locale} path="/" {content}>
+  <StudioHero {content} />
+</StudioShell>

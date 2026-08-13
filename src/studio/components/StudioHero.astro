@@ -1,0 +1,36 @@
+---
+import type { StudioContent } from '@shared/content/studio';
+import AtlasRoute from './AtlasRoute.astro';
+
+interface Props {
+  content: StudioContent;
+}
+
+const { content } = Astro.props;
+---
+
+<section class="studio-hero" aria-labelledby="studio-hero-title">
+  <AtlasRoute />
+  <div class="studio-hero__ambient" aria-hidden="true"></div>
+  <div class="studio-hero__grid">
+    <div class="studio-hero__copy">
+      <p class="studio-hero__eyebrow">{content.hero.eyebrow}</p>
+      <h1 id="studio-hero-title">{content.hero.title}</h1>
+      <p class="studio-hero__body">{content.hero.body}</p>
+      <a class="studio-hero__cta" href={content.featuredProduct.href}>
+        <span>{content.hero.cta}</span>
+        <span aria-hidden="true">&nearr;</span>
+      </a>
+    </div>
+    <figure class="studio-hero__crest">
+      <img
+        src="/brand/lifetime-leveling-crest.png"
+        width="1254"
+        height="1254"
+        alt={content.hero.crestAlt}
+        fetchpriority="high"
+      />
+    </figure>
+    <p class="studio-hero__coordinate" aria-hidden="true">00&deg;00&prime; / START WHERE YOU ARE</p>
+  </div>
+</section>

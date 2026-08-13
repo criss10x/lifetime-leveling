@@ -1,0 +1,32 @@
+---
+import LocaleSwitcher from '@shared/components/LocaleSwitcher.astro';
+import type { StudioContent } from '@shared/content/studio';
+import type { Locale } from '@shared/i18n/types';
+
+interface Props {
+  locale: Locale;
+  path: string;
+  content: StudioContent;
+}
+
+const { locale, path, content } = Astro.props;
+const homeHref = locale === 'id' ? '/' : '/en/';
+const navLabel = locale === 'id' ? 'Navigasi utama' : 'Primary navigation';
+---
+
+<nav class="studio-navigation" aria-label={navLabel}>
+  <a class="studio-navigation__brand" href={homeHref} aria-label="Lifetime Leveling">
+    <img
+      src="/brand/lifetime-leveling-crest.png"
+      width="1254"
+      height="1254"
+      alt=""
+      decoding="async"
+    />
+    <span>Lifetime Leveling</span>
+  </a>
+  <div class="studio-navigation__actions">
+    <a class="studio-navigation__product" href={content.featuredProduct.href}>{content.navigation.product}</a>
+    <LocaleSwitcher {locale} {path} />
+  </div>
+</nav>

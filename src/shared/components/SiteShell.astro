@@ -11,21 +11,24 @@ interface Props {
   path: string;
   title: string;
   description: string;
+  image?: string;
 }
 
-const { surface, locale, path, title, description } = Astro.props;
+const { surface, locale, path, title, description, image } = Astro.props;
 const skipLabel = locale === 'id' ? 'Lewati ke konten utama' : 'Skip to main content';
 ---
 
 <!doctype html>
 <html lang={locale}>
   <head>
-    <BaseHead {surface} {locale} {path} {title} {description} />
+    <BaseHead {surface} {locale} {path} {title} {description} {image} />
   </head>
   <body data-surface={surface}>
     <a class="skip-link" href="#main-content">{skipLabel}</a>
     <header>
-      <LocaleSwitcher {locale} {path} />
+      <slot name="navigation">
+        <LocaleSwitcher {locale} {path} />
+      </slot>
     </header>
     <main id="main-content">
       <slot />

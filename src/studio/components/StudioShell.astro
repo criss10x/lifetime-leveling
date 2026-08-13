@@ -1,0 +1,27 @@
+---
+import SiteShell from '@shared/components/SiteShell.astro';
+import type { StudioContent } from '@shared/content/studio';
+import type { Locale } from '@shared/i18n/types';
+import StudioNavigation from './StudioNavigation.astro';
+import '../styles/studio.css';
+
+interface Props {
+  locale: Locale;
+  path: string;
+  content: StudioContent;
+}
+
+const { locale, path, content } = Astro.props;
+---
+
+<SiteShell
+  surface="studio"
+  {locale}
+  {path}
+  title={content.meta.title}
+  description={content.meta.description}
+  image="/brand/lifetime-leveling-crest.png"
+>
+  <StudioNavigation slot="navigation" {locale} {path} content={content} />
+  <slot />
+</SiteShell>
