@@ -50,6 +50,31 @@ body {
   transform: translateY(0);
 }
 
+.locale-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.locale-switcher__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: 44px;
+  min-block-size: 44px;
+  padding-inline: 0.75rem;
+  border-radius: 999px;
+  color: inherit;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.locale-switcher__link[aria-current='page'] {
+  background: #f8f4ff;
+  color: #19002e;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

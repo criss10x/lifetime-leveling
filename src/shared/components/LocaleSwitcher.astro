@@ -14,9 +14,10 @@ const labels: Record<Locale, string> = {
 };
 ---
 
-<nav aria-label={locale === 'id' ? 'Pilihan bahasa' : 'Language selector'}>
+<nav class="locale-switcher" aria-label={locale === 'id' ? 'Pilihan bahasa' : 'Language selector'}>
   {LOCALES.map((alternateLocale) => (
     <a
+      class="locale-switcher__link"
       href={localePath(alternateLocale, path)}
       aria-current={alternateLocale === locale ? 'page' : undefined}
     >
