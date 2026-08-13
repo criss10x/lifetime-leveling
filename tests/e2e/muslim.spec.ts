@@ -4,6 +4,31 @@ test('Indonesian landing keeps the Android action and product proof in the mobil
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
 
+  const parentEndorsement = page.getByRole('link', { name: 'Produk Lifetime Leveling' });
+  await expect(parentEndorsement).toBeVisible();
+  await expect.poll(async () =>
+    parentEndorsement.evaluate((element) => {
+      const rect = element.getBoundingClientRect();
+      const styles = getComputedStyle(element);
+      return {
+        inlineSize: rect.width,
+        blockSize: rect.height,
+        display: styles.display,
+        minInlineSize: styles.minInlineSize,
+        minBlockSize: styles.minBlockSize,
+      };
+    }),
+  ).toEqual({
+    inlineSize: expect.any(Number),
+    blockSize: expect.any(Number),
+    display: 'flex',
+    minInlineSize: '44px',
+    minBlockSize: '44px',
+  });
+  const parentEndorsementTarget = await parentEndorsement.boundingBox();
+  expect(parentEndorsementTarget?.width).toBeGreaterThanOrEqual(44);
+  expect(parentEndorsementTarget?.height).toBeGreaterThanOrEqual(44);
+
   await expect(page.getByRole('heading', { level: 1 })).toHaveText(
     'Temani langkah ibadahmu, satu hari pada satu waktu.',
   );
