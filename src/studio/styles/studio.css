@@ -539,6 +539,10 @@ body[data-surface='studio'] .locale-switcher__link[aria-current='page'] {
   .studio-hero__coordinate {
     display: none;
   }
+
+  .progress-principles__list {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 @media (max-width: 390px) {

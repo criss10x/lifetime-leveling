@@ -43,3 +43,21 @@ test('routes the English footer product link to the English Muslim Leveling site
     page.locator('footer').getByRole('link', { name: 'Muslim Leveling', exact: true }),
   ).toHaveAttribute('href', 'https://muslim.lifetimeleveling.com/en/');
 });
+
+test('stacks studio progress principles vertically on a phone', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+
+  const principles = page.locator('.progress-principles__item');
+  await expect(principles).toHaveCount(3);
+
+  const [first, second, third] = (await Promise.all(
+    [0, 1, 2].map((index) => principles.nth(index).boundingBox()),
+  )).map((box) => {
+    expect(box).not.toBeNull();
+    return box!;
+  });
+
+  expect(first.y).toBeLessThan(second.y);
+  expect(second.y).toBeLessThan(third.y);
+});
