@@ -39,6 +39,9 @@ body[data-surface='studio'] > header {
 }
 
 .studio-navigation__brand {
+  min-inline-size: 44px;
+  min-block-size: 44px;
+  justify-content: center;
   gap: 0.65rem;
   color: inherit;
   font-family: 'Archivo Variable', system-ui, sans-serif;

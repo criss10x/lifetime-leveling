@@ -11,6 +11,11 @@ test('studio homepage leads clearly to its first product on a phone viewport', a
   );
   await expect(page.locator('[data-atlas-route]')).toHaveAttribute('aria-hidden', 'true');
   await expect(page.getByRole('link', { name: 'English' })).toHaveAttribute('href', '/en/');
+
+  const brandBounds = await page.getByRole('link', { name: 'Lifetime Leveling' }).boundingBox();
+  expect(brandBounds).not.toBeNull();
+  expect(brandBounds!.width).toBeGreaterThanOrEqual(44);
+  expect(brandBounds!.height).toBeGreaterThanOrEqual(44);
 });
 
 test('studio route is static and complete when reduced motion is requested', async ({ page }) => {
