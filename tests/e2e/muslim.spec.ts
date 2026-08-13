@@ -47,3 +47,22 @@ test('English support stays within the stated support scope and terms remain a d
   await page.goto('/en/terms/');
   await expect(page.getByText('These terms are a DRAFT and are pending owner approval before production use.')).toBeVisible();
 });
+test('Muslim legal and support routes publish canonical and reciprocal locale metadata', async ({ page }) => {
+  const baseUrl = 'https://muslim.lifetimeleveling.com';
+  const routes = ['/privacy/', '/terms/', '/support/', '/delete-account/'];
+
+  for (const route of routes) {
+    for (const locale of ['id', 'en'] as const) {
+      const path = locale === 'id' ? route : `/en${route}`;
+      const idUrl = `${baseUrl}${route}`;
+      const enUrl = `${baseUrl}/en${route}`;
+
+      await page.goto(path);
+
+      await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', locale === 'id' ? idUrl : enUrl);
+      await expect(page.locator('link[rel="alternate"][hreflang="id"]')).toHaveAttribute('href', idUrl);
+      await expect(page.locator('link[rel="alternate"][hreflang="en"]')).toHaveAttribute('href', enUrl);
+      await expect(page.locator('link[rel="alternate"][hreflang="x-default"]')).toHaveAttribute('href', idUrl);
+    }
+  }
+});
