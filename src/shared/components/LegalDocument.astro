@@ -1,11 +1,12 @@
 ---
 import type { SurfaceName } from '../config/surfaces';
+import type { MuslimLegalDocument } from '../content/legal/muslim';
 import type { StudioLegalDocument } from '../content/legal/studio';
 import type { Locale } from '../i18n/types';
 import SiteShell from './SiteShell.astro';
 
 interface Props {
-  document: StudioLegalDocument;
+  document: StudioLegalDocument | MuslimLegalDocument;
   locale: Locale;
   surface: SurfaceName;
   path: string;
@@ -13,6 +14,7 @@ interface Props {
 
 const { document, locale, surface, path } = Astro.props;
 const effectiveDateLabel = locale === 'id' ? 'Berlaku sejak' : 'Effective date';
+const image = surface === 'studio' ? '/brand/lifetime-leveling-crest.png' : undefined;
 ---
 
 <SiteShell
@@ -21,7 +23,7 @@ const effectiveDateLabel = locale === 'id' ? 'Berlaku sejak' : 'Effective date';
   {path}
   title={document.title}
   description={document.description}
-  image="/brand/lifetime-leveling-crest.png"
+  {image}
 >
   <article class="legal-document" aria-labelledby="legal-document-title">
     <header class="legal-document__header">
