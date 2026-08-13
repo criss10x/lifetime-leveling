@@ -1,0 +1,32 @@
+{
+  "name": "lifetime-leveling-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20.0.0" },
+  "scripts": {
+    "dev": "astro dev",
+    "check": "astro check",
+    "test:unit": "vitest run",
+    "test:e2e:studio": "cross-env PLAYWRIGHT_SURFACE=studio playwright test tests/e2e/studio.spec.ts",
+    "test:e2e:muslim": "cross-env PLAYWRIGHT_SURFACE=muslim playwright test tests/e2e/muslim.spec.ts",
+    "build:studio": "node scripts/build-surface.mjs studio",
+    "build:muslim": "node scripts/build-surface.mjs muslim",
+    "build": "node scripts/build-all.mjs",
+    "check:links": "node scripts/verify-static-links.mjs",
+    "assemble:deploy": "node scripts/assemble-deploy.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.6.0",
+    "@fontsource-variable/archivo": "^5.2.6",
+    "@fontsource-variable/manrope": "^5.2.6",
+    "astro": "^5.16.6"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@playwright/test": "^1.54.1",
+    "cross-env": "^7.0.3",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
+  }
+}
