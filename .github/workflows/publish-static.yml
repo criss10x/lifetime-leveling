@@ -25,6 +25,8 @@ jobs:
       - run: npm run check
       - run: npm run test:unit
       - run: npm run build
+      - run: npm run test:e2e:studio
+      - run: npm run test:e2e:muslim
       - run: npm run check:links
       - run: npm run assemble:deploy
       - uses: peaceiris/actions-gh-pages@v4

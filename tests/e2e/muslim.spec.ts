@@ -141,14 +141,33 @@ test('account deletion gives the exact email request and distinguishes local dat
   await expect(page.getByText(/all server-side backup data within seven days/i)).toBeVisible();
 });
 
-test('English support stays within the stated support scope and terms remain a draft', async ({ page }) => {
+test('English support stays within the stated support scope and terms have a document status', async ({ page }) => {
   await page.goto('/en/support/');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Muslim Leveling Support');
   await expect(page.getByText('Support is limited to account deletion, optional sign-in and backup, purchase-free access, prayer schedule or reminder troubleshooting, and bug reports.')).toBeVisible();
 
   await page.goto('/en/terms/');
-  await expect(page.getByText('These terms are a DRAFT and are pending owner approval before production use.')).toBeVisible();
+  await expect(page.getByText('Document status')).toBeVisible();
+  await expect(
+    page.getByText('These terms apply to the Muslim Leveling Android app and supporting website.'),
+  ).toBeVisible();
+  await expect(page.getByText(/DRAFT|pending owner approval/i)).toHaveCount(0);
 });
+
+test('static product host exposes robots and sitemap references', async ({ page, request }) => {
+  const robots = await request.get('/robots.txt');
+  expect(await robots.text()).toContain('https://muslim.lifetimeleveling.com/sitemap-index.xml');
+
+  const sitemap = await request.get('/sitemap-index.xml');
+  expect(await sitemap.text()).toContain('sitemap');
+
+  await page.goto('/en/');
+  await expect(page.locator('link[rel="alternate"][hreflang="id"]')).toHaveAttribute(
+    'href',
+    'https://muslim.lifetimeleveling.com/',
+  );
+});
+
 test('Muslim legal and support routes publish canonical and reciprocal locale metadata', async ({ page }) => {
   const baseUrl = 'https://muslim.lifetimeleveling.com';
   const routes = ['/privacy/', '/terms/', '/support/', '/delete-account/'];

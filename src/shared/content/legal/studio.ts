@@ -51,12 +51,12 @@ export const studioLegal = {
     },
     terms: {
       title: 'Ketentuan Lifetime Leveling',
-      description: 'Draf ketentuan untuk website Lifetime Leveling.',
+      description: 'Ketentuan untuk website Lifetime Leveling.',
       effectiveDate: '13 Agustus 2026',
       sections: [
         {
-          title: 'Status draf',
-          body: 'Ketentuan ini adalah draf dan menunggu persetujuan pemilik sebelum digunakan untuk produksi.',
+          title: 'Status dokumen',
+          body: 'Ketentuan ini berlaku untuk website informasional Lifetime Leveling.',
         },
         {
           title: 'Website informasional',
@@ -103,12 +103,12 @@ export const studioLegal = {
     },
     terms: {
       title: 'Lifetime Leveling Terms',
-      description: 'Draft terms for the Lifetime Leveling website.',
+      description: 'Terms for the Lifetime Leveling website.',
       effectiveDate: '13 August 2026',
       sections: [
         {
-          title: 'Draft status',
-          body: 'These terms are a draft and await owner approval before production use.',
+          title: 'Document status',
+          body: 'These terms apply to the informational Lifetime Leveling website.',
         },
         {
           title: 'Informational website',

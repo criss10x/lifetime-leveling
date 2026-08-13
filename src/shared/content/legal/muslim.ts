@@ -27,12 +27,12 @@ export const muslimLegal = {
   id: {
     privacy: {
       title: 'Kebijakan Privasi Muslim Leveling',
-      description: 'Draf kebijakan privasi Muslim Leveling untuk aplikasi Android.',
+      description: 'Kebijakan privasi Muslim Leveling untuk aplikasi Android.',
       effectiveDate: '4 Agustus 2026',
       sections: [
         {
-          title: 'Status draf',
-          body: 'Kebijakan ini adalah DRAF dan menunggu persetujuan pemilik sebelum digunakan di produksi.',
+          title: 'Status dokumen',
+          body: 'Kebijakan ini berlaku untuk aplikasi Android Muslim Leveling dan website pendukungnya.',
         },
         {
           title: 'Lokasi untuk waktu salat',
@@ -86,12 +86,12 @@ export const muslimLegal = {
     },
     terms: {
       title: 'Ketentuan Penggunaan',
-      description: 'Draf ketentuan penggunaan Muslim Leveling untuk aplikasi Android.',
+      description: 'Ketentuan penggunaan Muslim Leveling untuk aplikasi Android.',
       effectiveDate: '4 Agustus 2026',
       sections: [
         {
-          title: 'Status draf',
-          body: 'Ketentuan ini adalah DRAF dan menunggu persetujuan pemilik sebelum digunakan di produksi.',
+          title: 'Status dokumen',
+          body: 'Ketentuan ini berlaku untuk aplikasi Android Muslim Leveling dan website pendukungnya.',
         },
         {
           title: 'Penggunaan aplikasi',
@@ -173,12 +173,12 @@ export const muslimLegal = {
   en: {
     privacy: {
       title: 'Muslim Leveling Privacy Policy',
-      description: 'Draft privacy policy for the Muslim Leveling Android app.',
+      description: 'Privacy policy for the Muslim Leveling Android app.',
       effectiveDate: '4 August 2026',
       sections: [
         {
-          title: 'Draft status',
-          body: 'This policy is a DRAFT and is pending owner approval before production use.',
+          title: 'Document status',
+          body: 'This policy applies to the Muslim Leveling Android app and supporting website.',
         },
         {
           title: 'Location for prayer times',
@@ -232,12 +232,12 @@ export const muslimLegal = {
     },
     terms: {
       title: 'Terms of Use',
-      description: 'Draft terms of use for the Muslim Leveling Android app.',
+      description: 'Terms of use for the Muslim Leveling Android app.',
       effectiveDate: '4 August 2026',
       sections: [
         {
-          title: 'Draft status',
-          body: 'These terms are a DRAFT and are pending owner approval before production use.',
+          title: 'Document status',
+          body: 'These terms apply to the Muslim Leveling Android app and supporting website.',
         },
         {
           title: 'Using the app',
