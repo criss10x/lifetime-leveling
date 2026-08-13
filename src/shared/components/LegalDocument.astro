@@ -31,7 +31,15 @@ const effectiveDateLabel = locale === 'id' ? 'Berlaku sejak' : 'Effective date';
     {document.sections.map((section) => (
       <section>
         <h2>{section.title}</h2>
-        <p>{section.body}</p>
+        <p>
+          {section.body}
+          {section.link && (
+            <>
+              {' '}
+              <a class="legal-document__link" href={section.link.href}>{section.link.label}</a>.
+            </>
+          )}
+        </p>
       </section>
     ))}
   </article>
@@ -86,5 +94,11 @@ const effectiveDateLabel = locale === 'id' ? 'Berlaku sejak' : 'Effective date';
     margin: 0.9rem 0 0;
     color: #dcd4e8;
     line-height: 1.7;
+  }
+
+  .legal-document__link {
+    color: #fff;
+    text-decoration-thickness: 0.12em;
+    text-underline-offset: 0.16em;
   }
 </style>

@@ -69,6 +69,16 @@ test('studio legal links resolve to canonical localized pages', async ({ page })
     'href',
     'https://lifetimeleveling.com/privacy/',
   );
+  await expect(page.getByRole('link', { name: 'Privasi Muslim Leveling' })).toHaveAttribute(
+    'href',
+    'https://muslim.lifetimeleveling.com/privacy/',
+  );
+
+  await page.goto('/en/privacy/');
+  await expect(page.getByRole('link', { name: 'Muslim Leveling Privacy' })).toHaveAttribute(
+    'href',
+    'https://muslim.lifetimeleveling.com/en/privacy/',
+  );
 
   await page.goto('/en/terms/');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Lifetime Leveling Terms');

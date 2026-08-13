@@ -4,6 +4,10 @@ import type { Locale } from '../../i18n/types';
 export interface StudioLegalSection {
   readonly title: string;
   readonly body: string;
+  readonly link?: {
+    readonly label: string;
+    readonly href: string;
+  };
 }
 
 export interface StudioLegalDocument {
@@ -29,11 +33,15 @@ export const studioLegal = {
         },
         {
           title: 'Log server',
-          body: 'Infrastruktur hosting dapat menyediakan log server standar untuk menjalankan dan menjaga layanan web.',
+          body: 'Hostinger sebagai penyedia hosting website dapat menyediakan log server standar untuk menjalankan dan menjaga layanan web.',
         },
         {
           title: 'Aplikasi',
-          body: `Setiap aplikasi dapat memiliki praktik data privasi sendiri. Lihat halaman privasi aplikasi terkait untuk informasi spesifik; produk pertama kami adalah ${firstProduct}.`,
+          body: `Setiap aplikasi dapat memiliki praktik data privasi sendiri. Produk pertama kami adalah ${firstProduct}. Baca`,
+          link: {
+            label: 'Privasi Muslim Leveling',
+            href: 'https://muslim.lifetimeleveling.com/privacy/',
+          },
         },
         {
           title: 'Kontak produk',
@@ -77,11 +85,15 @@ export const studioLegal = {
         },
         {
           title: 'Server logs',
-          body: 'Hosting infrastructure may provide standard server logs to operate and maintain the web service.',
+          body: 'Hostinger, the website hosting provider, may provide standard server logs to operate and maintain the web service.',
         },
         {
           title: 'Applications',
-          body: `Individual applications may have their own privacy data practices. Refer to the relevant app privacy page for specific information; our first product is ${firstProduct}.`,
+          body: `Individual applications may have their own privacy data practices. Our first product is ${firstProduct}. Read the`,
+          link: {
+            label: 'Muslim Leveling Privacy',
+            href: 'https://muslim.lifetimeleveling.com/en/privacy/',
+          },
         },
         {
           title: 'Product contact',
