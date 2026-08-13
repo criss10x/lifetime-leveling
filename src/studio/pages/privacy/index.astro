@@ -1,0 +1,8 @@
+---
+import LegalDocument from '@shared/components/LegalDocument.astro';
+import { studioLegal } from '@shared/content/legal/studio';
+
+const locale = 'id' as const;
+---
+
+<LegalDocument document={studioLegal[locale].privacy} {locale} surface="studio" path="/privacy/" />

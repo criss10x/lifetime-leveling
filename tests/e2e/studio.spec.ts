@@ -61,3 +61,15 @@ test('stacks studio progress principles vertically on a phone', async ({ page })
   expect(first.y).toBeLessThan(second.y);
   expect(second.y).toBeLessThan(third.y);
 });
+
+test('studio legal links resolve to canonical localized pages', async ({ page }) => {
+  await page.goto('/privacy/');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Privasi Lifetime Leveling');
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    'href',
+    'https://lifetimeleveling.com/privacy/',
+  );
+
+  await page.goto('/en/terms/');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Lifetime Leveling Terms');
+});

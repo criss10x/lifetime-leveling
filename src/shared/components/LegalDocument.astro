@@ -1,0 +1,90 @@
+---
+import type { SurfaceName } from '../config/surfaces';
+import type { StudioLegalDocument } from '../content/legal/studio';
+import type { Locale } from '../i18n/types';
+import SiteShell from './SiteShell.astro';
+
+interface Props {
+  document: StudioLegalDocument;
+  locale: Locale;
+  surface: SurfaceName;
+  path: string;
+}
+
+const { document, locale, surface, path } = Astro.props;
+const effectiveDateLabel = locale === 'id' ? 'Berlaku sejak' : 'Effective date';
+---
+
+<SiteShell
+  {surface}
+  {locale}
+  {path}
+  title={document.title}
+  description={document.description}
+  image="/brand/lifetime-leveling-crest.png"
+>
+  <article class="legal-document" aria-labelledby="legal-document-title">
+    <header class="legal-document__header">
+      <p>{effectiveDateLabel}: {document.effectiveDate}</p>
+      <h1 id="legal-document-title">{document.title}</h1>
+    </header>
+    {document.sections.map((section) => (
+      <section>
+        <h2>{section.title}</h2>
+        <p>{section.body}</p>
+      </section>
+    ))}
+  </article>
+</SiteShell>
+
+<style>
+  .legal-document {
+    width: min(100% - 2rem, 46rem);
+    margin: 0 auto;
+    padding: clamp(4rem, 10vw, 8rem) 0;
+  }
+
+  .legal-document__header {
+    padding-bottom: clamp(2.5rem, 6vw, 4rem);
+    border-bottom: 1px solid rgb(232 220 255 / 24%);
+  }
+
+  .legal-document__header p {
+    margin: 0;
+    color: #dcd4e8;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .legal-document h1 {
+    max-width: 13ch;
+    margin: 1rem 0 0;
+    color: #fff;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-variation-settings: 'wdth' 118, 'wght' 700;
+    letter-spacing: -0.06em;
+    line-height: 0.92;
+  }
+
+  .legal-document section {
+    padding: 2rem 0;
+    border-bottom: 1px solid rgb(232 220 255 / 18%);
+  }
+
+  .legal-document h2 {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(1.45rem, 3vw, 2rem);
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .legal-document section p {
+    max-width: 62ch;
+    margin: 0.9rem 0 0;
+    color: #dcd4e8;
+    line-height: 1.7;
+  }
+</style>
