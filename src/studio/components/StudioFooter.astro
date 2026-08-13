@@ -1,0 +1,33 @@
+---
+import type { StudioContent } from '@shared/content/studio';
+import type { Locale } from '@shared/i18n/types';
+
+interface Props {
+  locale: Locale;
+  footer: StudioContent['footer'];
+}
+
+const { locale, footer } = Astro.props;
+const localPath = (path: '/privacy/' | '/terms/') => (locale === 'id' ? path : `/en${path}`);
+const labels = locale === 'id'
+  ? { privacy: 'Privasi', terms: 'Ketentuan', product: 'Muslim Leveling' }
+  : { privacy: 'Privacy', terms: 'Terms', product: 'Muslim Leveling' };
+const productHref = locale === 'id'
+  ? 'https://muslim.lifetimeleveling.com/'
+  : 'https://muslim.lifetimeleveling.com/en/';
+const supportLabel = `${footer.productSupport} - ${labels.product}`;
+---
+
+<footer class="studio-footer">
+  <p class="studio-footer__mark">Lifetime Leveling</p>
+  <nav class="studio-footer__legal" aria-label={footer.legal}>
+    <a href={localPath('/privacy/')}>{labels.privacy}</a>
+    <a href={localPath('/terms/')}>{labels.terms}</a>
+  </nav>
+  <div class="studio-footer__product">
+    <a href={productHref}>{labels.product}</a>
+    <a href={footer.productSupportHref} aria-label={supportLabel}>
+      {footer.productSupport} &mdash; {labels.product}
+    </a>
+  </div>
+</footer>

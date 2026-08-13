@@ -1,0 +1,11 @@
+---
+interface Props {
+  horizon: string;
+}
+
+const { horizon } = Astro.props;
+---
+
+<section class="studio-horizon" aria-labelledby="studio-horizon-title">
+  <h2 id="studio-horizon-title">{horizon}</h2>
+</section>

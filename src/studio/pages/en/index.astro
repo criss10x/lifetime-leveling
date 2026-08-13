@@ -1,5 +1,9 @@
 ---
 import { studioContent } from '@shared/content/studio';
+import FeaturedProduct from '../../components/FeaturedProduct.astro';
+import Horizon from '../../components/Horizon.astro';
+import ProgressPrinciples from '../../components/ProgressPrinciples.astro';
+import StudioFooter from '../../components/StudioFooter.astro';
 import StudioHero from '../../components/StudioHero.astro';
 import StudioShell from '../../components/StudioShell.astro';
 
@@ -9,4 +13,8 @@ const content = studioContent[locale];
 
 <StudioShell {locale} path="/" {content}>
   <StudioHero {content} />
+  <FeaturedProduct product={content.featuredProduct} />
+  <ProgressPrinciples {locale} principles={content.principles} />
+  <Horizon horizon={content.horizon} />
+  <StudioFooter {locale} footer={content.footer} />
 </StudioShell>

@@ -1,0 +1,26 @@
+---
+import type { StudioContent } from '@shared/content/studio';
+import type { Locale } from '@shared/i18n/types';
+
+interface Props {
+  locale: Locale;
+  principles: StudioContent['principles'];
+}
+
+const { locale, principles } = Astro.props;
+const label = locale === 'id' ? 'Prinsip progres Lifetime Leveling' : 'Lifetime Leveling progress principles';
+---
+
+<section class="progress-principles" aria-label={label}>
+  <ol class="progress-principles__list">
+    {principles.map(([index, title, body]) => (
+      <li class="progress-principles__item">
+        <span class="progress-principles__index" aria-hidden="true">{index}</span>
+        <div>
+          <h2>{title}</h2>
+          <p>{body}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+</section>
