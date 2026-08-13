@@ -446,7 +446,7 @@ Expected: two host-specific static builds succeed.
 
 Run: `npm run assemble:deploy`
 
-Expected: `dist/deploy/index.html` belongs to the studio and `dist/deploy/muslim/index.html` belongs to Muslim Leveling; no source files or `node_modules` are inside `dist/deploy`.
+Expected: the assembler succeeds and preserves each current host output at its matching root (`dist/deploy/robots.txt` and `dist/deploy/muslim/robots.txt` exist); no source files or `node_modules` are inside `dist/deploy`. The fixture test verifies the eventual `index.html` layout; production `index.html` assertions begin with the surface-page tasks because no page routes exist yet.
 
 - [ ] **Step 5: Commit deploy automation and operator documentation.**
 
