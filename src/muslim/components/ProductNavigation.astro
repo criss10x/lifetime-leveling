@@ -1,0 +1,30 @@
+---
+import LocaleSwitcher from '@shared/components/LocaleSwitcher.astro';
+import type { MuslimProductContent } from '@shared/content/muslim-product';
+import type { Locale } from '@shared/i18n/types';
+
+interface Props {
+  locale: Locale;
+  path: string;
+  content: MuslimProductContent;
+}
+
+const { locale, path, content } = Astro.props;
+const homeHref = locale === 'id' ? '/' : '/en/';
+const endorsement = locale === 'id' ? 'Produk Lifetime Leveling' : 'A Lifetime Leveling product';
+---
+
+<nav class="product-navigation" aria-label={locale === 'id' ? 'Navigasi utama' : 'Primary navigation'}>
+  <a class="product-navigation__brand" href={homeHref} aria-label="Muslim Leveling">
+    <img src="/brand/muslim-leveling-icon.png" width="512" height="512" alt="" decoding="async" />
+    <span>{content.navigation.product}</span>
+  </a>
+  <div class="product-navigation__actions">
+    <a class="product-navigation__endorsement" href="https://lifetimeleveling.com/">
+      <img src="/brand/lifetime-leveling-crest.png" width="1254" height="1254" alt="" decoding="async" />
+      <span>{endorsement}</span>
+    </a>
+    <span class="product-navigation__platform">{content.navigation.android}</span>
+    <LocaleSwitcher {locale} {path} />
+  </div>
+</nav>

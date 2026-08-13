@@ -1,0 +1,34 @@
+---
+import SiteShell from '@shared/components/SiteShell.astro';
+import type { MuslimProductContent } from '@shared/content/muslim-product';
+import type { Locale } from '@shared/i18n/types';
+import ProductNavigation from './ProductNavigation.astro';
+import '../styles/muslim.css';
+
+interface Props {
+  locale: Locale;
+  path: string;
+  content: MuslimProductContent;
+}
+
+const { locale, path, content } = Astro.props;
+const directionContract = `THESIS: A proof-led poster sequence that refuses a gallery of interchangeable app cards.
+OWN-WORLD: Emerald and deep-green fields, warm-white reading space, gold only for attention and progress, and supplied Android campaign posters.
+STORY: Understand daily support, then see prayer timing, progress, Quran, learning, theme choice, compassion, privacy, and act through Google Play.
+FIRST VIEWPORT: Product identity and Google Play action pair with the tall Home poster on a mobile-first opening; desktop balances copy and proof.
+FORM: Grounded poster composition; written benefits sit beside authentic proof, every later section changes scale or composition.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md`;
+---
+
+<SiteShell
+  surface="muslim"
+  {locale}
+  {path}
+  title={content.meta.title}
+  description={content.meta.description}
+  image="/brand/muslim-leveling-icon.png"
+  {directionContract}
+>
+  <ProductNavigation slot="navigation" {locale} {path} {content} />
+  <slot />
+</SiteShell>

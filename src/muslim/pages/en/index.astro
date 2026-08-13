@@ -1,0 +1,33 @@
+---
+import dashboardQuests from '../../assets/screens/dashboard-quests.png';
+import learningQuiz from '../../assets/screens/learning-quiz.png';
+import prayerTimeline from '../../assets/screens/prayer-timeline.png';
+import quranGuidedReading from '../../assets/screens/quran-guided-reading.png';
+import quranMurottal from '../../assets/screens/quran-murottal.png';
+import streakAchievement from '../../assets/screens/streak-achievement.png';
+import themePreference from '../../assets/screens/theme-preference.png';
+import { muslimProductContent } from '@shared/content/muslim-product';
+import CompassionSection from '../../components/CompassionSection.astro';
+import DailyLoop from '../../components/DailyLoop.astro';
+import PrivacyFacts from '../../components/PrivacyFacts.astro';
+import ProductFooter from '../../components/ProductFooter.astro';
+import ProductHero from '../../components/ProductHero.astro';
+import ProductShell from '../../components/ProductShell.astro';
+import ScreenshotStory from '../../components/ScreenshotStory.astro';
+
+const locale = 'en' as const;
+const content = muslimProductContent[locale];
+---
+
+<ProductShell {locale} path="/" {content}>
+  <ProductHero {content} image={dashboardQuests} />
+  <DailyLoop {content} image={prayerTimeline} />
+  <ScreenshotStory item={content.screenshots[2]} image={streakAchievement} variant="progress" />
+  <ScreenshotStory item={content.screenshots[3]} image={quranMurottal} variant="library" />
+  <ScreenshotStory item={content.screenshots[5]} image={quranGuidedReading} variant="reading" />
+  <ScreenshotStory item={content.screenshots[4]} image={learningQuiz} variant="learning" />
+  <ScreenshotStory item={content.screenshots[6]} image={themePreference} variant="theme" />
+  <CompassionSection {content} />
+  <PrivacyFacts {content} {locale} />
+  <ProductFooter {content} {locale} />
+</ProductShell>

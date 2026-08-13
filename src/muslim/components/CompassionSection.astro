@@ -1,0 +1,13 @@
+---
+import type { MuslimProductContent } from '@shared/content/muslim-product';
+
+interface Props { content: MuslimProductContent; }
+const { content } = Astro.props;
+---
+
+<section class="compassion-section" aria-labelledby="compassion-title">
+  <div>
+    <h2 id="compassion-title">{content.compassion.title}</h2>
+    <p>{content.compassion.body}</p>
+  </div>
+</section>

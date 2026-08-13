@@ -1,0 +1,10 @@
+---
+interface Props {
+  href: string;
+  label: string;
+}
+
+const { href, label } = Astro.props;
+---
+
+<a class="android-download" href={href} target="_blank" rel="noreferrer">{label}</a>

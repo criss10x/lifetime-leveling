@@ -1,0 +1,29 @@
+---
+import type { MuslimProductContent } from '@shared/content/muslim-product';
+import type { Locale } from '@shared/i18n/types';
+import AndroidDownloadButton from './AndroidDownloadButton.astro';
+
+interface Props { content: MuslimProductContent; locale: Locale; }
+const { content, locale } = Astro.props;
+const local = (path: string) => locale === 'id' ? path : `/en${path}`;
+const labels = locale === 'id'
+  ? { support: 'Bantuan', privacy: 'Kebijakan privasi', terms: 'Ketentuan', deletion: 'Hapus akun', parent: 'Lifetime Leveling' }
+  : { support: 'Support', privacy: 'Privacy', terms: 'Terms', deletion: 'Delete Account', parent: 'Lifetime Leveling' };
+---
+
+<footer class="product-footer">
+  <div class="product-footer__close">
+    <p>{locale === 'id' ? 'Mulai dari satu langkah yang terasa mungkin hari ini.' : 'Begin with one step that feels possible today.'}</p>
+    <AndroidDownloadButton href={content.googlePlayUrl} label={content.hero.cta} />
+  </div>
+  <div class="product-footer__links">
+    <span>© {new Date().getFullYear()} Muslim Leveling</span>
+    <nav aria-label={locale === 'id' ? 'Tautan bantuan dan legal' : 'Support and legal links'}>
+      <a href={local('/support/')}>{labels.support}</a>
+      <a href={local('/privacy/')}>{labels.privacy}</a>
+      <a href={local('/terms/')}>{labels.terms}</a>
+      <a href={local('/delete-account/')}>{labels.deletion}</a>
+      <a href="https://lifetimeleveling.com/">{labels.parent}</a>
+    </nav>
+  </div>
+</footer>

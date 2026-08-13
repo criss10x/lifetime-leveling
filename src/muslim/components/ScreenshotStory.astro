@@ -1,0 +1,23 @@
+---
+import type { ImageMetadata } from 'astro';
+import type { MuslimProductContent } from '@shared/content/muslim-product';
+import AndroidFrame from './AndroidFrame.astro';
+
+interface Props {
+  item: MuslimProductContent['screenshots'][number];
+  image: ImageMetadata;
+  variant: 'progress' | 'library' | 'reading' | 'learning' | 'theme';
+}
+
+const { item, image, variant } = Astro.props;
+---
+
+<section class:list={['screenshot-story', `screenshot-story--${variant}`]} aria-labelledby={`${item.id}-title`}>
+  <div class="screenshot-story__content">
+    <div class="screenshot-story__copy">
+      <h2 id={`${item.id}-title`}>{item.title}</h2>
+      <p>{item.body}</p>
+    </div>
+    <AndroidFrame {image} alt={item.alt} />
+  </div>
+</section>

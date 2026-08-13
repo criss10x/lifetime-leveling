@@ -1,5 +1,82 @@
 import { expect, test } from '@playwright/test';
 
+test('Indonesian landing keeps the Android action and product proof in the mobile opening', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    'Temani langkah ibadahmu, satu hari pada satu waktu.',
+  );
+
+  const download = page.getByRole('link', { name: 'Download di Google Play' }).first();
+  await expect(download).toHaveAttribute(
+    'href',
+    'https://play.google.com/store/apps/details?id=id.muslimleveling.muslim_leveling',
+  );
+  await expect(download).toHaveAttribute('target', '_blank');
+  await expect(download).toHaveAttribute('rel', 'noreferrer');
+  await expect(download).toBeInViewport();
+
+  await expect(
+    page.getByText('Gratis untuk Android · Google Sign-In opsional untuk backup progres.'),
+  ).toBeVisible();
+  await expect(page.getByText('Android', { exact: true })).toBeVisible();
+  await expect(page.getByText(/App Store|iOS/i)).toHaveCount(0);
+  await expect(
+    page.getByAltText(
+      'Beranda Muslim Leveling dengan quest ibadah harian, XP, rank, dan langkah berikutnya.',
+    ),
+  ).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Kebijakan privasi' }).first()).toHaveAttribute(
+    'href',
+    '/privacy/',
+  );
+  await expect(page.getByText('© 2026 Muslim Leveling')).toBeVisible();
+});
+
+test('landing proof renders every authentic Android poster with localized alternatives', async ({ page }) => {
+  await page.goto('/');
+
+  const alternatives = [
+    'Beranda Muslim Leveling dengan quest ibadah harian, XP, rank, dan langkah berikutnya.',
+    'Jadwal salat Muslim Leveling dengan waktu salat, pencarian kota, dan kompas kiblat.',
+    'Profil Muslim Leveling dengan level, XP, streak, dan statistik pribadi.',
+    'Tab Al-Quran Muslim Leveling untuk menemukan dan melanjutkan bacaan surah.',
+    'Halaman Al-Quran Muslim Leveling dengan tajwid, Latin, terjemahan, dan tafsir.',
+    'Tab Belajar Muslim Leveling dengan modul, progres, dan kuis.',
+    'Pilihan tema terang dan gelap pada Muslim Leveling.',
+  ] as const;
+
+  for (const alt of alternatives) {
+    await expect(page.getByAltText(alt)).toBeVisible();
+  }
+});
+
+test('English landing translates the action and publishes reciprocal root metadata', async ({ page }) => {
+  await page.goto('/en/');
+
+  await expect(page.getByRole('link', { name: 'Download on Google Play' }).first()).toHaveAttribute(
+    'href',
+    'https://play.google.com/store/apps/details?id=id.muslimleveling.muslim_leveling',
+  );
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    'href',
+    'https://muslim.lifetimeleveling.com/en/',
+  );
+  await expect(page.locator('link[rel="alternate"][hreflang="id"]')).toHaveAttribute(
+    'href',
+    'https://muslim.lifetimeleveling.com/',
+  );
+  await expect(page.locator('link[rel="alternate"][hreflang="en"]')).toHaveAttribute(
+    'href',
+    'https://muslim.lifetimeleveling.com/en/',
+  );
+  await expect(page.locator('link[rel="alternate"][hreflang="x-default"]')).toHaveAttribute(
+    'href',
+    'https://muslim.lifetimeleveling.com/',
+  );
+});
+
 test('Muslim legal pages are public, canonical, and explain optional Google backup', async ({ page }) => {
   await page.goto('/privacy/');
 

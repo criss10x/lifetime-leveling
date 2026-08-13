@@ -1,0 +1,22 @@
+---
+import type { MuslimProductContent } from '@shared/content/muslim-product';
+import type { Locale } from '@shared/i18n/types';
+
+interface Props { content: MuslimProductContent; locale: Locale; }
+const { content, locale } = Astro.props;
+const privacyHref = locale === 'id' ? '/privacy/' : '/en/privacy/';
+const deleteHref = locale === 'id' ? '/delete-account/' : '/en/delete-account/';
+const privacyLabel = locale === 'id' ? 'Kebijakan privasi' : 'Privacy policy';
+const deleteLabel = locale === 'id' ? 'Hapus akun' : 'Delete account';
+---
+
+<section class="privacy-facts" aria-labelledby="privacy-title">
+  <div>
+    <h2 id="privacy-title">{content.privacyFacts.title}</h2>
+    <p>{content.privacyFacts.body}</p>
+  </div>
+  <ul>
+    {content.privacyFacts.facts.map((fact) => <li>{fact}</li>)}
+  </ul>
+  <p class="privacy-facts__links"><a href={privacyHref}>{privacyLabel}</a><a href={deleteHref}>{deleteLabel}</a></p>
+</section>

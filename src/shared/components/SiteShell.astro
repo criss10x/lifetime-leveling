@@ -12,10 +12,12 @@ interface Props {
   title: string;
   description: string;
   image?: string;
+  directionContract?: string;
 }
 
-const { surface, locale, path, title, description, image } = Astro.props;
+const { surface, locale, path, title, description, image, directionContract } = Astro.props;
 const skipLabel = locale === 'id' ? 'Lewati ke konten utama' : 'Skip to main content';
+const escapedDirectionContract = directionContract?.replaceAll('--', '—');
 ---
 
 <!doctype html>
@@ -24,6 +26,7 @@ const skipLabel = locale === 'id' ? 'Lewati ke konten utama' : 'Skip to main con
     <BaseHead {surface} {locale} {path} {title} {description} {image} />
   </head>
   <body data-surface={surface}>
+    {escapedDirectionContract && <Fragment set:html={`<!-- ${escapedDirectionContract} -->`} />}
     <a class="skip-link" href="#main-content">{skipLabel}</a>
     <header>
       <slot name="navigation">
