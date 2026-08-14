@@ -11,11 +11,22 @@ const { product } = Astro.props;
 <section class="featured-product" aria-labelledby="muslim-leveling-title">
   <div class="featured-product__content">
     <div class="featured-product__intro">
-      <p class="featured-product__route" aria-label={`Route ${product.index}`}>{product.index}</p>
+      <p class="featured-product__index">{product.index}</p>
       <p class="featured-product__label">{product.label}</p>
       <h2 id="muslim-leveling-title">{product.name}</h2>
       <p class="featured-product__body">{product.body}</p>
     </div>
+
+    <figure class="featured-product__frame">
+      <img
+        src="/brand/muslim-leveling-dashboard.webp"
+        width="540"
+        height="960"
+        alt={product.frameAlt}
+        loading="lazy"
+        decoding="async"
+      />
+    </figure>
 
     <div class="featured-product__details">
       <ul class="featured-product__tags" aria-label={`${product.name} capabilities`}>

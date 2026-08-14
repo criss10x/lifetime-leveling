@@ -3,8 +3,8 @@ import { studioContent } from '../../src/shared/content/studio';
 
 describe('studio content', () => {
   it('keeps the approved promise and product destination in both locales', () => {
-    expect(studioContent.id.hero.title).toBe('Aplikasi untuk membuat progres terasa nyata.');
-    expect(studioContent.en.hero.title).toBe('Apps that make progress feel real.');
+    expect(studioContent.id.hero.title).toBe('Kebiasaan ibadah harian, dimulai dari satu quest.');
+    expect(studioContent.en.hero.title).toBe('Build a daily worship habit, one quest at a time.');
     expect(studioContent.id.featuredProduct.href).toBe('https://muslim.lifetimeleveling.com/');
     expect(studioContent.en.featuredProduct.href).toBe('https://muslim.lifetimeleveling.com/en/');
   });

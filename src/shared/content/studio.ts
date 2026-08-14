@@ -22,6 +22,7 @@ export interface StudioContent {
     readonly index: string;
     readonly label: string;
     readonly name: string;
+    readonly frameAlt: string;
     readonly body: string;
     readonly tags: readonly string[];
     readonly cta: string;
@@ -46,16 +47,17 @@ export const studioContent = {
     },
     navigation: { product: 'Muslim Leveling', language: 'English' },
     hero: {
-      eyebrow: 'LIFETIME LEVELING / ROUTE 00',
-      title: 'Aplikasi untuk membuat progres terasa nyata.',
-      body: 'Kami membuat aplikasi fokus yang mengubah niat baik menjadi ritme kecil yang bisa kamu lihat, rasakan, dan lanjutkan.',
+      eyebrow: 'LIFETIME LEVELING',
+      title: 'Kebiasaan ibadah harian, dimulai dari satu quest.',
+      body: 'Muslim Leveling — aplikasi Android pertama dari Lifetime Leveling — mengubah ibadah harian menjadi quest dengan XP, level, dan streak. Dengan ritme yang manusiawi, bukan tekanan untuk sempurna.',
       cta: 'Jelajahi Muslim Leveling',
       crestAlt: 'Lambang naga ungu Lifetime Leveling',
     },
     featuredProduct: {
       index: '01',
-      label: 'Rute pertama',
+      label: 'Aplikasi pertama',
       name: 'Muslim Leveling',
+      frameAlt: 'Beranda Muslim Leveling dengan quest ibadah harian, XP, rank, dan langkah berikutnya.',
       body: 'Teman Android untuk membangun kebiasaan ibadah melalui ritme harian yang suportif.',
       tags: ['Quest ibadah harian', 'XP dan streak', 'Al-Quran dan belajar'],
       cta: 'Lihat Muslim Leveling',
@@ -66,7 +68,7 @@ export const studioContent = {
       ['02', 'Lihat langkahmu', 'Progres yang terlihat memberi alasan yang tenang untuk kembali besok.'],
       ['03', 'Kembali dengan baik', 'Ritme yang manusiawi memberi ruang untuk lanjut, bukan tekanan untuk sempurna.'],
     ],
-    horizon: 'Rute berikutnya sedang dipetakan.',
+    horizon: 'Aplikasi berikutnya sedang disiapkan.',
     footer: {
       productSupport: 'Dukungan produk',
       productSupportHref: STUDIO_PRODUCT_SUPPORT_HREF,
@@ -80,16 +82,17 @@ export const studioContent = {
     },
     navigation: { product: 'Muslim Leveling', language: 'Bahasa Indonesia' },
     hero: {
-      eyebrow: 'LIFETIME LEVELING / ROUTE 00',
-      title: 'Apps that make progress feel real.',
-      body: 'We make focused apps that turn good intentions into small rhythms you can see, feel, and continue.',
+      eyebrow: 'LIFETIME LEVELING',
+      title: 'Build a daily worship habit, one quest at a time.',
+      body: 'Muslim Leveling — the first Android app from Lifetime Leveling — turns daily worship into quests with XP, levels, and streaks. At a human rhythm, not pressure to be perfect.',
       cta: 'Explore Muslim Leveling',
       crestAlt: 'Lifetime Leveling purple dragon crest',
     },
     featuredProduct: {
       index: '01',
-      label: 'First route',
+      label: 'First app',
       name: 'Muslim Leveling',
+      frameAlt: 'Muslim Leveling home screen with daily worship quests, XP, rank, and a next step.',
       body: 'An Android companion for building worship habits through a supportive daily rhythm.',
       tags: ['Daily worship quests', 'XP and streaks', 'Quran and learning'],
       cta: 'Explore Muslim Leveling',
@@ -100,7 +103,7 @@ export const studioContent = {
       ['02', 'See your steps', 'Visible progress gives a calm reason to return tomorrow.'],
       ['03', 'Return with care', 'A human rhythm creates room to continue instead of pressure to be perfect.'],
     ],
-    horizon: 'More routes are being charted.',
+    horizon: 'The next app is in the works.',
     footer: {
       productSupport: 'Product support',
       productSupportHref: STUDIO_PRODUCT_SUPPORT_HREF,

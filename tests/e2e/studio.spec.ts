@@ -4,12 +4,12 @@ test('studio homepage leads clearly to its first product on a phone viewport', a
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
 
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Aplikasi untuk membuat progres terasa nyata.');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Kebiasaan ibadah harian, dimulai dari satu quest.');
   await expect(page.getByRole('link', { name: 'Jelajahi Muslim Leveling' })).toHaveAttribute(
     'href',
     'https://muslim.lifetimeleveling.com/',
   );
-  await expect(page.locator('[data-atlas-route]')).toHaveAttribute('aria-hidden', 'true');
+  await expect(page.locator('.featured-product__frame img')).toBeVisible();
   await expect(page.getByRole('link', { name: 'English' })).toHaveAttribute('href', '/en/');
 
   const brandBounds = await page.getByRole('link', { name: 'Lifetime Leveling' }).boundingBox();
@@ -18,11 +18,27 @@ test('studio homepage leads clearly to its first product on a phone viewport', a
   expect(brandBounds!.height).toBeGreaterThanOrEqual(44);
 });
 
-test('studio route is static and complete when reduced motion is requested', async ({ page }) => {
-  await page.emulateMedia({ reducedMotion: 'reduce' });
+test('stacks the featured product into one readable column on a phone', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
 
-  await expect(page.locator('[data-atlas-route] .atlas-route__line')).toHaveCSS('stroke-dashoffset', '0px');
+  const intro = page.locator('.featured-product__intro');
+  const frame = page.locator('.featured-product__frame');
+  const details = page.locator('.featured-product__details');
+
+  await expect(intro).toBeVisible();
+  await expect(frame).toBeVisible();
+  await expect(details).toBeVisible();
+
+  const introBox = await intro.boundingBox();
+  const frameBox = await frame.boundingBox();
+  const detailsBox = await details.boundingBox();
+  expect(introBox).not.toBeNull();
+  expect(frameBox).not.toBeNull();
+  expect(detailsBox).not.toBeNull();
+
+  expect(introBox!.y).toBeLessThan(frameBox!.y);
+  expect(frameBox!.y).toBeLessThan(detailsBox!.y);
 });
 
 test('separates Muslim Leveling as a real first product, not a generic card', async ({ page }) => {
@@ -33,7 +49,7 @@ test('separates Muslim Leveling as a real first product, not a generic card', as
   await expect(product.getByText('Quest ibadah harian')).toBeVisible();
   await expect(product.getByText('XP dan streak')).toBeVisible();
   await expect(product.getByText('Al-Quran dan belajar')).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Rute berikutnya sedang dipetakan.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Aplikasi berikutnya sedang disiapkan.' })).toBeVisible();
 });
 
 test('routes the English footer product link to the English Muslim Leveling site', async ({ page }) => {

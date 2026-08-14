@@ -5,3 +5,6 @@ dist/
 node_modules/
 playwright-report/
 test-results/
+
+# local review snapshots
+.impeccable/
