@@ -31,6 +31,8 @@ test('Indonesian landing keeps the Android action and product proof in the mobil
 
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Muslim Leveling');
   await expect(page.getByText('Temani langkah ibadahmu, satu hari pada satu waktu.')).toBeVisible();
+  await expect(page.getByText('Quest ibadah harian dengan XP dan rank')).toBeVisible();
+  await expect(page.getByText('Dari akun Google kami hanya menerima email, nama, dan foto profil untuk backup serta sinkronisasi progres.')).toBeVisible();
 
   const download = page.getByRole('link', { name: 'Download di Google Play' }).first();
   await expect(download).toHaveAttribute(

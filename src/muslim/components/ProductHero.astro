@@ -20,6 +20,9 @@ const home = content.screenshots[0];
       <h1 id="product-hero-title">{content.hero.title}</h1>
       <p class="product-hero__tagline">{content.hero.tagline}</p>
       <p class="product-hero__body">{content.hero.body}</p>
+      <ul class="product-hero__features">
+        {content.hero.features.map((feature) => <li>{feature}</li>)}
+      </ul>
       <AndroidDownloadButton href={content.googlePlayUrl} label={content.hero.cta} />
       <small>{content.hero.note}</small>
     </div>

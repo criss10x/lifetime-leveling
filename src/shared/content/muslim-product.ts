@@ -9,6 +9,7 @@ export interface MuslimProductContent {
     readonly title: string;
     readonly tagline: string;
     readonly body: string;
+    readonly features: readonly string[];
     readonly cta: string;
     readonly note: string;
   };
@@ -42,6 +43,12 @@ export const muslimProductContent: Record<Locale, MuslimProductContent> = {
       title: 'Muslim Leveling',
       tagline: 'Temani langkah ibadahmu, satu hari pada satu waktu.',
       body: 'Muslim Leveling adalah aplikasi Android untuk membangun ritme ibadah harian melalui quest, jadwal salat, Al-Quran, dan belajar — dengan level, XP, dan streak yang membuat progres terasa nyata.',
+      features: [
+        'Quest ibadah harian dengan XP dan rank',
+        'Jadwal salat, pilihan kota, dan arah kiblat',
+        'Al-Quran dengan tajwid, Latin, terjemahan, dan tafsir',
+        'Belajar bertahap dengan modul dan kuis',
+      ],
       cta: 'Download di Google Play',
       note: 'Gratis untuk Android · Google Sign-In opsional untuk backup progres.',
     },
@@ -69,8 +76,15 @@ export const muslimProductContent: Record<Locale, MuslimProductContent> = {
     },
     privacyFacts: {
       title: 'Progres dan privasi',
-      body: 'Progres utama tersimpan di perangkatmu. Backup Google bersifat opsional.',
-      facts: ['Tanpa iklan.', 'Tanpa pelacak pemasaran.', 'Laporan crash yang dianonimkan membantu meningkatkan aplikasi.'],
+      body: 'Progres utama tersimpan di perangkatmu. Jika kamu memilih masuk dengan Google, Muslim Leveling memakai akun Google hanya untuk backup dan sinkronisasi progres.',
+      facts: [
+        'Google Sign-In opsional — aplikasi tetap bisa dipakai penuh tanpa masuk.',
+        'Dari akun Google kami hanya menerima email, nama, dan foto profil untuk backup serta sinkronisasi progres.',
+        'Backup tersimpan di Supabase yang terhubung ke akunmu dan bisa dihapus lewat permintaan email.',
+        'Tanpa iklan.',
+        'Tanpa pelacak pemasaran.',
+        'Laporan crash yang dianonimkan membantu meningkatkan aplikasi.',
+      ],
     },
   },
   en: {
@@ -85,6 +99,12 @@ export const muslimProductContent: Record<Locale, MuslimProductContent> = {
       title: 'Muslim Leveling',
       tagline: 'Support your worship journey, one day at a time.',
       body: 'Muslim Leveling is an Android app for building a daily worship rhythm through quests, prayer times, Quran, and learning — with levels, XP, and streaks that make progress feel real.',
+      features: [
+        'Daily worship quests with XP and rank',
+        'Prayer times, city selection, and qibla direction',
+        'Quran with tajwid, Latin, translation, and tafsir',
+        'Step-by-step learning with modules and quizzes',
+      ],
       cta: 'Download on Google Play',
       note: 'Free for Android · Google Sign-In is optional for progress backup.',
     },
@@ -112,8 +132,15 @@ export const muslimProductContent: Record<Locale, MuslimProductContent> = {
     },
     privacyFacts: {
       title: 'Progress and privacy',
-      body: 'Primary progress stays on your device. Google backup is optional.',
-      facts: ['No ads.', 'No marketing trackers.', 'Anonymized crash reports help improve the app.'],
+      body: 'Primary progress stays on your device. If you choose to sign in with Google, Muslim Leveling uses your Google account only for progress backup and sync.',
+      facts: [
+        'Google Sign-In is optional — the app is fully usable without signing in.',
+        'From your Google account we only receive your email, name, and profile photo for progress backup and sync.',
+        'Backups live in Supabase tied to your account and can be removed by email request.',
+        'No ads.',
+        'No marketing trackers.',
+        'Anonymized crash reports help improve the app.',
+      ],
     },
   },
 };
