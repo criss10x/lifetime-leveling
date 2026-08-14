@@ -46,8 +46,10 @@ body[data-surface='muslim'] .locale-switcher__link[aria-current='page'] { backgr
 .product-hero { overflow: clip; background: var(--muslim-green-deep); color: var(--muslim-warm-white); }
 .product-hero__grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(18rem, 0.72fr); align-items: center; gap: clamp(2rem, 8vw, 8rem); min-height: calc(100svh - 4.75rem); padding-block: clamp(3rem, 7vw, 7rem); }
 .product-hero__copy { max-width: 39rem; }
+.product-hero__eyebrow { margin: 0 0 1.15rem; color: #fbd277; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.14em; }
 .product-hero h1 { max-width: 9ch; margin: 0; font-size: clamp(3.1rem, 7vw, 6rem); font-variation-settings: 'wdth' 108, 'wght' 720; letter-spacing: -0.04em; line-height: 0.92; text-wrap: balance; }
-.product-hero__copy > p { max-width: 38rem; margin: 1.35rem 0 0; color: #d7f4e6; font-size: clamp(1rem, 1.4vw, 1.18rem); line-height: 1.72; }
+.product-hero__tagline { max-width: 26ch; margin: 1.3rem 0 0; color: var(--muslim-warm-white); font-size: clamp(1.25rem, 2.1vw, 1.6rem); font-variation-settings: 'wdth' 106, 'wght' 620; letter-spacing: -0.015em; line-height: 1.32; text-wrap: balance; }
+.product-hero__body { max-width: 38rem; margin: 1.25rem 0 0; color: #d7f4e6; font-size: clamp(1rem, 1.4vw, 1.18rem); line-height: 1.72; }
 .android-download { display: inline-flex; align-items: center; justify-content: center; min-block-size: 44px; margin-top: 2rem; padding: 0.75rem 1.1rem; background: var(--muslim-gold); border-radius: 0.7rem; color: var(--muslim-ink); font-weight: 800; text-decoration: none; transition: background-color 160ms ease, transform 160ms ease; }
 .android-download:hover { background: #fbbf24; transform: translateY(-2px); }
 .product-hero small { display: block; max-width: 35rem; margin-top: 0.9rem; color: #d7f4e6; font-size: 0.8rem; line-height: 1.5; }

@@ -7,6 +7,7 @@ export interface MuslimProductContent {
   readonly hero: {
     readonly eyebrow: string;
     readonly title: string;
+    readonly tagline: string;
     readonly body: string;
     readonly cta: string;
     readonly note: string;
@@ -37,9 +38,10 @@ export const muslimProductContent: Record<Locale, MuslimProductContent> = {
     },
     navigation: { product: 'Muslim Leveling', android: 'Android', language: 'English' },
     hero: {
-      eyebrow: 'MUSLIM LEVELING',
-      title: 'Temani langkah ibadahmu, satu hari pada satu waktu.',
-      body: 'Quest harian, XP, dan rank memberi satu langkah berikutnya yang tenang untuk kembali dijaga.',
+      eyebrow: 'APLIKASI IBADAH ANDROID',
+      title: 'Muslim Leveling',
+      tagline: 'Temani langkah ibadahmu, satu hari pada satu waktu.',
+      body: 'Muslim Leveling adalah aplikasi Android untuk membangun ritme ibadah harian melalui quest, jadwal salat, Al-Quran, dan belajar — dengan level, XP, dan streak yang membuat progres terasa nyata.',
       cta: 'Download di Google Play',
       note: 'Gratis untuk Android · Google Sign-In opsional untuk backup progres.',
     },
@@ -79,9 +81,10 @@ export const muslimProductContent: Record<Locale, MuslimProductContent> = {
     },
     navigation: { product: 'Muslim Leveling', android: 'Android', language: 'Bahasa Indonesia' },
     hero: {
-      eyebrow: 'MUSLIM LEVELING',
-      title: 'Support your worship journey, one day at a time.',
-      body: 'Daily quests, XP, and rank offer one calm next step to return to.',
+      eyebrow: 'ANDROID WORSHIP APP',
+      title: 'Muslim Leveling',
+      tagline: 'Support your worship journey, one day at a time.',
+      body: 'Muslim Leveling is an Android app for building a daily worship rhythm through quests, prayer times, Quran, and learning — with levels, XP, and streaks that make progress feel real.',
       cta: 'Download on Google Play',
       note: 'Free for Android · Google Sign-In is optional for progress backup.',
     },

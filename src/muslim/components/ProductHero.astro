@@ -16,8 +16,10 @@ const home = content.screenshots[0];
 <section class="product-hero" aria-labelledby="product-hero-title">
   <div class="product-hero__grid">
     <div class="product-hero__copy">
+      <p class="product-hero__eyebrow">{content.hero.eyebrow}</p>
       <h1 id="product-hero-title">{content.hero.title}</h1>
-      <p>{content.hero.body}</p>
+      <p class="product-hero__tagline">{content.hero.tagline}</p>
+      <p class="product-hero__body">{content.hero.body}</p>
       <AndroidDownloadButton href={content.googlePlayUrl} label={content.hero.cta} />
       <small>{content.hero.note}</small>
     </div>

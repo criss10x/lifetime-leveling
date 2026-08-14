@@ -29,9 +29,8 @@ test('Indonesian landing keeps the Android action and product proof in the mobil
   expect(parentEndorsementTarget?.width).toBeGreaterThanOrEqual(44);
   expect(parentEndorsementTarget?.height).toBeGreaterThanOrEqual(44);
 
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
-    'Temani langkah ibadahmu, satu hari pada satu waktu.',
-  );
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Muslim Leveling');
+  await expect(page.getByText('Temani langkah ibadahmu, satu hari pada satu waktu.')).toBeVisible();
 
   const download = page.getByRole('link', { name: 'Download di Google Play' }).first();
   await expect(download).toHaveAttribute(
