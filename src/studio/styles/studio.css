@@ -349,33 +349,6 @@ body[data-surface='studio'] .locale-switcher__link[aria-current='page'] {
   line-height: 1.35;
 }
 
-.featured-product__data-title {
-  margin: 1.4rem 0 0;
-  color: #fcd98a;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.featured-product__data {
-  display: grid;
-  gap: 0.55rem;
-  width: 100%;
-  max-width: 23rem;
-  margin: 0.6rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.featured-product__data li {
-  padding: 0.65rem 0;
-  border-block-end: 1px solid color-mix(in srgb, #f59e0b 34%, transparent);
-  color: #fff4d6;
-  font-size: 0.86rem;
-  line-height: 1.5;
-}
-
 .featured-product__link {
   display: inline-flex;
   align-items: center;

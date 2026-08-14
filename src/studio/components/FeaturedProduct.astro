@@ -21,10 +21,6 @@ const { product } = Astro.props;
       <ul class="featured-product__tags" aria-label={`${product.name} capabilities`}>
         {product.tags.map((tag) => <li class="featured-product__tag">{tag}</li>)}
       </ul>
-      <p class="featured-product__data-title">{product.googleData.title}</p>
-      <ul class="featured-product__data">
-        {product.googleData.facts.map((fact) => <li>{fact}</li>)}
-      </ul>
       <a class="featured-product__link" href={product.href}>
         <span>{product.cta}</span>
         <svg aria-hidden="true" viewBox="0 0 20 20" fill="none">
