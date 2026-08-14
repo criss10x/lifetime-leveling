@@ -33,6 +33,7 @@ test('separates Muslim Leveling as a real first product, not a generic card', as
   await expect(product.getByText('Quest ibadah harian')).toBeVisible();
   await expect(product.getByText('XP dan streak')).toBeVisible();
   await expect(product.getByText('Al-Quran dan belajar')).toBeVisible();
+  await expect(product.getByText('Dari akun Google kami hanya menerima email, nama, dan foto profil untuk backup serta sinkronisasi progres.')).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Rute berikutnya sedang dipetakan.' })).toBeVisible();
 });
 

@@ -24,6 +24,7 @@ export interface StudioContent {
     readonly name: string;
     readonly body: string;
     readonly tags: readonly string[];
+    readonly googleData: { readonly title: string; readonly facts: readonly string[] };
     readonly cta: string;
     readonly href: string;
   };
@@ -58,6 +59,14 @@ export const studioContent = {
       name: 'Muslim Leveling',
       body: 'Teman Android untuk membangun kebiasaan ibadah melalui ritme harian yang suportif.',
       tags: ['Quest ibadah harian', 'XP dan streak', 'Al-Quran dan belajar'],
+      googleData: {
+        title: 'Penggunaan data Google',
+        facts: [
+          'Google Sign-In opsional — Muslim Leveling tetap bisa dipakai penuh tanpa masuk.',
+          'Dari akun Google kami hanya menerima email, nama, dan foto profil untuk backup serta sinkronisasi progres.',
+          'Backup tersimpan di Supabase yang terhubung ke akun dan bisa dihapus lewat permintaan email.',
+        ],
+      },
       cta: 'Lihat Muslim Leveling',
       href: 'https://muslim.lifetimeleveling.com/',
     },
@@ -92,6 +101,14 @@ export const studioContent = {
       name: 'Muslim Leveling',
       body: 'An Android companion for building worship habits through a supportive daily rhythm.',
       tags: ['Daily worship quests', 'XP and streaks', 'Quran and learning'],
+      googleData: {
+        title: 'Google data use',
+        facts: [
+          'Google Sign-In is optional — Muslim Leveling is fully usable without signing in.',
+          'From your Google account we only receive your email, name, and profile photo for progress backup and sync.',
+          'Backups live in Supabase tied to your account and can be removed by email request.',
+        ],
+      },
       cta: 'Explore Muslim Leveling',
       href: 'https://muslim.lifetimeleveling.com/en/',
     },
