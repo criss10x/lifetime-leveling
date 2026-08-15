@@ -38,6 +38,7 @@ test('Indonesian landing keeps the Android action and product proof in the mobil
 });
 
 test('feature catalog follows the hero in both supported languages', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
   await page.goto('/');
 
   const IndonesianFeatures = page.getByRole('heading', { level: 2, name: 'Semua yang mendukung ritme ibadahmu.' });
@@ -45,6 +46,14 @@ test('feature catalog follows the hero in both supported languages', async ({ pa
   await expect(page.getByRole('heading', { level: 3, name: 'Quest, XP, dan progres' })).toBeVisible();
   await expect(page.getByRole('heading', { level: 3, name: 'Jadwal salat dan kiblat' })).toBeVisible();
   await expect(page.getByRole('heading', { level: 3, name: 'Al-Quran dan murottal' })).toBeVisible();
+
+  const featureItems = page.locator('.feature-catalog article');
+  await expect(featureItems).toHaveCount(6);
+  await expect(page.locator('.feature-catalog article svg[aria-hidden="true"]')).toHaveCount(6);
+
+  const leadBounds = await featureItems.first().boundingBox();
+  const supportingBounds = await featureItems.nth(1).boundingBox();
+  expect(leadBounds?.width).toBeGreaterThan((supportingBounds?.width ?? 0) * 1.5);
 
   await page.goto('/en/');
   await expect(page.getByRole('heading', { level: 2, name: 'Everything that supports your worship rhythm.' })).toBeVisible();

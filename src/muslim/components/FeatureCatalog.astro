@@ -1,21 +1,32 @@
 ---
 import type { MuslimProductContent } from '@shared/content/muslim-product';
+import FeatureIcon from './FeatureIcon.astro';
 
 interface Props { content: MuslimProductContent; }
 const { content } = Astro.props;
 ---
 
 <section class="feature-catalog" aria-labelledby="feature-catalog-title">
-  <div class="feature-catalog__intro">
-    <h2 id="feature-catalog-title">{content.featureCatalog.title}</h2>
-    <p>{content.featureCatalog.body}</p>
-  </div>
-  <div class="feature-catalog__list">
-    {content.featureCatalog.items.map((item) => (
-      <article>
-        <h3>{item.title}</h3>
-        <p>{item.body}</p>
-      </article>
-    ))}
+  <div class="feature-catalog__panel">
+    <div class="feature-catalog__intro">
+      <h2 id="feature-catalog-title">{content.featureCatalog.title}</h2>
+      <p>{content.featureCatalog.body}</p>
+    </div>
+    <div class="feature-catalog__list">
+      {content.featureCatalog.items.map((item, index) => (
+        <article class:list={{ 'feature-catalog__item': true, 'feature-catalog__item--lead': index === 0 }}>
+          <div class="feature-catalog__icon"><FeatureIcon {index} /></div>
+          <div class="feature-catalog__copy">
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </div>
+          {index === 0 && (
+            <div class="feature-catalog__trail" aria-hidden="true">
+              <span></span><span></span><span></span><span></span>
+            </div>
+          )}
+        </article>
+      ))}
+    </div>
   </div>
 </section>
