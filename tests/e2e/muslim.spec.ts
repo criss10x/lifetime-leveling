@@ -37,6 +37,22 @@ test('Indonesian landing keeps the Android action and product proof in the mobil
   await expect(page.getByText('© 2026 Muslim Leveling')).toBeVisible();
 });
 
+test('feature catalog follows the hero in both supported languages', async ({ page }) => {
+  await page.goto('/');
+
+  const IndonesianFeatures = page.getByRole('heading', { level: 2, name: 'Semua yang mendukung ritme ibadahmu.' });
+  await expect(IndonesianFeatures).toBeVisible();
+  await expect(page.getByRole('heading', { level: 3, name: 'Quest, XP, dan progres' })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 3, name: 'Jadwal salat dan kiblat' })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 3, name: 'Al-Quran dan murottal' })).toBeVisible();
+
+  await page.goto('/en/');
+  await expect(page.getByRole('heading', { level: 2, name: 'Everything that supports your worship rhythm.' })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 3, name: 'Quests, XP, and progress' })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 3, name: 'Prayer times and qibla' })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 3, name: 'Quran and murottal' })).toBeVisible();
+});
+
 test('landing proof renders every authentic Android poster with localized alternatives', async ({ page }) => {
   await page.goto('/');
 

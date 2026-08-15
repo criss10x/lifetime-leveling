@@ -13,6 +13,11 @@ export interface MuslimProductContent {
     readonly cta: string;
     readonly note: string;
   };
+  readonly featureCatalog: {
+    readonly title: string;
+    readonly body: string;
+    readonly items: readonly { readonly title: string; readonly body: string }[];
+  };
   readonly dailyLoop: {
     readonly title: string;
     readonly body: string;
@@ -51,6 +56,18 @@ export const muslimProductContent: Record<Locale, MuslimProductContent> = {
       ],
       cta: 'Download di Google Play',
       note: 'Gratis untuk Android · Google Sign-In opsional untuk backup progres.',
+    },
+    featureCatalog: {
+      title: 'Semua yang mendukung ritme ibadahmu.',
+      body: 'Dari satu quest hingga satu ayat yang ingin kamu lanjutkan, Muslim Leveling menyatukan hal-hal yang kamu perlukan untuk menjaga langkah harianmu.',
+      items: [
+        { title: 'Quest, XP, dan progres', body: 'Quest salat, rawatib, tilawah, dan sedekah memberi satu langkah kecil yang dapat dijaga setiap hari.' },
+        { title: 'Jadwal salat dan kiblat', body: 'Pilih kota, lihat waktu salat berikutnya, gunakan arah kiblat, dan atur pengingat yang sesuai untukmu.' },
+        { title: 'Al-Quran dan murottal', body: 'Lanjutkan bacaan terakhir, dengarkan murottal per ayat, dan pilih qari yang nyaman untukmu.' },
+        { title: 'Tajwid, Latin, dan tafsir', body: 'Atur tampilan bacaan dengan tajwid, Latin, terjemahan, dan tafsir saat kamu membutuhkannya.' },
+        { title: 'Belajar dan kuis', body: 'Pelajari materi Islam secara bertahap, lalu uji pemahamanmu lewat kuis singkat.' },
+        { title: 'Ritme yang fleksibel', body: 'Mode haid menjaga progres tetap adil, sementara tema terang dan gelap membantu kamu membaca dengan nyaman.' },
+      ],
     },
     dailyLoop: {
       title: 'Jadwal salat tetap dekat',
@@ -107,6 +124,18 @@ export const muslimProductContent: Record<Locale, MuslimProductContent> = {
       ],
       cta: 'Download on Google Play',
       note: 'Free for Android · Google Sign-In is optional for progress backup.',
+    },
+    featureCatalog: {
+      title: 'Everything that supports your worship rhythm.',
+      body: 'From one quest to the next Quran verse you want to return to, Muslim Leveling brings together what you need to keep your daily steps steady.',
+      items: [
+        { title: 'Quests, XP, and progress', body: 'Prayer, rawatib, tilawah, and sedekah quests offer one small step you can keep each day.' },
+        { title: 'Prayer times and qibla', body: 'Choose a city, see the next prayer time, use qibla direction, and set reminders that suit you.' },
+        { title: 'Quran and murottal', body: 'Resume your last reading, listen to murottal by verse, and choose a qari that feels right for you.' },
+        { title: 'Tajwid, Latin, and tafsir', body: 'Set up reading with tajwid, Latin, translation, and tafsir whenever you need them.' },
+        { title: 'Learning and quizzes', body: 'Learn Islamic material step by step, then check your understanding with short quizzes.' },
+        { title: 'A flexible rhythm', body: 'Haid mode keeps progress fair, while light and dark themes help make reading comfortable.' },
+      ],
     },
     dailyLoop: {
       title: 'Keep prayer times close',

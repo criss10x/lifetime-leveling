@@ -1,0 +1,21 @@
+---
+import type { MuslimProductContent } from '@shared/content/muslim-product';
+
+interface Props { content: MuslimProductContent; }
+const { content } = Astro.props;
+---
+
+<section class="feature-catalog" aria-labelledby="feature-catalog-title">
+  <div class="feature-catalog__intro">
+    <h2 id="feature-catalog-title">{content.featureCatalog.title}</h2>
+    <p>{content.featureCatalog.body}</p>
+  </div>
+  <div class="feature-catalog__list">
+    {content.featureCatalog.items.map((item) => (
+      <article>
+        <h3>{item.title}</h3>
+        <p>{item.body}</p>
+      </article>
+    ))}
+  </div>
+</section>

@@ -9,6 +9,7 @@ import themePreference from '../assets/screens/theme-preference.png';
 import { muslimProductContent } from '@shared/content/muslim-product';
 import CompassionSection from '../components/CompassionSection.astro';
 import DailyLoop from '../components/DailyLoop.astro';
+import FeatureCatalog from '../components/FeatureCatalog.astro';
 import PrivacyFacts from '../components/PrivacyFacts.astro';
 import ProductFooter from '../components/ProductFooter.astro';
 import ProductHero from '../components/ProductHero.astro';
@@ -21,6 +22,7 @@ const content = muslimProductContent[locale];
 
 <ProductShell {locale} path="/" {content}>
   <ProductHero {content} image={dashboardQuests} />
+  <FeatureCatalog {content} />
   <DailyLoop {content} image={prayerTimeline} />
   <ScreenshotStory item={content.screenshots[2]} image={streakAchievement} variant="progress" />
   <ScreenshotStory item={content.screenshots[3]} image={quranMurottal} variant="library" />

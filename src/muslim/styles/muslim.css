@@ -59,6 +59,15 @@ body[data-surface='muslim'] .locale-switcher__link[aria-current='page'] { backgr
 @media (prefers-reduced-motion: no-preference) { .product-hero__proof { animation: poster-reveal 700ms cubic-bezier(.16, 1, .3, 1) both; } }
 @keyframes poster-reveal { from { clip-path: inset(12% 0 0); filter: blur(8px); opacity: 0; transform: translateY(2rem); } to { clip-path: inset(0); filter: blur(0); opacity: 1; transform: translateY(0); } }
 
+.feature-catalog { width: min(100% - 2rem, 77rem); margin-inline: auto; padding-block: clamp(5rem, 11vw, 10rem); }
+.feature-catalog__intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.78fr); gap: 1.5rem clamp(2rem, 8vw, 9rem); align-items: end; }
+.feature-catalog h2 { max-width: 13ch; margin: 0; color: var(--muslim-green-deep); font-size: clamp(2.3rem, 5vw, 4.7rem); font-variation-settings: 'wdth' 108, 'wght' 700; letter-spacing: -0.04em; line-height: 0.94; text-wrap: balance; }
+.feature-catalog__intro > p { max-width: 49ch; margin: 0; color: #43695d; line-height: 1.75; }
+.feature-catalog__list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 clamp(1.5rem, 4vw, 4rem); margin-top: clamp(3rem, 6vw, 5rem); }
+.feature-catalog article { padding-block: 1.3rem 1.75rem; border-top: 1px solid #b9e5d4; }
+.feature-catalog h3 { margin: 0; color: var(--muslim-green-deep); font-family: 'Archivo Variable', sans-serif; font-size: clamp(1.2rem, 2vw, 1.5rem); font-variation-settings: 'wdth' 104, 'wght' 700; letter-spacing: -0.03em; line-height: 1.08; }
+.feature-catalog article p { margin: 0.8rem 0 0; color: #43695d; font-size: 0.95rem; line-height: 1.65; }
+
 .daily-loop { background: var(--muslim-warm-white); }
 .daily-loop__content { display: grid; grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.72fr); align-items: center; gap: clamp(2.5rem, 9vw, 10rem); padding-block: clamp(5rem, 11vw, 10rem); }
 .daily-loop h2,
@@ -119,7 +128,8 @@ body[data-surface='muslim'] .locale-switcher__link[aria-current='page'] { backgr
   body[data-surface='muslim'] .locale-switcher__link::after { font-size: 0.72rem; font-weight: 800; }
   body[data-surface='muslim'] .locale-switcher__link:first-child::after { content: 'ID'; }
   body[data-surface='muslim'] .locale-switcher__link:last-child::after { content: 'EN'; }
-  .product-hero__grid, .daily-loop__content, .screenshot-story__content, .privacy-facts { grid-template-columns: minmax(0, 1fr); }
+  .product-hero__grid, .feature-catalog__intro, .daily-loop__content, .screenshot-story__content, .privacy-facts { grid-template-columns: minmax(0, 1fr); }
+  .feature-catalog__list { grid-template-columns: minmax(0, 1fr); gap: 0; margin-top: 2.75rem; }
   .product-hero__features { grid-template-columns: minmax(0, 1fr); }
   .product-hero__grid { min-height: 0; padding-top: 2.7rem; }
   .product-hero h1 { max-width: 10ch; font-size: clamp(2.8rem, 13.6vw, 4.6rem); }
