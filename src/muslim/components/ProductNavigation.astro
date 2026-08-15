@@ -11,7 +11,6 @@ interface Props {
 
 const { locale, path, content } = Astro.props;
 const homeHref = locale === 'id' ? '/' : '/en/';
-const endorsement = locale === 'id' ? 'Produk Lifetime Leveling' : 'A Lifetime Leveling product';
 ---
 
 <nav class="product-navigation" aria-label={locale === 'id' ? 'Navigasi utama' : 'Primary navigation'}>
@@ -20,10 +19,6 @@ const endorsement = locale === 'id' ? 'Produk Lifetime Leveling' : 'A Lifetime L
     <span>{content.navigation.product}</span>
   </a>
   <div class="product-navigation__actions">
-    <a class="product-navigation__endorsement" href="https://lifetimeleveling.com/">
-      <img src="/brand/lifetime-leveling-crest.webp" width="1254" height="1254" alt="" decoding="async" />
-      <span>{endorsement}</span>
-    </a>
     <span class="product-navigation__platform">{content.navigation.android}</span>
     <LocaleSwitcher {locale} {path} />
   </div>

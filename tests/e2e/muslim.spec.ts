@@ -4,32 +4,8 @@ test('Indonesian landing keeps the Android action and product proof in the mobil
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
 
-  const parentEndorsement = page.getByRole('link', { name: 'Produk Lifetime Leveling' });
-  await expect(parentEndorsement).toBeVisible();
-  await expect.poll(async () =>
-    parentEndorsement.evaluate((element) => {
-      const rect = element.getBoundingClientRect();
-      const styles = getComputedStyle(element);
-      return {
-        inlineSize: rect.width,
-        blockSize: rect.height,
-        display: styles.display,
-        minInlineSize: styles.minInlineSize,
-        minBlockSize: styles.minBlockSize,
-      };
-    }),
-  ).toEqual({
-    inlineSize: expect.any(Number),
-    blockSize: expect.any(Number),
-    display: 'flex',
-    minInlineSize: '44px',
-    minBlockSize: '44px',
-  });
-  const parentEndorsementTarget = await parentEndorsement.boundingBox();
-  expect(parentEndorsementTarget?.width).toBeGreaterThanOrEqual(44);
-  expect(parentEndorsementTarget?.height).toBeGreaterThanOrEqual(44);
-
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Muslim Leveling');
+  await expect(page.getByText(/Lifetime Leveling/i)).toHaveCount(0);
   await expect(page.getByText('Temani langkah ibadahmu, satu hari pada satu waktu.')).toBeVisible();
   await expect(page.getByText('Quest ibadah harian dengan XP dan rank')).toBeVisible();
   await expect(page.getByText('Dari akun Google kami hanya menerima email, nama, dan foto profil untuk backup serta sinkronisasi progres.')).toBeVisible();
@@ -53,10 +29,11 @@ test('Indonesian landing keeps the Android action and product proof in the mobil
       'Beranda Muslim Leveling dengan quest ibadah harian, XP, rank, dan langkah berikutnya.',
     ),
   ).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Kebijakan privasi' }).first()).toHaveAttribute(
+  await expect(page.getByRole('link', { name: 'Kebijakan Privasi' }).last()).toHaveAttribute(
     'href',
     '/privacy/',
   );
+  await expect(page.getByRole('link', { name: 'Ketentuan Layanan' })).toHaveAttribute('href', '/terms/');
   await expect(page.getByText('© 2026 Muslim Leveling')).toBeVisible();
 });
 
@@ -101,6 +78,9 @@ test('English landing translates the action and publishes reciprocal root metada
     'href',
     'https://muslim.lifetimeleveling.com/',
   );
+  await expect(page.getByText(/Lifetime Leveling/i)).toHaveCount(0);
+  await expect(page.getByRole('link', { name: 'Privacy Policy' }).last()).toHaveAttribute('href', '/en/privacy/');
+  await expect(page.getByRole('link', { name: 'Terms of Service' })).toHaveAttribute('href', '/en/terms/');
 });
 
 test('Muslim legal pages are public, canonical, and explain optional Google backup', async ({ page }) => {
