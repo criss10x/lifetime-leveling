@@ -20,6 +20,16 @@ const socialImage = image ? new URL(image, canonical).toString() : undefined;
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content={description} />
+<script is:inline>
+  // ponytail: pre-paint theme boot — read localStorage, fall back to OS preference, set on <html> so dark palette applies before first frame.
+  (function () {
+    try {
+      var stored = localStorage.getItem('muslim-theme');
+      var next = stored || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.dataset.theme = next;
+    } catch (e) {}
+  })();
+</script>
 <link rel="canonical" href={canonical} />
 {LOCALES.map((alternateLocale) => (
   <link

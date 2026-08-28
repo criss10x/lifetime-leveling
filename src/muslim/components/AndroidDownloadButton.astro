@@ -2,9 +2,11 @@
 interface Props {
   href: string;
   label: string;
+  variant?: 'default' | 'hero';
 }
 
-const { href, label } = Astro.props;
+const { href, label, variant = 'default' } = Astro.props;
+const className = variant === 'hero' ? 'android-download android-download--hero' : 'android-download';
 ---
 
-<a class="android-download" href={href} target="_blank" rel="noreferrer">{label}</a>
+<a class={className} href={href} target="_blank" rel="noreferrer">{label}</a>

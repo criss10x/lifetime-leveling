@@ -19,11 +19,10 @@ const home = content.screenshots[0];
       <p class="product-hero__eyebrow">{content.hero.eyebrow}</p>
       <h1 id="product-hero-title">{content.hero.title}</h1>
       <p class="product-hero__tagline">{content.hero.tagline}</p>
-      <p class="product-hero__body">{content.hero.body}</p>
-      <ul class="product-hero__features">
-        {content.hero.features.map((feature) => <li>{feature}</li>)}
+      <AndroidDownloadButton href={content.googlePlayUrl} label={content.hero.cta} variant="hero" />
+      <ul class="product-hero__quick">
+        {content.hero.features.slice(0, 2).map((feature) => <li>{feature}</li>)}
       </ul>
-      <AndroidDownloadButton href={content.googlePlayUrl} label={content.hero.cta} />
       <small>{content.hero.note}</small>
     </div>
     <div class="product-hero__proof">

@@ -31,13 +31,37 @@ body[data-surface='muslim'] {
   transition: background-color 200ms ease, color 200ms ease;
 }
 
+/* ponytail: pre-paint script writes data-theme on <html>; cascade to body via :where so light/dark tokens flip before <body> renders. */
+:root[data-theme='dark'] body[data-surface='muslim'] {
+  --muslim-surface: #0a1a14;
+  --muslim-surface-soft: #0e2218;
+  --muslim-surface-alt: #0f1f17;
+  --muslim-surface-deep: #050d0a;
+  --muslim-surface-brand: #04341f;
+  --muslim-text: #e6f2ec;
+  --muslim-text-on-deep: #fafaf7;
+  --muslim-text-on-brand: #fafaf7;
+  --muslim-text-muted: #94b3a4;
+  --muslim-text-on-deep-muted: #b6d7c5;
+  --muslim-text-gold: #fbd277;
+  --muslim-border: #1f3a30;
+  --muslim-border-on-deep: rgb(250 250 247 / 17%);
+  --muslim-tile: rgb(250 250 247 / 6%);
+  --muslim-tile-strong: rgb(250 250 247 / 12%);
+  --muslim-icon-bg: rgb(251 210 119 / 14%);
+  color-scheme: dark;
+}
+
 body[data-surface='muslim'] > header {
-  position: relative;
-  z-index: 2;
+  position: sticky;
+  top: 0;
+  z-index: 10;
   padding: 1rem clamp(1rem, 5vw, 5.5rem) 0;
   background: var(--muslim-surface-deep);
   color: var(--muslim-text-on-deep);
+  transition: box-shadow 200ms ease;
 }
+body[data-surface='muslim'] > header.is-scrolled { box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 22%); }
 
 body[data-surface='muslim'] :focus-visible { outline-color: var(--muslim-gold); }
 body[data-surface='muslim'] .skip-link { background: var(--muslim-gold); color: var(--muslim-ink); }
@@ -58,6 +82,22 @@ body[data-surface='muslim'] .locale-switcher__link[aria-current='page'] { backgr
 .product-navigation__brand img { width: 2.25rem; height: 2.25rem; border-radius: 0.65rem; }
 .product-navigation__actions { gap: clamp(0.15rem, 1.5vw, 1.15rem); }
 .product-navigation__platform { color: var(--muslim-text-gold); font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+.product-navigation__cta { display: none; align-items: center; padding: 0.55rem 0.9rem; background: var(--muslim-gold); border-radius: 0.6rem; color: var(--muslim-ink); font-size: 0.82rem; font-weight: 800; text-decoration: none; transition: background-color 160ms ease; }
+.product-navigation__cta:hover { background: #fbbf24; }
+@media (min-width: 761px) { .product-navigation__cta { display: inline-flex; } }
+
+.theme-toggle { display: inline-grid; place-items: center; min-inline-size: 44px; min-block-size: 44px; padding: 0; background: transparent; border: 1px solid var(--muslim-border-on-deep); border-radius: 999px; color: var(--muslim-text-on-deep); cursor: pointer; transition: background-color 160ms ease, border-color 160ms ease; }
+.theme-toggle:hover { background: var(--muslim-tile); }
+.theme-toggle:focus-visible { outline: 2px solid var(--muslim-gold); outline-offset: 2px; }
+.theme-toggle__sun, .theme-toggle__moon { width: 1.1rem; height: 1.1rem; stroke: currentColor; }
+:root[data-theme='dark'] .theme-toggle__moon { display: none; }
+:root[data-theme='light'] .theme-toggle__sun { display: none; }
+
+.floating-cta { position: fixed; right: 1rem; bottom: max(1rem, env(safe-area-inset-bottom, 0px)); display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.65rem 0.9rem; background: var(--muslim-gold); border-radius: 999px; color: var(--muslim-ink); font-size: 0.78rem; font-weight: 800; text-decoration: none; box-shadow: 0 0.75rem 1.75rem rgb(0 0 0 / 28%); transition: opacity 180ms ease, transform 180ms ease; z-index: 9; }
+.floating-cta svg { width: 1.05rem; height: 1.05rem; }
+.floating-cta:hover { background: #fbbf24; }
+.floating-cta.is-hidden { opacity: 0; transform: translateY(0.5rem); pointer-events: none; }
+@media (min-width: 761px) { .floating-cta { display: none; } }
 
 .product-hero { overflow: clip; background: var(--muslim-surface-deep); color: var(--muslim-text-on-deep); }
 .product-hero__grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(18rem, 0.72fr); align-items: center; gap: clamp(2rem, 8vw, 8rem); min-height: calc(100svh - 4.75rem); padding-block: clamp(3rem, 7vw, 7rem); }
@@ -65,12 +105,12 @@ body[data-surface='muslim'] .locale-switcher__link[aria-current='page'] { backgr
 .product-hero__eyebrow { margin: 0 0 1.15rem; color: var(--muslim-text-gold); font-size: 0.75rem; font-weight: 800; letter-spacing: 0.14em; }
 .product-hero h1 { max-width: 9ch; margin: 0; font-size: clamp(3.1rem, 7vw, 6rem); font-variation-settings: 'wdth' 108, 'wght' 720; letter-spacing: -0.04em; line-height: 0.92; text-wrap: balance; }
 .product-hero__tagline { max-width: 26ch; margin: 1.3rem 0 0; color: var(--muslim-text-on-deep); font-size: clamp(1.25rem, 2.1vw, 1.6rem); font-variation-settings: 'wdth' 106, 'wght' 620; letter-spacing: -0.015em; line-height: 1.32; text-wrap: balance; }
-.product-hero__body { max-width: 38rem; margin: 1.25rem 0 0; color: var(--muslim-text-on-deep-muted); font-size: clamp(1rem, 1.4vw, 1.18rem); line-height: 1.72; }
-.product-hero__features { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem 1.75rem; margin: 1.6rem 0 0; padding: 0; list-style: none; }
-.product-hero__features li { position: relative; padding-left: 1.15rem; color: var(--muslim-text-on-deep); font-size: 0.92rem; font-weight: 650; line-height: 1.5; }
-.product-hero__features li::before { content: ''; position: absolute; left: 0; top: 0.48em; width: 0.42rem; height: 0.42rem; background: var(--muslim-gold); border-radius: 0.12rem; transform: rotate(45deg); }
+.product-hero__quick { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem 1.75rem; margin: 1.1rem 0 0; padding: 0; list-style: none; }
+.product-hero__quick li { position: relative; padding-left: 1.15rem; color: var(--muslim-text-on-deep); font-size: 0.88rem; font-weight: 650; line-height: 1.5; }
+.product-hero__quick li::before { content: ''; position: absolute; left: 0; top: 0.48em; width: 0.42rem; height: 0.42rem; background: var(--muslim-gold); border-radius: 0.12rem; transform: rotate(45deg); }
 .android-download { display: inline-flex; align-items: center; justify-content: center; min-block-size: 44px; margin-top: 2rem; padding: 0.75rem 1.1rem; background: var(--muslim-gold); border-radius: 0.7rem; color: var(--muslim-ink); font-weight: 800; text-decoration: none; transition: background-color 160ms ease, transform 160ms ease; }
 .android-download:hover { background: #fbbf24; transform: translateY(-2px); }
+.android-download--hero { margin-top: 1.6rem; }
 .product-hero small { display: block; max-width: 35rem; margin-top: 0.9rem; color: var(--muslim-text-on-deep-muted); font-size: 0.8rem; line-height: 1.5; }
 .product-hero__proof { justify-self: center; width: min(100%, 25rem); }
 .android-frame { margin: 0; }
@@ -178,7 +218,7 @@ body[data-surface='muslim'] .locale-switcher__link[aria-current='page'] { backgr
   .feature-catalog__list { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; gap: 0.75rem; margin-top: 2.75rem; }
   .feature-catalog__item, .feature-catalog__item:nth-child(n) { grid-column: 1; grid-row: auto; }
   .feature-catalog__item--lead { min-height: 19rem; }
-  .product-hero__features { grid-template-columns: minmax(0, 1fr); }
+  .product-hero__quick { grid-template-columns: minmax(0, 1fr); }
   .product-hero__grid { min-height: 0; padding-top: 2.7rem; }
   .product-hero h1 { max-width: 10ch; font-size: clamp(2.8rem, 13.6vw, 4.6rem); }
   .product-hero__proof { width: min(100%, 21rem); }
@@ -189,4 +229,12 @@ body[data-surface='muslim'] .locale-switcher__link[aria-current='page'] { backgr
   .privacy-facts ul { align-self: auto; }
   .product-footer__close, .product-footer__links { align-items: flex-start; flex-direction: column; }
   .product-footer nav { justify-content: flex-start; }
+}
+
+/* ponytail: scroll-reveal via IntersectionObserver; respects prefers-reduced-motion. */
+.reveal { opacity: 0; transform: translateY(1.5rem); transition: opacity 600ms ease, transform 600ms cubic-bezier(.16, 1, .3, 1); }
+.reveal--in { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .product-hero__proof { animation: none !important; }
 }

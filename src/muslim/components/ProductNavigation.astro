@@ -21,5 +21,43 @@ const homeHref = locale === 'id' ? '/' : '/en/';
   <div class="product-navigation__actions">
     <span class="product-navigation__platform">{content.navigation.android}</span>
     <LocaleSwitcher {locale} {path} />
+    <button
+      class="theme-toggle"
+      type="button"
+      data-theme-toggle
+      aria-label={locale === 'id' ? 'Alihkan tema terang atau gelap' : 'Toggle light or dark theme'}
+      aria-pressed="false"
+      title={locale === 'id' ? 'Alihkan tema' : 'Toggle theme'}
+    >
+      <svg class="theme-toggle__sun" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="4.2" />
+        <path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7" />
+      </svg>
+      <svg class="theme-toggle__moon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" />
+      </svg>
+    </button>
+    <a
+      class="product-navigation__cta"
+      href={content.googlePlayUrl}
+      target="_blank"
+      rel="noreferrer"
+      data-sticky-cta="desktop"
+    >{content.hero.cta}</a>
   </div>
 </nav>
+<a
+  class="floating-cta"
+  href={content.googlePlayUrl}
+  target="_blank"
+  rel="noreferrer"
+  aria-label={content.hero.cta}
+  data-sticky-cta="mobile"
+>
+  <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 7.5c2.2-1.2 4.5-2 7-2s4.8.8 7 2v9c-2.2-1.2-4.5-2-7-2s-4.8.8-7 2v-9Z" />
+    <path d="M19 7.5c-2.2-1.2-4.5-2-7-2s-4.8.8-7 2v9c2.2-1.2 4.5-2 7-2s4.8.8 7 2v-9Z" />
+    <path d="M9.5 12.5l1.4 1.4 2.8-2.9" />
+  </svg>
+  <span>{content.hero.cta}</span>
+</a>
