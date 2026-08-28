@@ -37,6 +37,18 @@ test('Indonesian landing keeps the Android action and product proof in the mobil
   await expect(page.getByText('© 2026 Muslim Leveling')).toBeVisible();
 });
 
+test('landing exposes favicon and apple-touch-icon links', async ({ page }) => {
+  await page.goto('/');
+  const favicon = page.locator('link[rel="icon"]').first();
+  const appleTouch = page.locator('link[rel="apple-touch-icon"]').first();
+  await expect(favicon).toHaveAttribute('href', '/brand/muslim-leveling-icon.png');
+  await expect(appleTouch).toHaveAttribute('href', '/brand/muslim-leveling-icon.png');
+
+  // also verify the icon asset is reachable (not 404)
+  const res = await page.request.get('/brand/muslim-leveling-icon.png');
+  expect(res.status()).toBe(200);
+});
+
 test('feature catalog follows the hero in both supported languages', async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.goto('/');
