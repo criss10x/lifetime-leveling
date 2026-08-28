@@ -72,3 +72,34 @@ test('dark progress section body is high-contrast (no mint-on-green trap)', asyn
   expect.soft(data.ratio, `progress p contrast ${data.ratio}:1`).toBeGreaterThanOrEqual(10);
   expect.soft(saturation, `progress p saturation ${saturation.toFixed(2)} should be low (near-white, not mint)`).toBeLessThan(0.4);
 });
+
+test('mobile learning section stacks vertically (no 2-col squeeze)', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.addInitScript(() => localStorage.setItem('muslim-theme', 'light'));
+  await page.goto('/');
+
+  const layout = await page.evaluate(() => {
+    const sec = document.querySelector('.screenshot-story--learning');
+    const content = sec.querySelector('.screenshot-story__content');
+    const copy = sec.querySelector('.screenshot-story__copy');
+    const frame = sec.querySelector('.android-frame');
+    const cr = copy.getBoundingClientRect();
+    const fr = frame.getBoundingClientRect();
+    return {
+      gridCols: getComputedStyle(content).gridTemplateColumns,
+      copyW: Math.round(cr.width),
+      copyLeft: Math.round(cr.left),
+      copyBottom: Math.round(cr.bottom),
+      frameTop: Math.round(fr.top),
+      frameLeft: Math.round(fr.left),
+      frameW: Math.round(fr.width),
+    };
+  });
+
+  // expect single column: only 1 grid track, not 2
+  expect.soft(layout.gridCols.split(' ').length, `learning grid has ${layout.gridCols}`).toBe(1);
+  // expect copy column to have actual width (not a 60px squeezed sliver)
+  expect.soft(layout.copyW, `learning copy width ${layout.copyW}px should be > 200`).toBeGreaterThan(200);
+  // expect image to sit below copy, not beside it
+  expect.soft(layout.frameTop, `frame top ${layout.frameTop} should be >= copy bottom ${layout.copyBottom}`).toBeGreaterThanOrEqual(layout.copyBottom - 5);
+});

@@ -240,8 +240,8 @@ body[data-surface='muslim'] .locale-switcher__link[aria-current='page'] { backgr
   .product-hero h1 { max-width: 10ch; font-size: clamp(2.8rem, 13.6vw, 4.6rem); }
   .product-hero__proof { width: min(100%, 21rem); }
   .daily-loop__proof, .screenshot-story .android-frame { width: min(100%, 20rem); }
-  .screenshot-story--library .screenshot-story__content, .screenshot-story--theme .screenshot-story__content { grid-template-columns: minmax(0, 1fr); }
-  .screenshot-story--library .screenshot-story__copy, .screenshot-story--theme .screenshot-story__copy { order: 0; }
+  .screenshot-story--library .screenshot-story__content, .screenshot-story--theme .screenshot-story__content, .screenshot-story--learning .screenshot-story__content { grid-template-columns: minmax(0, 1fr); }
+  .screenshot-story--library .screenshot-story__copy, .screenshot-story--theme .screenshot-story__copy, .screenshot-story--learning .screenshot-story__copy { order: 0; }
   .screenshot-story--reading .android-frame { width: min(100%, 22rem); }
   .privacy-facts ul { align-self: auto; }
   .product-footer__close, .product-footer__links { align-items: flex-start; flex-direction: column; }
