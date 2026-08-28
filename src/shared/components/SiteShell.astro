@@ -26,7 +26,7 @@ const escapedDirectionContract = directionContract?.replaceAll('--', '—');
     <BaseHead {surface} {locale} {path} {title} {description} {image} />
   </head>
   <body data-surface={surface}>
-    {escapedDirectionContract && <Fragment set:html={`<!-- ${escapedDirectionContract} -->`} />}
+    {import.meta.env.DEV && escapedDirectionContract && <Fragment set:html={`<!-- ${escapedDirectionContract} -->`} />}
     <a class="skip-link" href="#main-content">{skipLabel}</a>
     <header>
       <slot name="navigation">

@@ -194,6 +194,18 @@ test('Muslim legal and support routes publish canonical and reciprocal locale me
   }
 });
 
+test('section nav links to catalog, screens, and privacy anchors on desktop', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto('/');
+
+  const nav = page.locator('nav.product-navigation__sections');
+  await expect(nav).toBeVisible();
+  await expect(nav.getByRole('link', { name: 'Fitur' })).toHaveAttribute('href', '#feature-catalog-title');
+  await expect(nav.getByRole('link', { name: 'Layar' })).toHaveAttribute('href', '#quran-murottal-title');
+  await expect(nav.getByRole('link', { name: 'Privasi' })).toHaveAttribute('href', '#privacy-title');
+  await expect(page.locator('#theme-announce')).toHaveAttribute('aria-live', 'polite');
+});
+
 test('theme toggle flips dark mode and persists across reload', async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 800 });
   await page.goto('/');

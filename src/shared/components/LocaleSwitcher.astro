@@ -19,6 +19,7 @@ const labels: Record<Locale, string> = {
     <a
       class="locale-switcher__link"
       href={localePath(alternateLocale, path)}
+      aria-label={labels[alternateLocale]}
       aria-current={alternateLocale === locale ? 'page' : undefined}
     >
       {labels[alternateLocale]}

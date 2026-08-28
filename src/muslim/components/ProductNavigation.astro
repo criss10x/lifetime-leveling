@@ -18,6 +18,11 @@ const homeHref = locale === 'id' ? '/' : '/en/';
     <img src="/brand/muslim-leveling-icon.png" width="512" height="512" alt="" decoding="async" />
     <span>{content.navigation.product}</span>
   </a>
+  <nav class="product-navigation__sections" aria-label={locale === 'id' ? 'Lompat ke bagian' : 'Jump to section'}>
+    <a href="#feature-catalog-title">{locale === 'id' ? 'Fitur' : 'Features'}</a>
+    <a href="#quran-murottal-title">{locale === 'id' ? 'Layar' : 'Screens'}</a>
+    <a href="#privacy-title">{locale === 'id' ? 'Privasi' : 'Privacy'}</a>
+  </nav>
   <div class="product-navigation__actions">
     <span class="product-navigation__platform">{content.navigation.android}</span>
     <LocaleSwitcher {locale} {path} />
@@ -26,6 +31,7 @@ const homeHref = locale === 'id' ? '/' : '/en/';
       type="button"
       data-theme-toggle
       aria-label={locale === 'id' ? 'Alihkan tema terang atau gelap' : 'Toggle light or dark theme'}
+      aria-describedby="theme-announce"
       aria-pressed="false"
       title={locale === 'id' ? 'Alihkan tema' : 'Toggle theme'}
     >
@@ -37,6 +43,7 @@ const homeHref = locale === 'id' ? '/' : '/en/';
         <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" />
       </svg>
     </button>
+    <span id="theme-announce" class="visually-hidden" aria-live="polite" data-theme-announce></span>
     <a
       class="product-navigation__cta"
       href={content.googlePlayUrl}

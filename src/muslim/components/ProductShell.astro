@@ -35,7 +35,9 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 </SiteShell>
 
 <script>
-  // ponytail: scroll-reveal + sticky header shadow + mobile CTA show/hide + theme toggle wiring. ~60 LOC, no deps.
+  // ponytail: scroll-reveal + sticky header shadow + mobile CTA show/hide + theme toggle wiring. ~70 LOC, no deps.
+  const labels = { id: { dark: 'Tema gelap diaktifkan', light: 'Tema terang diaktifkan' }, en: { dark: 'Dark theme enabled', light: 'Light theme enabled' } } as const;
+  const t = (document.documentElement.lang === 'en' ? labels.en : labels.id);
   const ready = () => {
     const body = document.body;
     const header = document.querySelector<HTMLElement>('body[data-surface="muslim"] > header');
@@ -51,11 +53,13 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
     }
 
     const toggle = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+    const announce = document.querySelector<HTMLElement>('[data-theme-announce]');
     if (toggle) {
       const apply = (next: string) => {
         document.documentElement.dataset.theme = next;
         body.dataset.theme = next;
         toggle.setAttribute('aria-pressed', next === 'dark' ? 'true' : 'false');
+        if (announce) announce.textContent = next === 'dark' ? t.dark : t.light;
         try { localStorage.setItem('muslim-theme', next); } catch (e) { console.error('theme persist failed', e); }
       };
       apply(document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light');
