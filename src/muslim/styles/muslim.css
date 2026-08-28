@@ -191,7 +191,7 @@ body[data-surface='muslim'] .locale-switcher__link[aria-current='page'] { backgr
 .screenshot-story .android-frame { width: min(100%, 23rem); justify-self: center; }
 .screenshot-story--progress { background: var(--muslim-surface-brand); color: var(--muslim-text-on-brand); }
 .screenshot-story--progress h2 { color: var(--muslim-text-on-brand); }
-.screenshot-story--progress p { color: var(--muslim-text-on-deep-muted); }
+.screenshot-story--progress p { color: var(--muslim-text-on-deep); }
 .screenshot-story--library { background: var(--muslim-surface-alt); }
 .screenshot-story--library .screenshot-story__content { grid-template-columns: minmax(15rem, 0.72fr) minmax(0, 1fr); }
 .screenshot-story--library .screenshot-story__copy { order: 2; }

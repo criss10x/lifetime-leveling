@@ -45,3 +45,30 @@ test('light compassion h2 contrast is at least AA-large (3:1)', async ({ page })
 
   expect.soft(ratio, `compassion h2 contrast ${ratio}:1`).toBeGreaterThanOrEqual(4.5);
 });
+
+test('dark progress section body is high-contrast (no mint-on-green trap)', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.addInitScript(() => localStorage.setItem('muslim-theme', 'dark'));
+  await page.goto('/');
+
+  const data = await page.evaluate(() => {
+    function srgbToLinear(c) { c /= 255; return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); }
+    function relLum([r, g, b]) { return 0.2126 * srgbToLinear(r) + 0.7152 * srgbToLinear(g) + 0.0722 * srgbToLinear(b); }
+    function ratio(a, b) { const L1 = relLum(a), L2 = relLum(b); const [hi, lo] = L1 > L2 ? [L1, L2] : [L2, L1]; return (hi + 0.05) / (lo + 0.05); }
+    function parse(s) { return s.match(/\d+/g).map(Number).slice(0, 3); }
+    const section = document.querySelector('.screenshot-story--progress');
+    const p = section.querySelector('p');
+    return {
+      bg: getComputedStyle(section).backgroundColor,
+      pColor: getComputedStyle(p).color,
+      ratio: +ratio(parse(getComputedStyle(section).backgroundColor), parse(getComputedStyle(p).color)).toFixed(2),
+    };
+  });
+
+  // Use neutral/near-white tokens (high luminance difference) rather than mint-on-green
+  // which can pass 4.5:1 but read as dark-on-dark perceptually.
+  const [br, bg, bb] = data.pColor.match(/\d+/g).map(Number);
+  const saturation = (Math.max(br, bg, bb) - Math.min(br, bg, bb)) / Math.max(br, bg, bb);
+  expect.soft(data.ratio, `progress p contrast ${data.ratio}:1`).toBeGreaterThanOrEqual(10);
+  expect.soft(saturation, `progress p saturation ${saturation.toFixed(2)} should be low (near-white, not mint)`).toBeLessThan(0.4);
+});
