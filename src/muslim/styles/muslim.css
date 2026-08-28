@@ -31,6 +31,12 @@ body[data-surface='muslim'] {
   transition: background-color 200ms ease, color 200ms ease;
 }
 
+/* ponytail: dark override for h2 hardcoded to --muslim-green-deep (brand raw) on light surfaces, which is unreadable on dark surfaces. One rule covers 6 selectors. */
+:root[data-theme='dark'] .daily-loop h2,
+:root[data-theme='dark'] .screenshot-story h2,
+:root[data-theme='dark'] .privacy-facts h2,
+:root[data-theme='dark'] .product-footer p { color: var(--muslim-text-on-deep); }
+
 /* ponytail: pre-paint script writes data-theme on <html>; cascade to body via :where so light/dark tokens flip before <body> renders. */
 :root[data-theme='dark'] body[data-surface='muslim'] {
   --muslim-surface: #0a1a14;
