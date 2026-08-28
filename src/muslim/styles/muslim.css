@@ -109,7 +109,7 @@ body[data-surface='muslim'] .locale-switcher__link[aria-current='page'] { backgr
 :root[data-theme='dark'] .theme-toggle__moon { display: none; }
 :root[data-theme='light'] .theme-toggle__sun { display: none; }
 
-.floating-cta { position: fixed; right: 1rem; bottom: max(1rem, env(safe-area-inset-bottom, 0px)); display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.65rem 0.9rem; background: var(--muslim-gold); border-radius: 999px; color: var(--muslim-ink); font-size: 0.78rem; font-weight: 800; text-decoration: none; box-shadow: 0 0.75rem 1.75rem rgb(0 0 0 / 28%); transition: opacity 180ms ease, transform 180ms ease; z-index: 9; }
+.floating-cta { position: fixed; right: 1rem; bottom: max(1rem, env(safe-area-inset-bottom, 0px)); display: inline-flex; align-items: center; gap: 0.4rem; min-block-size: 44px; padding: 0.65rem 1rem; background: var(--muslim-gold); border-radius: 999px; color: var(--muslim-ink); font-size: 0.78rem; font-weight: 800; text-decoration: none; box-shadow: 0 0.75rem 1.75rem rgb(0 0 0 / 28%); transition: opacity 180ms ease, transform 180ms ease; z-index: 9; }
 .floating-cta svg { width: 1.05rem; height: 1.05rem; }
 .floating-cta:hover { background: #fbbf24; }
 .floating-cta.is-hidden { opacity: 0; transform: translateY(0.5rem); pointer-events: none; }
@@ -205,7 +205,7 @@ body[data-surface='muslim'] .locale-switcher__link[aria-current='page'] { backgr
 .screenshot-story--theme .screenshot-story__content { grid-template-columns: minmax(15rem, 0.83fr) minmax(0, 1fr); }
 .screenshot-story--theme .screenshot-story__copy { order: 2; }
 
-.compassion-section { background: var(--muslim-surface-brand); color: var(--muslim-text-on-brand); }
+.compassion-section { background: var(--muslim-surface-deep); color: var(--muslim-text-on-brand); }
 .compassion-section > div { width: min(100% - 2rem, 56rem); margin-inline: auto; padding-block: clamp(7rem, 15vw, 13rem); text-align: center; }
 .compassion-section h2 { max-width: 16ch; margin-inline: auto; color: var(--muslim-text-gold); font-size: clamp(2.8rem, 6.5vw, 5.5rem); font-variation-settings: 'wdth' 108, 'wght' 720; line-height: 0.96; }
 .compassion-section p { max-width: 46ch; margin: 1.5rem auto 0; color: var(--muslim-text-on-deep-muted); font-size: clamp(1.1rem, 1.65vw, 1.4rem); line-height: 1.55; }
@@ -219,7 +219,8 @@ body[data-surface='muslim'] .locale-switcher__link[aria-current='page'] { backgr
 .product-footer__close { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding-block: clamp(3rem, 7vw, 6rem); border-top: 1px solid var(--muslim-border); }
 .product-footer__close p { max-width: 25rem; margin: 0; color: var(--muslim-green-deep); font-family: 'Archivo Variable', sans-serif; font-size: clamp(1.5rem, 3vw, 2.5rem); font-variation-settings: 'wdth' 106, 'wght' 680; letter-spacing: -0.04em; line-height: 1; }
 .product-footer__links { display: flex; justify-content: space-between; gap: 1rem; color: var(--muslim-text-muted); font-size: 0.78rem; }
-.product-footer nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.6rem 1rem; }
+.product-footer nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.6rem 0.6rem; }
+.product-footer nav a { display: inline-flex; align-items: center; min-block-size: 44px; padding-inline: 0.5rem; }
 
 @media (max-width: 760px) {
   .product-navigation__actions { gap: 0.2rem; }
