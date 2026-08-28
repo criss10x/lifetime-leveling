@@ -193,3 +193,29 @@ test('Muslim legal and support routes publish canonical and reciprocal locale me
     }
   }
 });
+
+test('theme toggle flips dark mode and persists across reload', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto('/');
+
+  const toggle = page.locator('[data-theme-toggle]');
+  await expect(toggle).toBeVisible();
+  await expect(toggle).toHaveAttribute('aria-pressed', 'false');
+
+  await toggle.click();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+  await expect(toggle).toHaveAttribute('aria-pressed', 'true');
+  expect(await page.evaluate(() => localStorage.getItem('muslim-theme'))).toBe('dark');
+
+  await page.reload();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+  await expect(toggle).toHaveAttribute('aria-pressed', 'true');
+
+  await toggle.click();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+  await expect(toggle).toHaveAttribute('aria-pressed', 'false');
+  expect(await page.evaluate(() => localStorage.getItem('muslim-theme'))).toBe('light');
+
+  await page.reload();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+});
