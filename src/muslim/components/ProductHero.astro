@@ -14,6 +14,11 @@ const home = content.screenshots[0];
 ---
 
 <section class="product-hero" aria-labelledby="product-hero-title">
+  <video class="product-hero__bg-video" autoplay muted loop playsinline preload="metadata" poster="/hero/hero-poster.webp" data-intersection="observe">
+    <source src="/hero/hero.webm" type="video/webm">
+    <source src="/hero/hero.mp4" type="video/mp4">
+  </video>
+  <div class="product-hero__bg-overlay"></div>
   <div class="product-hero__grid">
     <div class="product-hero__copy">
       <p class="product-hero__eyebrow">{content.hero.eyebrow}</p>
@@ -30,3 +35,22 @@ const home = content.screenshots[0];
     </div>
   </div>
 </section>
+<script is:inline>
+  // ponytail: pause hero video when out of view → release GPU/CPU
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const video = entry.target.querySelector('.product-hero__bg-video');
+        if (!video) return;
+        if (entry.isIntersecting) { video.play(); } else { video.pause(); }
+      });
+    }, { rootMargin: '200px 0px', threshold: 0.01 });
+    document.querySelectorAll('section.product-hero').forEach(section => {
+      observer.observe(section);
+      section.addEventListener('click', () => {
+        const video = section.querySelector('.product-hero__bg-video');
+        if (video) video.play();
+      });
+    });
+  }
+</script>
