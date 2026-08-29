@@ -103,3 +103,37 @@ test('mobile learning section stacks vertically (no 2-col squeeze)', async ({ pa
   // expect image to sit below copy, not beside it
   expect.soft(layout.frameTop, `frame top ${layout.frameTop} should be >= copy bottom ${layout.copyBottom}`).toBeGreaterThanOrEqual(layout.copyBottom - 5);
 });
+
+test('nav header top-state passes AA contrast in both light and dark', async ({ page }) => {
+  for (const theme of ['light', 'dark'] as const) {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.addInitScript((t) => localStorage.setItem('muslim-theme', t), theme);
+    await page.goto('/');
+
+    // @ts-ignore — inner helpers are plain JS; strict TS is noise here.
+    const data = await page.evaluate(() => {
+      function srgbToLinear(c) { c /= 255; return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); }
+      function relLum([r, g, b]) { return 0.2126 * srgbToLinear(r) + 0.7152 * srgbToLinear(g) + 0.0722 * srgbToLinear(b); }
+      function ratio(a, b) { const L1 = relLum(a), L2 = relLum(b); const [hi, lo] = L1 > L2 ? [L1, L2] : [L2, L1]; return (hi + 0.05) / (lo + 0.05); }
+      // header is now always --muslim-surface-deep, not transparent, so bg is the header itself
+      const header = document.querySelector('body[data-surface=\"muslim\"] > header');
+      const brand = header.querySelector('.product-navigation__brand');
+      const sectionLink = header.querySelector('.product-navigation__sections a');
+      const actions = header.querySelector('.product-navigation__platform');
+      const parse = (s) => s.match(/\d+/g).map(Number).slice(0, 3);
+      const headerBg = getComputedStyle(header).backgroundColor;
+      const rows = [
+        { label: 'brand', el: brand },
+        { label: 'section link', el: sectionLink },
+        { label: 'platform label', el: actions },
+      ].filter((r) => r.el !== null).map((r) => ({ label: r.label, fg: getComputedStyle(r.el).color, bg: headerBg, r: +ratio(parse(headerBg), parse(getComputedStyle(r.el).color)).toFixed(2) }));
+      return { headerBg, rows, isTransparent: /rgba\([^)]+,\s*0\)/.test(headerBg) || headerBg === 'rgba(0, 0, 0, 0)' };
+    });
+
+    // header must NOT be transparent (the root cause)
+    expect.soft(data.isTransparent, `header must have a non-transparent bg in ${theme} mode`).toBe(false);
+    for (const row of data.rows) {
+      expect.soft(row.r, `${theme}/${row.label} contrast ${row.r}:1`).toBeGreaterThanOrEqual(4.5);
+    }
+  }
+});

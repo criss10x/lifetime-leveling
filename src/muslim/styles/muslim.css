@@ -63,10 +63,11 @@ body[data-surface='muslim'] > header {
   top: 0;
   z-index: 10;
   padding: 1rem clamp(1rem, 5vw, 5.5rem) 0;
-  background: transparent;
+  background: var(--muslim-surface-deep);
   color: var(--muslim-text-on-deep);
   transition: background-color 200ms ease, box-shadow 200ms ease;
 }
+/* ponytail: header bg is always --muslim-surface-deep; scroll only adds shadow. */
 body[data-surface='muslim'] > header.is-scrolled {
   background: var(--muslim-surface-deep);
   box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 22%);
