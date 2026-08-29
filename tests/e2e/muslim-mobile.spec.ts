@@ -138,6 +138,7 @@ test('desktop hero copy aligns left (not centered)', async ({ page }) => {
   const data = await page.evaluate(() => {
     const grid = document.querySelector('.product-hero__grid');
     const copy = document.querySelector('.product-hero__copy');
+    const hero = document.querySelector('.product-hero');
     return {
       vw: window.innerWidth,
       gridLeft: Math.round(grid.getBoundingClientRect().left),
@@ -145,15 +146,20 @@ test('desktop hero copy aligns left (not centered)', async ({ page }) => {
       copyLeft: Math.round(copy.getBoundingClientRect().left),
       copyRight: Math.round(copy.getBoundingClientRect().right),
       copyW: Math.round(copy.getBoundingClientRect().width),
+      heroBg: getComputedStyle(hero).backgroundImage,
+      heroPadL: parseFloat(getComputedStyle(hero).paddingLeft),
     };
   });
 
-  // Grid must start at the left edge of its container (no auto-margin centering it).
-  // Hero has no padding-inline so left edge ≈ 0.
-  expect.soft(data.gridLeft, `hero grid left ${data.gridLeft}px <= 4`).toBeLessThanOrEqual(4);
+  // Grid must start at the left padding of the hero (not flush to viewport edge).
+  // Hero has padding-inline: clamp(1rem, 4vw, 4rem) so left edge sits inside the viewport.
+  const heroPadL = data.heroPadL;
+  expect.soft(Math.abs(data.gridLeft - heroPadL), `hero grid left ${data.gridLeft}px should match hero padding-left ${heroPadL}px`).toBeLessThanOrEqual(2);
   // Copy must be in the left half of the viewport (not centered around viewport center 640).
   const vwCenter = data.vw / 2;
   expect.soft((data.copyLeft + data.copyRight) / 2, `hero copy center ${(data.copyLeft + data.copyRight) / 2} should be < viewport center ${vwCenter}`).toBeLessThan(vwCenter - 100);
+  // Hero must carry the poster image as a fallback background (so non-autoplay users still see motion hint).
+  expect.soft(/hero-poster/.test(data.heroBg), `hero bg-image should reference poster, got: ${data.heroBg}`).toBe(true);
 });
 test('nav header top-state passes AA contrast in both light and dark', async ({ page }) => {
   for (const theme of ['light', 'dark'] as const) {
