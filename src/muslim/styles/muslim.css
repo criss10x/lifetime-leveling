@@ -116,7 +116,7 @@ body[data-surface='muslim'] .locale-switcher__link[aria-current='page'] { backgr
 .floating-cta.is-hidden { opacity: 0; transform: translateY(0.5rem); pointer-events: none; }
 @media (min-width: 761px) { .floating-cta { display: none; } }
 
-.product-hero { position: relative; overflow: clip; background: var(--muslim-surface-deep); color: var(--muslim-text-on-deep); padding-inline: clamp(1rem, 4vw, 4rem); }
+.product-hero { position: relative; overflow: clip; background: var(--muslim-surface-deep); color: var(--muslim-text-on-deep); padding-inline: 1.5rem; }
 .product-hero__bg-video { position: absolute; inset: -15% -10%; z-index: -2; width: auto; min-height: 100%; height: auto; object-fit: cover; transform: translateZ(0); pointer-events: none; background-color: var(--muslim-surface-deep); }
 @media (prefers-reduced-motion: reduce) { .product-hero__bg-video { display: none !important; } }
 .product-hero { background-image: url('/hero/hero-poster.webp'); background-size: cover; background-position: center; }

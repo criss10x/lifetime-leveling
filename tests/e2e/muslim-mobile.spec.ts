@@ -139,6 +139,7 @@ test('desktop hero copy aligns left (not centered)', async ({ page }) => {
     const grid = document.querySelector('.product-hero__grid');
     const copy = document.querySelector('.product-hero__copy');
     const hero = document.querySelector('.product-hero');
+    const daily = document.querySelector('.daily-loop h2');
     return {
       vw: window.innerWidth,
       gridLeft: Math.round(grid.getBoundingClientRect().left),
@@ -148,13 +149,17 @@ test('desktop hero copy aligns left (not centered)', async ({ page }) => {
       copyW: Math.round(copy.getBoundingClientRect().width),
       heroBg: getComputedStyle(hero).backgroundImage,
       heroPadL: parseFloat(getComputedStyle(hero).paddingLeft),
+      dailyLeft: Math.round(daily.getBoundingClientRect().left),
     };
   });
 
-  // Grid must start at the left padding of the hero (not flush to viewport edge).
-  // Hero has padding-inline: clamp(1rem, 4vw, 4rem) so left edge sits inside the viewport.
+  // Grid must start at the left padding of the hero, aligned with content
+  // sections below (DailyLoop, ScreenshotStory -- all use 24px container gutter
+  // derived from min(100% - 2rem, 77rem) + margin-inline: auto).
   const heroPadL = data.heroPadL;
   expect.soft(Math.abs(data.gridLeft - heroPadL), `hero grid left ${data.gridLeft}px should match hero padding-left ${heroPadL}px`).toBeLessThanOrEqual(2);
+  expect.soft(heroPadL, `hero padding-left ${heroPadL}px should match DailyLoop H2 left ${data.dailyLeft}px (±2)`).toBeLessThanOrEqual(24 + 2);
+  expect.soft(Math.abs(heroPadL - data.dailyLeft), `hero (${heroPadL}) and DailyLoop (${data.dailyLeft}) should align`).toBeLessThanOrEqual(2);
   // Copy must be in the left half of the viewport (not centered around viewport center 640).
   const vwCenter = data.vw / 2;
   expect.soft((data.copyLeft + data.copyRight) / 2, `hero copy center ${(data.copyLeft + data.copyRight) / 2} should be < viewport center ${vwCenter}`).toBeLessThan(vwCenter - 100);
