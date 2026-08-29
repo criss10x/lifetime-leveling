@@ -2,15 +2,13 @@
 import type { ImageMetadata } from 'astro';
 import type { MuslimProductContent } from '@shared/content/muslim-product';
 import AndroidDownloadButton from './AndroidDownloadButton.astro';
-import AndroidFrame from './AndroidFrame.astro';
 
 interface Props {
   content: MuslimProductContent;
   image: ImageMetadata;
 }
 
-const { content, image } = Astro.props;
-const home = content.screenshots[0];
+const { content } = Astro.props;
 ---
 
 <section class="product-hero" aria-labelledby="product-hero-title">
@@ -19,7 +17,7 @@ const home = content.screenshots[0];
     <source src="/hero/hero.mp4" type="video/mp4">
   </video>
   <div class="product-hero__bg-overlay"></div>
-  <div class="product-hero__grid">
+  <div class="product-hero__grid product-hero__grid--solo">
     <div class="product-hero__copy">
       <p class="product-hero__eyebrow">{content.hero.eyebrow}</p>
       <h1 id="product-hero-title">{content.hero.title}</h1>
@@ -29,9 +27,6 @@ const home = content.screenshots[0];
         {content.hero.features.slice(0, 2).map((feature) => <li>{feature}</li>)}
       </ul>
       <small>{content.hero.note}</small>
-    </div>
-    <div class="product-hero__proof">
-      <AndroidFrame {image} alt={home.alt} priority />
     </div>
   </div>
 </section>

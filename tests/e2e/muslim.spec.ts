@@ -24,11 +24,6 @@ test('Indonesian landing keeps the Android action and product proof in the mobil
   ).toBeVisible();
   await expect(page.getByText('Android', { exact: true })).toBeVisible();
   await expect(page.getByText(/App Store|iOS/i)).toHaveCount(0);
-  await expect(
-    page.getByAltText(
-      'Beranda Muslim Leveling dengan quest ibadah harian, XP, rank, dan langkah berikutnya.',
-    ),
-  ).toBeVisible();
   await expect(page.getByRole('link', { name: 'Kebijakan Privasi' }).last()).toHaveAttribute(
     'href',
     '/privacy/',
@@ -78,7 +73,6 @@ test('landing proof renders every authentic Android poster with localized altern
   await page.goto('/');
 
   const alternatives = [
-    'Beranda Muslim Leveling dengan quest ibadah harian, XP, rank, dan langkah berikutnya.',
     'Jadwal salat Muslim Leveling dengan waktu salat, pencarian kota, dan kompas kiblat.',
     'Profil Muslim Leveling dengan level, XP, streak, dan statistik pribadi.',
     'Tab Al-Quran Muslim Leveling untuk menemukan dan melanjutkan bacaan surah.',
