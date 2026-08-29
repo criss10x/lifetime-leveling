@@ -134,6 +134,7 @@ body[data-surface='muslim'] .locale-switcher__link[aria-current='page'] { backgr
 .android-download { display: inline-flex; align-items: center; justify-content: center; min-block-size: 44px; margin-top: 2rem; padding: 0.75rem 1.1rem; background: var(--muslim-gold); border-radius: 0.7rem; color: var(--muslim-ink); font-weight: 800; text-decoration: none; transition: background-color 160ms ease, transform 160ms ease; }
 .android-download:hover { background: #fbbf24; transform: translateY(-2px); }
 .android-download--hero { margin-top: 1.6rem; }
+.android-frame img { display: block; width: 100%; height: auto; }
 .product-hero small { display: block; max-width: 35rem; margin-top: 0.9rem; color: var(--muslim-text-on-deep-muted); font-size: 0.8rem; line-height: 1.5; }
 
 .feature-catalog { width: min(100% - 2rem, 83rem); margin-inline: auto; padding-block: clamp(4rem, 9vw, 8rem); }

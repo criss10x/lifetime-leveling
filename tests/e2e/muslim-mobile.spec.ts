@@ -104,6 +104,34 @@ test('mobile learning section stacks vertically (no 2-col squeeze)', async ({ pa
   expect.soft(layout.frameTop, `frame top ${layout.frameTop} should be >= copy bottom ${layout.copyBottom}`).toBeGreaterThanOrEqual(layout.copyBottom - 5);
 });
 
+test('mobile screenshot images do not overflow their section (no horizontal scroll)', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.addInitScript(() => localStorage.setItem('muslim-theme', 'light'));
+  await page.goto('/');
+
+  const data = await page.evaluate(() => {
+    const overflowX = document.documentElement.scrollWidth - window.innerWidth;
+    const frames = [...document.querySelectorAll('.screenshot-story .android-frame')];
+    const imgs = [...document.querySelectorAll('.screenshot-story .android-frame img')];
+    return {
+      vw: window.innerWidth,
+      overflowX,
+      frameWidths: frames.map((f) => Math.round(f.getBoundingClientRect().width)),
+      imgWidths: imgs.map((i) => Math.round(i.getBoundingClientRect().width)),
+    };
+  });
+
+  // no horizontal scroll on mobile
+  expect.soft(data.overflowX, `page overflows horizontally by ${data.overflowX}px`).toBeLessThanOrEqual(0);
+  // every frame and img must be <= viewport width (allow 1px rounding tolerance)
+  for (const w of data.frameWidths) {
+    expect.soft(w, `android-frame width ${w}px <= viewport`).toBeLessThanOrEqual(data.vw + 1);
+  }
+  for (const w of data.imgWidths) {
+    expect.soft(w, `img width ${w}px <= viewport`).toBeLessThanOrEqual(data.vw + 1);
+  }
+});
+
 test('nav header top-state passes AA contrast in both light and dark', async ({ page }) => {
   for (const theme of ['light', 'dark'] as const) {
     await page.setViewportSize({ width: 1280, height: 800 });
