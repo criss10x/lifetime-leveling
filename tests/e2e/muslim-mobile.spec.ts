@@ -166,6 +166,28 @@ test('desktop hero copy aligns left (not centered)', async ({ page }) => {
   // Hero must carry the poster image as a fallback background (so non-autoplay users still see motion hint).
   expect.soft(/hero-poster/.test(data.heroBg), `hero bg-image should reference poster, got: ${data.heroBg}`).toBe(true);
 });
+
+test('desktop hero overlay drift animation is running (not paused)', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.addInitScript(() => localStorage.setItem('muslim-theme', 'dark'));
+  await page.goto('/');
+
+  // Sample ::after transform at t0, wait ~1.5s, sample t1 — must differ.
+  const t0 = await page.evaluate(() => {
+    const ov = document.querySelector('.product-hero__bg-overlay');
+    const cs = getComputedStyle(ov, '::after');
+    return { transform: cs.transform, state: cs.animationPlayState, name: cs.animationName };
+  });
+  await page.waitForTimeout(1500);
+  const t1 = await page.evaluate(() => {
+    const ov = document.querySelector('.product-hero__bg-overlay');
+    return getComputedStyle(ov, '::after').transform;
+  });
+
+  expect.soft(t0.state, `animation-play-state should be 'running', got ${t0.state}`).toBe('running');
+  expect.soft(t0.name, `animation-name should include 'hero-drift', got ${t0.name}`).toMatch(/hero-drift/);
+  expect.soft(t0.transform !== t1, `transform should advance between samples (t0=${t0.transform.slice(0, 40)} t1=${t1.slice(0, 40)})`).toBe(true);
+});
 test('nav header top-state passes AA contrast in both light and dark', async ({ page }) => {
   for (const theme of ['light', 'dark'] as const) {
     await page.setViewportSize({ width: 1280, height: 800 });
