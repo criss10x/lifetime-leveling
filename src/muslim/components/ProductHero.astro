@@ -12,10 +12,8 @@ const { content } = Astro.props;
 ---
 
 <section class="product-hero" aria-labelledby="product-hero-title">
-  <video class="product-hero__bg-video" autoplay muted loop playsinline preload="auto" poster="/hero/hero-poster.webp" data-intersection="observe" aria-hidden="true">
-    <source src="/hero/hero.webm" type="video/webm">
-    <source src="/hero/hero.mp4" type="video/mp4">
-  </video>
+  <canvas class="product-hero__bg-canvas" aria-hidden="true" data-hero-canvas></canvas>
+  <div class="product-hero__bg-canvas-fallback" aria-hidden="true"></div>
   <div class="product-hero__bg-overlay"></div>
   <div class="product-hero__grid product-hero__grid--solo">
     <div class="product-hero__copy">
@@ -31,21 +29,124 @@ const { content } = Astro.props;
   </div>
 </section>
 <script is:inline>
-  // ponytail: pause hero video when out of view → release GPU/CPU
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        const video = entry.target.querySelector('.product-hero__bg-video');
-        if (!video) return;
-        if (entry.isIntersecting) { video.play(); } else { video.pause(); }
-      });
-    }, { rootMargin: '200px 0px', threshold: 0.01 });
-    document.querySelectorAll('section.product-hero').forEach(section => {
-      observer.observe(section);
-      section.addEventListener('click', () => {
-        const video = section.querySelector('.product-hero__bg-video');
-        if (video) video.play();
-      });
+  // ponytail: GPU fragment-shader hero background (equran-style: 1 canvas, 0 DOM,
+  // GPU composited). Brand-tinted emerald + gold instead of generic white stars.
+  // ~80 LOC, no deps. Pauses render loop when hero leaves the viewport.
+  (function () {
+    var canvas = document.querySelector('[data-hero-canvas]');
+    if (!canvas) return;
+    var gl = canvas.getContext('webgl', { antialias: false, premultipliedAlpha: false })
+            || canvas.getContext('experimental-webgl');
+    if (!gl) return; // CSS fallback image (poster) handles it.
+
+    var VSRC = 'attribute vec2 a; void main(){gl_Position=vec4(a,0.,1.);}';
+    // ponytail: fractal flow field (9-iteration FBM) + 3-layer twinkle stars.
+    // Brand palette: emerald #047857, deep-green #065f46, gold #fbd277.
+    var FSRC = [
+      'precision mediump float;',
+      'uniform float t; uniform vec2 r;',
+      'float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}',
+      'float star(vec2 uv,float d){',
+        'vec2 gv=fract(uv*d)-.5;vec2 id=floor(uv*d);',
+        'float n=h(id);vec2 o=(vec2(h(id+1.),h(id+2.))-.5)*.8;',
+        'float dist=length(gv-o);float b=h(id+3.);',
+        'float tw=sin(t*2.+n*6.28)*.5+.5;b*=.5+tw*.5;',
+        'float s=0.;',
+        'if(n>.97)s=smoothstep(.05,.0,dist)*b;',
+        'else if(n>.93)s=smoothstep(.03,.0,dist)*b*.6;',
+        'else if(n>.85)s=smoothstep(.02,.0,dist)*b*.3;',
+        'return s;',
+      '}',
+      'void main(){',
+        'vec2 uv=gl_FragCoord.xy/r;',
+        'vec2 p=(gl_FragCoord.xy*2.-r)/r.y/.7;',
+        'p.x=-p.x;float a=-.785;mat2 rot=mat2(cos(a),-sin(a),sin(a),cos(a));',
+        'p=rot*p;p.x*=.4;p.y*=1.2;',
+        'vec2 d=vec2(-1.,1.);float den=.1+5./dot(5.*p-d,5.*p-d);',
+        'vec2 c=p*mat2(1.,1.,d.x/den,d.y/den);vec2 v=c;',
+        'v*=mat2(cos(log(length(v))+t*.2+vec4(0.,33.,11.,0.)))*5.;',
+        'vec4 acc=vec4(0.);',
+        'for(int i=1;i<=9;i++){',
+          'float fi=float(i);acc+=sin(vec4(v.x,v.y,v.y,v.x))+vec4(1.);',
+          'v+=.7*sin(vec2(v.y,v.x)*fi+t)/fi+.5;',
+        '}',
+        'vec4 term=1.-exp(-exp(c.x*vec4(.6,-.4,-1.,0.))/acc/(.1+.1*pow(length(sin(v/.3)*.2+c*vec2(1.,2.))-1.,2.))/(1.+7.*exp(.3*c.y-dot(c,c)))*.15);',
+        'vec3 emerald=vec3(.016,.471,.341);',  // #047857
+        'vec3 deep=vec3(.024,.373,.275);',      // #065f46
+        'vec3 base=mix(deep*1.4,emerald*1.8,smoothstep(-.5,.8,c.y));',
+        'vec3 col=base*(0.5+0.5*term.rgb);',
+        // brand-tinted gold stars
+        'float s1=star(uv,50.);float s2=star(uv+.5,80.);float s3=star(uv+.25,120.);',
+        'float st=s1+s2*.7+s3*.4;',
+        'float dark=1.-(term.r+term.g+term.b)/3.;',
+        'vec3 gold=vec3(.984,.823,.467);',     // #fbd277
+        'col+=gold*st*dark*.9;',
+        'gl_FragColor=vec4(col,1.);',
+      '}',
+    ].join('\n');
+
+    function compile(type, src) {
+      var s = gl.createShader(type);
+      gl.shaderSource(s, src); gl.compileShader(s);
+      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+        console.warn('hero shader compile failed', gl.getShaderInfoLog(s));
+        return null;
+      }
+      return s;
+    }
+    var vs = compile(gl.VERTEX_SHADER, VSRC);
+    var fs = compile(gl.FRAGMENT_SHADER, FSRC);
+    if (!vs || !fs) return;
+    var prog = gl.createProgram();
+    gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+      console.warn('hero shader link failed', gl.getProgramInfoLog(prog));
+      return;
+    }
+    gl.useProgram(prog);
+    var buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1]), gl.STATIC_DRAW);
+    var loc = gl.getAttribLocation(prog, 'a');
+    gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    var uT = gl.getUniformLocation(prog, 't');
+    var uR = gl.getUniformLocation(prog, 'r');
+
+    var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    var start = performance.now();
+    var visible = true;
+    var rafId = 0;
+
+    function resize() {
+      var w = canvas.clientWidth || canvas.offsetWidth || 1280;
+      var h = canvas.clientHeight || canvas.offsetHeight || 800;
+      canvas.width = Math.floor(w * dpr);
+      canvas.height = Math.floor(h * dpr);
+      gl.viewport(0, 0, canvas.width, canvas.height);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (entries) {
+      for (var i = 0; i < entries.length; i++) visible = entries[i].isIntersecting;
+      if (visible && !rafId) loop();
+    }, { rootMargin: '200px 0px' }) : null;
+    if (io) io.observe(canvas);
+
+    function loop() {
+      if (!visible) { rafId = 0; return; }
+      gl.uniform1f(uT, (performance.now() - start) / 1000);
+      gl.uniform2f(uR, canvas.width, canvas.height);
+      gl.drawArrays(gl.TRIANGLES, 0, 6);
+      rafId = requestAnimationFrame(loop);
+    }
+    loop();
+
+    // pause when tab hidden — release GPU
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) { visible = false; }
+      else if (io) { /* IO will resume */ }
+      else { visible = true; loop(); }
     });
-  }
+  })();
 </script>

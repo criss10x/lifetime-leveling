@@ -117,35 +117,15 @@ body[data-surface='muslim'] .locale-switcher__link[aria-current='page'] { backgr
 @media (min-width: 761px) { .floating-cta { display: none; } }
 
 .product-hero { position: relative; overflow: clip; background: var(--muslim-surface-deep); color: var(--muslim-text-on-deep); padding-inline: 1.5rem; }
-.product-hero__bg-video { position: absolute; inset: -15% -10%; z-index: -2; width: auto; min-height: 100%; height: auto; object-fit: cover; transform: translateZ(0); pointer-events: none; background-color: var(--muslim-surface-deep); }
-@media (prefers-reduced-motion: reduce) { .product-hero__bg-video { display: none !important; } }
+.product-hero__bg-canvas { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; display: block; pointer-events: none; background-color: var(--muslim-surface-deep); }
+.product-hero__bg-canvas-fallback { display: none; }
+@media (prefers-reduced-motion: reduce) { .product-hero__bg-canvas { display: none !important; } }
 .product-hero { background-image: url('/hero/hero-poster.webp'); background-size: cover; background-position: center; }
-@media (max-width: 768px) { .product-hero__bg-video { display: none; } }
 @media (min-width: 769px) { .product-hero { background-blend-mode: normal; } }
 .product-hero__bg-overlay { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(5,13,10,0) 50%, rgb(5,13,10,0.15) 100%); pointer-events: none; }
 :root[data-theme='light'] .product-hero__bg-overlay { background: linear-gradient(180deg, rgba(6,95,70,0) 48%, rgb(5,26,20,0.10) 100%); }
-/* ponytail: always-visible subtle motion so the hero reads as "alive" even when
-   the source video is dark or autoplay is blocked. 8s drift, ~2% translation —
-   not enough to compete with the video, but enough that the eye locks on. */
-.product-hero__bg-overlay::after {
-  content: '';
-  position: absolute; inset: -10%;
-  background:
-    radial-gradient(ellipse 40% 60% at 28% 35%, rgba(251,210,119,0.32), transparent 65%),
-    radial-gradient(ellipse 50% 50% at 75% 65%, rgba(16,110,86,0.42), transparent 60%),
-    radial-gradient(ellipse 30% 45% at 50% 80%, rgba(251,210,119,0.18), transparent 65%);
-  mix-blend-mode: screen;
-  animation: hero-drift 9s ease-in-out infinite alternate;
-  pointer-events: none;
-  will-change: transform;
-}
-@keyframes hero-drift {
-  from { transform: translate3d(-4%, -2%, 0) scale(1); }
-  to   { transform: translate3d(4%, 2%, 0)  scale(1.06); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .product-hero__bg-overlay::after { animation: none; }
-}
+/* ponytail: GPU shader handles all hero motion. No DOM/CSS animation needed —
+   saves CPU + keeps single source of truth for the visual effect. */
 .product-hero__grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(18rem, 0.72fr); align-items: center; gap: clamp(2rem, 8vw, 8rem); min-height: calc(100svh - 4.75rem); padding-block: clamp(3rem, 7vw, 7rem); }
 .product-hero__grid--solo { grid-template-columns: minmax(0, 1fr); justify-items: start; max-width: 47rem; margin-inline: 0; padding-inline: 0; }
 .product-hero__copy { max-width: 39rem; }

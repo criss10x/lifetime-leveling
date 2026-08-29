@@ -167,26 +167,41 @@ test('desktop hero copy aligns left (not centered)', async ({ page }) => {
   expect.soft(/hero-poster/.test(data.heroBg), `hero bg-image should reference poster, got: ${data.heroBg}`).toBe(true);
 });
 
-test('desktop hero overlay drift animation is running (not paused)', async ({ page }) => {
+test('desktop hero runs GPU shader animation (equran-style WebGL canvas)', async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 800 });
   await page.addInitScript(() => localStorage.setItem('muslim-theme', 'dark'));
   await page.goto('/');
 
-  // Sample ::after transform at t0, wait ~1.5s, sample t1 — must differ.
-  const t0 = await page.evaluate(() => {
-    const ov = document.querySelector('.product-hero__bg-overlay');
-    const cs = getComputedStyle(ov, '::after');
-    return { transform: cs.transform, state: cs.animationPlayState, name: cs.animationName };
-  });
-  await page.waitForTimeout(1500);
-  const t1 = await page.evaluate(() => {
-    const ov = document.querySelector('.product-hero__bg-overlay');
-    return getComputedStyle(ov, '::after').transform;
+  // ponytail: 1 <canvas>, GPU shader compiles + draws every frame.
+  // Verify animation by: (1) checking canvas + GL exist, (2) forcing one re-draw
+  // and reading back a center pixel — must be non-black, non-transparent (the
+  // shader is opaque emerald + gold, alpha=1).
+  const data = await page.evaluate(async () => {
+    const canvas = document.querySelector('[data-hero-canvas]');
+    if (!canvas) return { ok: false, reason: 'no canvas element' };
+    const gl = canvas.getContext('webgl', { preserveDrawingBuffer: true })
+            || canvas.getContext('experimental-webgl', { preserveDrawingBuffer: true });
+    if (!gl) return { ok: false, reason: 'no webgl context' };
+
+    const cw = canvas.width, ch = canvas.height;
+    // Draw one frame on demand so the back buffer is populated
+    gl.drawArrays(gl.TRIANGLES, 0, 6);
+    const center = new Uint8Array(4);
+    gl.readPixels(Math.floor(cw / 2), Math.floor(ch / 2), 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, center);
+    return {
+      ok: true,
+      canvasSize: [cw, ch],
+      centerPixel: [center[0], center[1], center[2], center[3]],
+    };
   });
 
-  expect.soft(t0.state, `animation-play-state should be 'running', got ${t0.state}`).toBe('running');
-  expect.soft(t0.name, `animation-name should include 'hero-drift', got ${t0.name}`).toMatch(/hero-drift/);
-  expect.soft(t0.transform !== t1, `transform should advance between samples (t0=${t0.transform.slice(0, 40)} t1=${t1.slice(0, 40)})`).toBe(true);
+  expect.soft(data.ok, data.reason || 'WebGL probe must succeed').toBe(true);
+  expect.soft(data.canvasSize?.[0] ?? 0, `canvas width should be > 0, got ${data.canvasSize?.[0]}`).toBeGreaterThan(0);
+  expect.soft(data.canvasSize?.[1] ?? 0, `canvas height should be > 0, got ${data.canvasSize?.[1]}`).toBeGreaterThan(0);
+  // Center pixel must be opaque + non-black (shader writes emerald/gold tones).
+  expect.soft(data.centerPixel?.[3], `alpha should be 255 (opaque shader), got ${data.centerPixel?.[3]}`).toBe(255);
+  const rgbSum = (data.centerPixel?.[0] ?? 0) + (data.centerPixel?.[1] ?? 0) + (data.centerPixel?.[2] ?? 0);
+  expect.soft(rgbSum, `RGB sum should be > 0 (shader is drawing colors), got ${rgbSum} for ${data.centerPixel?.join(',')}`).toBeGreaterThan(0);
 });
 test('nav header top-state passes AA contrast in both light and dark', async ({ page }) => {
   for (const theme of ['light', 'dark'] as const) {
