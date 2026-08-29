@@ -121,9 +121,7 @@ test('mobile screenshot images do not overflow their section (no horizontal scro
     };
   });
 
-  // no horizontal scroll on mobile
   expect.soft(data.overflowX, `page overflows horizontally by ${data.overflowX}px`).toBeLessThanOrEqual(0);
-  // every frame and img must be <= viewport width (allow 1px rounding tolerance)
   for (const w of data.frameWidths) {
     expect.soft(w, `android-frame width ${w}px <= viewport`).toBeLessThanOrEqual(data.vw + 1);
   }
@@ -132,6 +130,31 @@ test('mobile screenshot images do not overflow their section (no horizontal scro
   }
 });
 
+test('desktop hero copy aligns left (not centered)', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.addInitScript(() => localStorage.setItem('muslim-theme', 'light'));
+  await page.goto('/');
+
+  const data = await page.evaluate(() => {
+    const grid = document.querySelector('.product-hero__grid');
+    const copy = document.querySelector('.product-hero__copy');
+    return {
+      vw: window.innerWidth,
+      gridLeft: Math.round(grid.getBoundingClientRect().left),
+      gridMaxW: getComputedStyle(grid).maxWidth,
+      copyLeft: Math.round(copy.getBoundingClientRect().left),
+      copyRight: Math.round(copy.getBoundingClientRect().right),
+      copyW: Math.round(copy.getBoundingClientRect().width),
+    };
+  });
+
+  // Grid must start at the left edge of its container (no auto-margin centering it).
+  // Hero has no padding-inline so left edge ≈ 0.
+  expect.soft(data.gridLeft, `hero grid left ${data.gridLeft}px <= 4`).toBeLessThanOrEqual(4);
+  // Copy must be in the left half of the viewport (not centered around viewport center 640).
+  const vwCenter = data.vw / 2;
+  expect.soft((data.copyLeft + data.copyRight) / 2, `hero copy center ${(data.copyLeft + data.copyRight) / 2} should be < viewport center ${vwCenter}`).toBeLessThan(vwCenter - 100);
+});
 test('nav header top-state passes AA contrast in both light and dark', async ({ page }) => {
   for (const theme of ['light', 'dark'] as const) {
     await page.setViewportSize({ width: 1280, height: 800 });
