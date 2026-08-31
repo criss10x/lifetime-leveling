@@ -87,7 +87,7 @@ const navContent = muslimProductContent[locale];
     gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
     const uT = gl.getUniformLocation(prog, 't'), uR = gl.getUniformLocation(prog, 'r');
     
-    let start = performance.now(), visible = true, rafId = 0;
+    let start = performance.now(), visible = true;
     function resize() {
       const r = canvas.getBoundingClientRect();
       canvas.width = r.width * Math.min(window.devicePixelRatio || 1, 1.5);
@@ -100,11 +100,11 @@ const navContent = muslimProductContent[locale];
     if (io) io.observe(canvas);
     
     function loop() {
-      if (!visible) { rafId = 0; return; }
+      if (!visible) return;
       gl.uniform1f(uT, (performance.now() - start) / 1000);
       gl.uniform2f(uR, canvas.width, canvas.height);
       gl.drawArrays(gl.TRIANGLES, 0, 6);
-      rafId = requestAnimationFrame(loop);
+      requestAnimationFrame(loop);
     }
     loop();
     
