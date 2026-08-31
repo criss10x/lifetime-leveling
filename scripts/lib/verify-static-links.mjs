@@ -13,8 +13,12 @@ async function findHtmlFiles(directory) {
 
 function extractLocalReferences(html) {
   const values = [];
+  // ponytail: strip inline <script> first — JS identifiers ending in "src"
+  // (e.g. `var VSRC = '...'` in the WebGL shader) otherwise match the
+  // href/src attribute regex below and get treated as broken links.
+  const markup = html.replace(/<script[\s\S]*?<\/script>/gi, '');
   const matcher = /(?:href|src)\s*=\s*["']([^"']+)["']/gi;
-  for (let match = matcher.exec(html); match; match = matcher.exec(html)) {
+  for (let match = matcher.exec(markup); match; match = matcher.exec(markup)) {
     const value = match[1].trim();
     if (!value || value.startsWith('#') || value.startsWith('mailto:') || value.startsWith('tel:')) continue;
     if (value.startsWith('data:') || value.startsWith('//') || /^https?:/i.test(value)) continue;
