@@ -12,8 +12,8 @@ const { content } = Astro.props;
 ---
 
 <section class="product-hero" aria-labelledby="product-hero-title">
-  <canvas class="product-hero__bg-canvas" aria-hidden="true" data-hero-canvas></canvas>
-  <div class="product-hero__bg-canvas-fallback" aria-hidden="true"></div>
+  <!-- ponytail: user-provided photo background (converted to WebP) -->
+  <img class="product-hero__bg-photo" src="/hero/background-hero.webp" alt="" aria-hidden="true" width="1280" height="714" loading="eager" fetchpriority="high" />
   <div class="product-hero__bg-overlay"></div>
   <div class="product-hero__grid product-hero__grid--solo">
     <div class="product-hero__copy">
