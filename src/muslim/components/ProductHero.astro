@@ -14,6 +14,8 @@ const { content } = Astro.props;
 <section class="product-hero" aria-labelledby="product-hero-title">
   <!-- ponytail: user-provided photo background (converted to WebP) -->
   <img class="product-hero__bg-photo" src="/hero/background-hero.webp" alt="" aria-hidden="true" width="1280" height="714" loading="eager" fetchpriority="high" />
+  <!-- ponytail: subtle brand-colored particles (emerald + white), rising from bottom, CSS-only -->
+  <div class="product-hero__particles" aria-hidden="true"></div>
   <div class="product-hero__bg-overlay"></div>
   <div class="product-hero__grid product-hero__grid--solo">
     <div class="product-hero__copy">

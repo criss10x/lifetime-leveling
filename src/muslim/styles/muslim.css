@@ -117,10 +117,14 @@ body[data-surface='muslim'] .locale-switcher__link[aria-current='page'] { backgr
 .floating-cta.is-hidden { opacity: 0; transform: translateY(0.5rem); pointer-events: none; }
 @media (min-width: 761px) { .floating-cta { display: none; } }
 
-.product-hero { position: relative; overflow: clip; background: var(--muslim-surface-deep); color: var(--muslim-text-on-deep); padding-inline: 1.5rem; }
-.product-hero__bg-canvas { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; display: block; pointer-events: none; background-color: var(--muslim-surface-deep); }
+.product-hero { position: relative; overflow: visible; background: var(--muslim-surface-deep); color: var(--muslim-text-on-deep); padding-inline: 1.5rem; }
 .product-hero__bg-photo { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.7) saturate(1.1); }
-@media(prefers-reduced-motion: reduce) { .product-hero__bg-canvas, .product-hero__bg-photo { display: none !important; } }
+.product-hero__particles { position: absolute; inset: 0; z-index: -3; overflow: hidden; pointer-events: none; }
+.product-hero__particles::before { content: ''; position: absolute; bottom: -50%; left: 15%; width: 6px; height: 6px; background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 70%); border-radius: 50%; opacity: 0; animation: particle-rise-1 6s ease-out infinite; box-shadow: 25px 55px 0 0 rgba(4,120,87,0.35), 150px 80px 0 0 rgba(255,255,255,0.65); }
+.product-hero__particles::after { content: ''; position: absolute; bottom: -30%; right: 20%; width: 4px; height: 4px; background: radial-gradient(circle, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0) 70%); border-radius: 50%; opacity: 0; animation: particle-rise-2 8s ease-out infinite 1s; box-shadow: -80px 120px 0 0 rgba(4,120,87,0.45), 180px 45px 0 0 rgba(255,255,255,0.55); }
+@keyframes particle-rise-1 { 0% { transform: translateY(0) scale(1); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 0.8; } 100% { transform: translateY(-120%) scale(1.5); opacity: 0; } }
+@keyframes particle-rise-2 { 0% { transform: translateY(0) scale(1); opacity: 0; } 15% { opacity: 1; } 95% { opacity: 0.7; } 100% { transform: translateY(-140%) scale(1.8); opacity: 0; } }
+@media(prefers-reduced-motion: reduce) { .product-hero__particles { display: none !important; } }
 .product-hero { background-image: url('/hero/hero-poster.webp'); background-size: cover; background-position: center; }
 @media (min-width: 769px) { .product-hero { background-blend-mode: normal; } }
 .product-hero__bg-overlay { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(5,13,10,0) 50%, rgb(5,13,10,0.15) 100%); pointer-events: none; }
