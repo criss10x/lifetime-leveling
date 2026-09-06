@@ -163,8 +163,10 @@ test('desktop hero copy aligns left (not centered)', async ({ page }) => {
   // Copy must be in the left half of the viewport (not centered around viewport center 640).
   const vwCenter = data.vw / 2;
   expect.soft((data.copyLeft + data.copyRight) / 2, `hero copy center ${(data.copyLeft + data.copyRight) / 2} should be < viewport center ${vwCenter}`).toBeLessThan(vwCenter - 100);
-  // Hero must carry the poster image as a fallback background (so non-autoplay users still see motion hint).
-  expect.soft(/hero-poster/.test(data.heroBg), `hero bg-image should reference poster, got: ${data.heroBg}`).toBe(true);
+  // ponytail: video era done — hero photo is an <img>, not a CSS background.
+  // Legacy `background-image: hero-poster.webp` rule removed → should be 'none'.
+  const cleanBg = !data.heroBg || data.heroBg === 'none';
+  expect.soft(cleanBg, `hero background-image should be none, got: ${data.heroBg}`).toBe(true);
 });
 
 test('desktop hero background is the user photo (background-hero.webp)', async ({ page }) => {
