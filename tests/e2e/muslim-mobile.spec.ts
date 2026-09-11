@@ -176,6 +176,7 @@ test('desktop hero background is the user photo (background-hero.webp)', async (
 
   // ponytail: verify the hero uses a photo background instead of GPU shader.
   const data = await page.evaluate(() => {
+    const hero = document.querySelector('.product-hero');
     const img = document.querySelector('[class*="bg-photo"]') || document.querySelector('.product-hero__bg-photo');
     const bgEl = img || document.querySelector('.product-hero__bg-canvas');
     return {
@@ -183,6 +184,7 @@ test('desktop hero background is the user photo (background-hero.webp)', async (
       hasPhotoImg: !!(img && img.tagName === 'IMG'),
       photoSrc: img?.getAttribute('src') ?? null,
       canvasExists: !!(bgEl && bgEl.tagName === 'CANVAS'),
+      heroIsolation: hero ? getComputedStyle(hero).isolation : null,
     };
   });
 
@@ -190,6 +192,7 @@ test('desktop hero background is the user photo (background-hero.webp)', async (
   expect.soft(data.hasPhotoImg).toBe(true, 'Hero should use <img> for background, not canvas');
   expect.soft(data.photoSrc).toContain('background-hero.webp');
   expect.soft(data.canvasExists).toBe(false, 'Canvas should be removed when using photo background');
+  expect.soft(data.heroIsolation).toBe('isolate');
 });
 test('nav header top-state passes AA contrast in both light and dark', async ({ page }) => {
   for (const theme of ['light', 'dark'] as const) {
