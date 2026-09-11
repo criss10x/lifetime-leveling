@@ -2,6 +2,7 @@
 import type { SurfaceName } from '../config/surfaces';
 import { LOCALES, type Locale } from '../i18n/types';
 import { canonicalUrl } from '../seo/metadata';
+import { getStructuredData } from '../seo/schema';
 
 interface Props {
   surface: SurfaceName;
@@ -10,11 +11,14 @@ interface Props {
   title: string;
   description: string;
   image?: string;
+  twitterCard?: 'summary' | 'summary_large_image';
 }
 
-const { surface, locale, path, title, description, image } = Astro.props;
+const { surface, locale, path, title, description, image, twitterCard } = Astro.props;
 const canonical = canonicalUrl(surface, locale, path);
 const socialImage = image ? new URL(image, canonical).toString() : undefined;
+const cardType = twitterCard ?? (image?.includes('icon') ? 'summary' : socialImage ? 'summary_large_image' : 'summary');
+const structuredData = getStructuredData({ surface, locale, path, title, description });
 ---
 
 <meta charset="utf-8" />
@@ -47,8 +51,11 @@ const socialImage = image ? new URL(image, canonical).toString() : undefined;
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 {socialImage && <meta property="og:image" content={socialImage} />}
-<meta name="twitter:card" content={socialImage ? 'summary_large_image' : 'summary'} />
+<meta name="twitter:card" content={cardType} />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 {socialImage && <meta name="twitter:image" content={socialImage} />}
 <title>{title}</title>
+{structuredData.map((schema) => (
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+))}

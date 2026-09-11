@@ -14,9 +14,12 @@ interface Props {
 
 const { document, locale, path } = Astro.props;
 const navContent = muslimProductContent[locale];
+const pageTitle = document.title.includes('Muslim Leveling')
+  ? document.title
+  : `${document.title} | Muslim Leveling`;
 ---
 
-<SiteShell surface="muslim" {locale} {path} title={document.title} description={document.description}>
+<SiteShell surface="muslim" {locale} {path} title={pageTitle} description={document.description}>
   <ProductNavigation slot="navigation" {locale} path="/" content={navContent} />
   
   <!-- ponytail: same fragment-shader pattern as equran.id + hero bg -->

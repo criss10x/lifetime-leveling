@@ -40,7 +40,7 @@ export const muslimProductContent: Record<Locale, MuslimProductContent> = {
     googlePlayUrl,
     meta: {
       title: 'Muslim Leveling | Ritme ibadah harian untuk Android',
-      description: 'Muslim Leveling membantu membangun ritme ibadah harian melalui quest, jadwal salat, Al-Quran, dan belajar.',
+      description: 'Muslim Leveling: Aplikasi ibadah Android dengan quest harian, jadwal salat presisi, arah kiblat, dan Al-Quran tajwid. Gratis & tanpa iklan. Unduh di Google Play!',
     },
     navigation: { product: 'Muslim Leveling', android: 'Android', language: 'English' },
     hero: {
@@ -108,7 +108,7 @@ export const muslimProductContent: Record<Locale, MuslimProductContent> = {
     googlePlayUrl,
     meta: {
       title: 'Muslim Leveling | A daily worship rhythm for Android',
-      description: 'Muslim Leveling supports a daily worship rhythm through quests, prayer times, Quran, and learning.',
+      description: 'Muslim Leveling: Android worship app with daily quests, accurate prayer times, qibla direction, and Quran with tajwid. Free and ad-free on Google Play.',
     },
     navigation: { product: 'Muslim Leveling', android: 'Android', language: 'Bahasa Indonesia' },
     hero: {
