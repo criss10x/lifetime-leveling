@@ -14,8 +14,17 @@ const { content } = Astro.props;
 <section class="product-hero" aria-labelledby="product-hero-title">
   <!-- ponytail: user-provided photo background (converted to WebP) -->
   <img class="product-hero__bg-photo" src="/hero/background-hero.webp" alt="" aria-hidden="true" width="1920" height="1072" loading="eager" fetchpriority="high" />
-  <!-- ponytail: subtle brand-colored particles (emerald + white), rising from bottom, CSS-only -->
-  <div class="product-hero__particles" aria-hidden="true"></div>
+  <!-- ponytail: subtle brand-colored sparkling particles (emerald + gold), rising, CSS-only -->
+  <div class="product-hero__particles" aria-hidden="true">
+    <span class="sparkle sparkle--1"></span>
+    <span class="sparkle sparkle--2"></span>
+    <span class="sparkle sparkle--3"></span>
+    <span class="sparkle sparkle--4"></span>
+    <span class="sparkle sparkle--5"></span>
+    <span class="sparkle sparkle--6"></span>
+    <span class="sparkle sparkle--7"></span>
+    <span class="sparkle sparkle--8"></span>
+  </div>
   <div class="product-hero__bg-overlay"></div>
   <div class="product-hero__grid product-hero__grid--solo">
     <div class="product-hero__copy">
