@@ -118,9 +118,8 @@ body[data-surface='muslim'] .locale-switcher__link[aria-current='page'] { backgr
 @media (min-width: 761px) { .floating-cta { display: none; } }
 
 .product-hero { position: relative; isolation: isolate; overflow: visible; background: var(--muslim-surface-deep); color: var(--muslim-text-on-deep); }
-.product-hero__bg-photo { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.7) saturate(1.1); }
-.product-hero__bg-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(5,13,10,0) 50%, rgb(5,13,10,0.15) 100%); pointer-events: none; }
-:root[data-theme='light'] .product-hero__bg-overlay { background: linear-gradient(180deg, rgba(6,95,70,0) 48%, rgb(5,26,20,0.10) 100%); }
+.product-hero__bg-photo { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.product-hero__bg-overlay { display: none; }
 .product-hero__particles { position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none; }
 .sparkle { position: absolute; bottom: -24px; border-radius: 50%; pointer-events: none; will-change: transform, opacity; }
 .sparkle::before, .sparkle::after { content: ''; position: absolute; border-radius: 50%; will-change: transform, opacity; }
