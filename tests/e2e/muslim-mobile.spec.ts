@@ -180,6 +180,7 @@ test('desktop hero background is the user photo (background-hero.webp)', async (
       hasPhotoImg: !!(img && img.tagName === 'IMG'),
       photoSrc: img?.getAttribute('src') ?? null,
       canvasExists: !!(bgEl && bgEl.tagName === 'CANVAS'),
+      sparklesCount: document.querySelectorAll('.product-hero__particles .sparkle').length,
       heroIsolation: hero ? getComputedStyle(hero).isolation : null,
     };
   });
@@ -189,6 +190,7 @@ test('desktop hero background is the user photo (background-hero.webp)', async (
   expect.soft(data.photoSrc).toContain('background-hero.webp');
   expect.soft(data.canvasExists).toBe(false, 'Canvas should be removed when using photo background');
   expect.soft(data.heroIsolation).toBe('isolate');
+  expect.soft(data.sparklesCount).toBeGreaterThanOrEqual(8);
 });
 test('nav header top-state passes AA contrast in both light and dark', async ({ page }) => {
   for (const theme of ['light', 'dark'] as const) {
