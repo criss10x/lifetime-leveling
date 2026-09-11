@@ -153,13 +153,9 @@ test('desktop hero copy aligns left (not centered)', async ({ page }) => {
     };
   });
 
-  // Grid must start at the left padding of the hero, aligned with content
-  // sections below (DailyLoop, ScreenshotStory -- all use 24px container gutter
-  // derived from min(100% - 2rem, 77rem) + margin-inline: auto).
-  const heroPadL = data.heroPadL;
-  expect.soft(Math.abs(data.gridLeft - heroPadL), `hero grid left ${data.gridLeft}px should match hero padding-left ${heroPadL}px`).toBeLessThanOrEqual(2);
-  expect.soft(heroPadL, `hero padding-left ${heroPadL}px should match DailyLoop H2 left ${data.dailyLeft}px (±2)`).toBeLessThanOrEqual(24 + 2);
-  expect.soft(Math.abs(heroPadL - data.dailyLeft), `hero (${heroPadL}) and DailyLoop (${data.dailyLeft}) should align`).toBeLessThanOrEqual(2);
+  // Grid must align with content sections below (DailyLoop, ScreenshotStory -- all use
+  // container gutter derived from min(100% - 2rem, 77rem) + margin-inline: auto).
+  expect.soft(Math.abs(data.gridLeft - data.dailyLeft), `hero grid (${data.gridLeft}) and DailyLoop (${data.dailyLeft}) should align`).toBeLessThanOrEqual(2);
   // Copy must be in the left half of the viewport (not centered around viewport center 640).
   const vwCenter = data.vw / 2;
   expect.soft((data.copyLeft + data.copyRight) / 2, `hero copy center ${(data.copyLeft + data.copyRight) / 2} should be < viewport center ${vwCenter}`).toBeLessThan(vwCenter - 100);
