@@ -11,6 +11,17 @@ export interface GuideItem {
 
 export const guidesData: readonly GuideItem[] = [
   {
+    slug: 'tata-cara-salat-jamak-dan-qashar',
+    title: 'Tata Cara Salat Jamak dan Qashar Saat Bepergian: Syarat, Niat, dan Contoh Praktis',
+    description:
+      'Panduan lengkap tata cara salat jamak dan qashar saat safar. Pahami syarat jarak, perbedaan taqdim dan ta\'khir, niat, serta kemudahan beribadah bersama Muslim Leveling.',
+    category: 'Panduan Ibadah',
+    publishDate: '2026-09-12',
+    publishDateDisplay: '12 September 2026',
+    readingTime: '6 menit membaca',
+    featured: true,
+  },
+  {
     slug: 'panduan-salat-dhuha',
     title: 'Panduan Salat Dhuha: Jam Berapa Dimulai, Batas Akhir, dan Rahasia Rezeki Berkah',
     description:

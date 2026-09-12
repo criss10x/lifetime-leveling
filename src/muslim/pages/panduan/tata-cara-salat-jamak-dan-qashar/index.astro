@@ -1,0 +1,142 @@
+---
+import ArticleLayout from '../../../components/ArticleLayout.astro';
+import { getGuideBySlug } from '@shared/content/guides';
+
+const guide = getGuideBySlug('tata-cara-salat-jamak-dan-qashar')!;
+const articleSchema = {
+  headline: guide.title,
+  description: guide.description,
+  datePublished: guide.publishDate,
+  dateModified: guide.publishDate,
+  authorName: 'Muslim Leveling',
+  image: 'https://muslim.lifetimeleveling.com/brand/muslim-leveling-icon.png',
+};
+---
+
+<ArticleLayout
+  title={guide.title}
+  description={guide.description}
+  publishDate={guide.publishDate}
+  publishDateDisplay={guide.publishDateDisplay}
+  readingTime={guide.readingTime}
+  category={guide.category}
+  path={`/panduan/${guide.slug}/`}
+  locale="id"
+  ctaTitle="Salat Tenang di Perjalanan Tanpa Iklan"
+  ctaDescription="Download Muslim Leveling secara gratis di Android. Akses kompas kiblat offline, jadwal salat antar-kota presisi, dan fitur ibadah lengkap tanpa gangguan iklan komersial."
+  {articleSchema}
+>
+  <p>
+    Bepergian jauh atau safar sering kali menuntut mobilitas tinggi dan jadwal perjalanan yang ketat. Mengarungi jalan tol antar-provinsi, mengejar jadwal penerbangan di bandara, atau menempuh perjalanan kereta api terkadang membuat seseorang kesulitan menemukan tempat dan waktu yang leluasa untuk melaksanakan setiap salat fardhu tepat pada waktunya masing-masing.
+  </p>
+
+  <p>
+    Islam adalah agama yang menghendaki kemudahan bagi pemeluknya. Dalam kondisi safar, Allah Subhanahu wa Ta'ala memberikan hadiah berupa <em>rukhshah</em> (keringanan syariat) berupa salat jamak dan qashar. Keringanan ini bukanlah bentuk kelalaian, melainkan tanda kasih sayang Allah yang disunnahkan untuk diambil oleh setiap musafir.
+  </p>
+
+  <blockquote>
+    <p>
+      "Sesungguhnya Allah menyukai apabila keringanan-keringanan (rukhshah) dari-Nya diambil, sebagaimana Dia membenci kemaksiatan kepada-Nya."
+    </p>
+    <cite>HR. Ahmad dan Ibnu Hibban, dishahihkan oleh para ulama hadits</cite>
+  </blockquote>
+
+  <h2>Perbedaan Mendasar Salat Jamak dan Salat Qashar</h2>
+
+  <p>
+    Banyak orang menganggap jamak dan qashar adalah satu hal yang sama. Padahal, keduanya merupakan dua keringanan yang berbeda dan dapat dipadukan:
+  </p>
+
+  <ul>
+    <li>
+      <strong>Salat Jamak:</strong> Mengumpulkan atau menggabungkan dua salat fardhu untuk dikerjakan dalam satu waktu yang sama. Salat yang boleh dijamak hanyalah <strong>Dzuhur dengan Ashar</strong>, serta <strong>Maghrib dengan Isya</strong>. Salat Subuh wajib dikerjakan sendiri dan tidak boleh dijamak dengan salat apa pun.
+    </li>
+    <li>
+      <strong>Salat Qashar:</strong> Meringkas jumlah rakaat salat fardhu yang asalnya 4 rakaat (Dzuhur, Ashar, dan Isya) menjadi <strong>2 rakaat</strong> saja. Salat Maghrib tetap dikerjakan 3 rakaat dan salat Subuh tetap 2 rakaat (tidak boleh diringkas).
+    </li>
+    <li>
+      <strong>Salat Jamak Qashar:</strong> Menggabungkan kedua kemudahan tersebut sekaligus, yaitu mengumpulkan dua waktu salat dan sekaligus meringkas jumlah rakaatnya masing-masing menjadi 2 rakaat (kecuali Maghrib yang tetap 3 rakaat).
+    </li>
+  </ul>
+
+  <h2>Syarat Sah Salat Jamak dan Qashar Saat Safar</h2>
+
+  <p>
+    Agar rukhshah ini sah sesuai tuntunan fikih, ada beberapa ketentuan yang perlu dipenuhi:
+  </p>
+
+  <ol>
+    <li>
+      <strong>Jarak Perjalanan Memenuhi Batas Minimal:</strong> Mayoritas ulama berpegang pada jarak minimal safar sejauh 2 marhalah atau sekitar 16 farsakh, yang setara dengan <strong>sekitar 80 hingga 88 kilometer</strong> dari batas luar kota asal.
+    </li>
+    <li>
+      <strong>Tujuan Perjalanan Mubah atau Ibadah:</strong> Safar yang dilakukan bukan untuk tujuan yang melanggar syariat, melainkan untuk keperluan yang baik seperti silaturahmi keluarga, urusan pekerjaan dinas, menuntut ilmu, rekreasi keluarga, atau ibadah umrah.
+    </li>
+    <li>
+      <strong>Telah Keluar dari Batas Wilayah Tempat Tinggal:</strong> Niat jamak qashar baru boleh dipraktikkan setelah Anda melewati gapura batas kota, stasiun pemberangkatan keluar kota, atau terminal asal Anda.
+    </li>
+    <li>
+      <strong>Status Sebagai Musafir:</strong> Keringanan ini berlaku selama masa perjalanan dan masa singgah sementara (maksimal 3 atau 4 hari di luar hari kedatangan dan kepulangan menurut mayoritas mazhab).
+    </li>
+  </ol>
+
+  <h2>Pilih Jamak Taqdim atau Jamak Ta'khir?</h2>
+
+  <p>
+    Anda dapat memilih salah satu dari dua metode jamak berikut sesuai situasi mobilitas Anda di jalan:
+  </p>
+
+  <h3>A. Jamak Taqdim (Dikerjakan di Waktu Salat Pertama)</h3>
+  <p>
+    Yaitu mengerjakan salat Dzuhur dan Ashar di waktu Dzuhur, atau mengerjakan Maghrib dan Isya di waktu Maghrib. Metode ini sangat cocok jika Anda kebetulan sedang singgah di tempat istirahat saat waktu pertama baru masuk.
+  </p>
+  <ul>
+    <li><strong>Tertib:</strong> Dahulukan salat yang pertama (misalnya kerjakan Dzuhur terlebih dahulu hingga salam, baru kemudian berdiri mengerjakan Ashar).</li>
+    <li><strong>Berurutan (Muwalah):</strong> Jeda antara salat pertama dan salat kedua tidak boleh terlalu lama, cukup sebatas waktu wudhu ringan atau iqamah.</li>
+  </ul>
+
+  <h3>B. Jamak Ta'khir (Dikerjakan di Waktu Salat Kedua)</h3>
+  <p>
+    Yaitu mengerjakan salat Dzuhur dan Ashar di waktu Ashar, atau mengerjakan Maghrib dan Isya di waktu Isya. Metode ini sangat membantu jika Anda sedang berada di atas pesawat atau kendaraan yang tidak memungkinkan berhenti pada waktu pertama.
+  </p>
+  <p>
+    <strong>Syarat Penting:</strong> Anda wajib <strong>berniat di dalam hati untuk menjamak ta'khir salat tersebut sebelum waktu salat pertama habis</strong>. Misalnya, sebelum azan Ashar berkumandang, Anda sudah berniat di hati: <em>"Aku berniat mengakhirkan salat Dzuhur untuk dikerjakan bersama Ashar di waktu Ashar nanti."</em>
+  </p>
+
+  <h2>Contoh Praktis Tata Cara Pelaksanaan</h2>
+
+  <p>
+    Berikut simulasi praktis saat Anda menunaikan <strong>Salat Jamak Qashar Taqdim Dzuhur dan Ashar</strong> di rest area:
+  </p>
+
+  <ol>
+    <li>Pastikan arah kiblat dengan benar menggunakan <a href="/panduan/cara-menentukan-arah-kiblat/">panduan menentukan arah kiblat</a> di ponsel Anda.</li>
+    <li>Berdiri menghadap kiblat, lalu bertakbiratul ihram sambil berniat di dalam hati: <em>"Aku berniat salat fardhu Dzuhur dua rakaat diqashar dengan dijamak taqdim bersama Ashar karena Allah Ta'ala."</em></li>
+    <li>Laksanakan salat dua rakaat sebagaimana salat Subuh (tanpa tasyahud awal, langsung tasyahud akhir), lalu ucapkan salam.</li>
+    <li>Segera bangkit berdiri kembali tanpa jeda obrolan panjang, lalu bertakbiratul ihram untuk salat kedua dengan niat: <em>"Aku berniat salat fardhu Ashar dua rakaat diqashar dengan dijamak taqdim bersama Dzuhur karena Allah Ta'ala."</em></li>
+    <li>Selesaikan dua rakaat hingga salam. Kedua salat fardhu Anda telah selesai ditunaikan secara sah dan sempurna.</li>
+  </ol>
+
+  <div class="article-callout">
+    <div class="article-callout__badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+      </svg>
+      Fitur Navigasi & Waktu Safar
+    </div>
+    <h3>Ibadah Tenang di Mana Pun Perjalanan Anda</h3>
+    <p>
+      Muslim Leveling menjadi sahabat andal bagi Anda yang sering bepergian antar-kota maupun luar negeri:
+    </p>
+    <ul>
+      <li><strong>Pilihan Kota Fleksibel:</strong> Ganti lokasi kota singgah secara instan tanpa perlu menyalakan pelacak GPS yang menguras baterai ponsel di perjalanan.</li>
+      <li><strong>Kompas Kiblat Offline Presisi:</strong> Temukan arah Ka'bah dengan akurat di rest area, kamar hotel, atau bandara meski tanpa sambungan sinyal internet.</li>
+      <li><strong>100% Bebas Iklan Komersial:</strong> Tidak ada iklan banner atau pop-up video yang mengganggu saat Anda sedang membuka aplikasi di tempat ibadah umum.</li>
+      <li><strong>Menjaga Konsistensi:</strong> Membantu Anda tetap menjaga <a href="/panduan/kebiasaan-salat-tepat-waktu/">kebiasaan salat fardhu</a> dan menyempatkan <a href="/panduan/dzikir-pagi-dan-petang/">dzikir pagi dan petang</a> di sela perjalanan.</li>
+    </ul>
+  </div>
+
+  <p>
+    Dengan memahami fikih jamak dan qashar, perjalanan safar Anda tidak lagi dibayangi kecemasan ketinggalan waktu ibadah. Manfaatkan kemudahan yang telah Allah anugerahkan, dan nikmati setiap detik perjalanan Anda dalam naungan keridhaan-Nya.
+  </p>
+</ArticleLayout>
