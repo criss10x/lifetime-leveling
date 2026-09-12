@@ -53,4 +53,32 @@ describe('Structured Data (JSON-LD) generation', () => {
     expect(webpage?.name).toBe('Kebijakan Privasi Muslim Leveling');
     expect(webpage?.url).toBe('https://muslim.lifetimeleveling.com/privacy/');
   });
+
+  it('generates FAQPage schema when faq items are provided on root', () => {
+    const result = getStructuredData({
+      surface: 'muslim',
+      locale: 'id',
+      path: '/',
+      title: 'Muslim Leveling',
+      description: 'Aplikasi ibadah Android',
+      faq: {
+        items: [
+          { question: 'Apakah aplikasi gratis?', answer: 'Ya, sepenuhnya gratis tanpa iklan.' },
+          { question: 'Bagaimana Mode Haid?', answer: 'Menjaga streak tanpa rasa bersalah.' },
+        ],
+      },
+    });
+
+    const graph = (result[0]['@graph'] as Record<string, unknown>[]);
+    expect(graph).toHaveLength(3);
+
+    const faqSchema = graph.find((item) => item['@type'] === 'FAQPage') as {
+      '@type': string;
+      mainEntity: { '@type': string; name: string; acceptedAnswer: { '@type': string; text: string } }[];
+    };
+    expect(faqSchema).toBeDefined();
+    expect(faqSchema.mainEntity).toHaveLength(2);
+    expect(faqSchema.mainEntity[0].name).toBe('Apakah aplikasi gratis?');
+    expect(faqSchema.mainEntity[0].acceptedAnswer.text).toBe('Ya, sepenuhnya gratis tanpa iklan.');
+  });
 });

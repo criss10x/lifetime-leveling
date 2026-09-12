@@ -237,3 +237,34 @@ test('theme toggle flips dark mode and persists across reload', async ({ page })
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
 });
+
+test('landing renders interactive FAQ section and bilingual questions', async ({ page }) => {
+  await page.goto('/');
+
+  const faqHeading = page.getByRole('heading', { level: 2, name: 'Pertanyaan yang sering diajukan' });
+  await expect(faqHeading).toBeVisible();
+
+  const faqItems = page.locator('.faq-item');
+  await expect(faqItems).toHaveCount(5);
+
+  // First item is open by default
+  const firstTrigger = faqItems.first().locator('.faq-item__trigger');
+  await expect(firstTrigger).toContainText('Mengapa Muslim Leveling gratis dan tanpa iklan?');
+  await expect(faqItems.first()).toHaveAttribute('open', '');
+
+  // Second item can be opened
+  const secondTrigger = faqItems.nth(1).locator('.faq-item__trigger');
+  await expect(secondTrigger).toContainText('Bagaimana cara kerja Mode Haid dalam menjaga progres?');
+  await secondTrigger.click();
+  await expect(faqItems.nth(1)).toHaveAttribute('open', '');
+
+  // English landing
+  await page.goto('/en/');
+  await expect(
+    page.getByRole('heading', { level: 2, name: 'Frequently asked questions' }),
+  ).toBeVisible();
+  await expect(page.locator('.faq-item')).toHaveCount(5);
+  await expect(page.locator('.faq-item').first().locator('.faq-item__trigger')).toContainText(
+    'Why is Muslim Leveling free and ad-free?',
+  );
+});
