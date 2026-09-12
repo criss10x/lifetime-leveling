@@ -454,6 +454,33 @@ test('guide article cara-menentukan-arah-kiblat publishes Article schema, callou
   await expect(ctaButton).toBeVisible();
 });
 
+test('guide article tata-cara-salat-tahajud publishes Article schema, callout, and download CTA', async ({ page }) => {
+  await page.goto('/panduan/tata-cara-salat-tahajud/');
+
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    'Tata Cara Salat Tahajud yang Benar: Niat, Waktu Utama, dan Tips Bangun Malam',
+  );
+  await expect(page.locator('.article-breadcrumb')).toContainText('Panduan Ibadah');
+  await expect(page.locator('meta[property="og:type"]')).toHaveAttribute('content', 'article');
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    'href',
+    'https://muslim.lifetimeleveling.com/panduan/tata-cara-salat-tahajud/',
+  );
+
+  // Schema.org Article in @graph
+  const scriptContent = await page.locator('script[type="application/ld+json"]').textContent();
+  expect(scriptContent).toBeDefined();
+  const parsed = JSON.parse(scriptContent!);
+  const articleEntity = parsed['@graph']?.find((item: any) => item['@type'] === 'Article');
+  expect(articleEntity).toBeDefined();
+  expect(articleEntity.headline).toContain('Tata Cara Salat Tahajud');
+
+  await expect(page.getByText('Fitur Ritme Malam & Quest')).toBeVisible();
+  const ctaButton = page.locator('.article-cta-card a.android-download');
+  await expect(ctaButton).toBeVisible();
+});
+
+
 
 
 
