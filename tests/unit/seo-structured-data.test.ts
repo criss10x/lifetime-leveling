@@ -81,4 +81,38 @@ describe('Structured Data (JSON-LD) generation', () => {
     expect(faqSchema.mainEntity[0].name).toBe('Apakah aplikasi gratis?');
     expect(faqSchema.mainEntity[0].acceptedAnswer.text).toBe('Ya, sepenuhnya gratis tanpa iklan.');
   });
+
+  it('generates Article schema when article metadata is provided', () => {
+    const result = getStructuredData({
+      surface: 'muslim',
+      locale: 'id',
+      path: '/panduan/amalan-wanita-haid/',
+      title: 'Amalan Berpahala untuk Wanita Saat Haid',
+      description: 'Panduan amalan berpahala untuk wanita muslimah saat sedang haid.',
+      article: {
+        headline: 'Amalan Berpahala untuk Wanita Saat Haid',
+        description: 'Panduan amalan berpahala untuk wanita muslimah saat sedang haid.',
+        datePublished: '2026-09-12',
+        dateModified: '2026-09-12',
+        authorName: 'Muslim Leveling',
+      },
+    });
+
+    const graph = result[0]['@graph'] as Record<string, unknown>[];
+    expect(graph).toHaveLength(3);
+
+    const articleSchema = graph.find((item) => item['@type'] === 'Article') as {
+      '@type': string;
+      headline: string;
+      datePublished: string;
+      dateModified: string;
+      author: { '@type': string; name: string };
+      publisher: { '@type': string; name: string };
+    };
+    expect(articleSchema).toBeDefined();
+    expect(articleSchema.headline).toBe('Amalan Berpahala untuk Wanita Saat Haid');
+    expect(articleSchema.datePublished).toBe('2026-09-12');
+    expect(articleSchema.author.name).toBe('Muslim Leveling');
+    expect(articleSchema.publisher.name).toBe('Muslim Leveling');
+  });
 });

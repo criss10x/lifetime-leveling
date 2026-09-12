@@ -268,3 +268,50 @@ test('landing renders interactive FAQ section and bilingual questions', async ({
     'Why is Muslim Leveling free and ad-free?',
   );
 });
+
+test('guide article amalan-wanita-haid publishes Article schema, Mode Haid callout, and download CTA', async ({ page }) => {
+  await page.goto('/panduan/amalan-wanita-haid/');
+
+  // Heading & Breadcrumb
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    'Amalan Berpahala untuk Wanita Saat Haid: Menjaga Ritme Ibadah Tanpa Rasa Bersalah',
+  );
+  await expect(page.locator('.article-breadcrumb')).toContainText('Beranda');
+  await expect(page.locator('.article-breadcrumb')).toContainText('Panduan Ibadah');
+
+  // Metadata & OpenGraph
+  await expect(page.locator('meta[property="og:type"]')).toHaveAttribute('content', 'article');
+  await expect(page.locator('meta[property="article:published_time"]')).toHaveAttribute('content', '2026-09-12');
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    'href',
+    'https://muslim.lifetimeleveling.com/panduan/amalan-wanita-haid/',
+  );
+
+  // Schema.org Article in @graph
+  const scriptContent = await page.locator('script[type="application/ld+json"]').textContent();
+  expect(scriptContent).toBeDefined();
+  const parsed = JSON.parse(scriptContent!);
+  const articleEntity = parsed['@graph']?.find((item: any) => item['@type'] === 'Article');
+  expect(articleEntity).toBeDefined();
+  expect(articleEntity.headline).toContain('Amalan Berpahala untuk Wanita Saat Haid');
+  expect(articleEntity.datePublished).toBe('2026-09-12');
+
+  // Content, Feature Callout, and Download CTA
+  await expect(page.getByText('Fitur Mode Haid')).toBeVisible();
+  await expect(page.getByRole('heading', { level: 3, name: 'Menjaga Ritme dan Kebiasaan Tanpa Beban Moral' })).toBeVisible();
+
+  const ctaButton = page.locator('.article-cta-card a.android-download');
+  await expect(ctaButton).toBeVisible();
+  await expect(ctaButton).toHaveAttribute(
+    'href',
+    'https://play.google.com/store/apps/details?id=id.muslimleveling.muslim_leveling',
+  );
+
+  // Theme toggle on article page
+  const toggle = page.locator('[data-theme-toggle]');
+  await expect(toggle).toBeVisible();
+  await toggle.click();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+});
+
+
