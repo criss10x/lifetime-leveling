@@ -1,0 +1,126 @@
+---
+import ArticleLayout from '../../../components/ArticleLayout.astro';
+import { getGuideBySlug } from '@shared/content/guides';
+
+const guide = getGuideBySlug('waktu-mustajab-hari-jumat')!;
+const articleSchema = {
+  headline: guide.title,
+  description: guide.description,
+  datePublished: guide.publishDate,
+  dateModified: guide.publishDate,
+  authorName: 'Muslim Leveling',
+  image: 'https://muslim.lifetimeleveling.com/brand/muslim-leveling-icon.png',
+};
+---
+
+<ArticleLayout
+  title={guide.title}
+  description={guide.description}
+  publishDate={guide.publishDate}
+  publishDateDisplay={guide.publishDateDisplay}
+  readingTime={guide.readingTime}
+  category={guide.category}
+  path={`/panduan/${guide.slug}/`}
+  locale="id"
+  ctaTitle="Raih Keberkahan Hari Jumat Tanpa Gangguan Iklan"
+  ctaDescription="Download Muslim Leveling secara gratis di Android. Pantau penanda waktu mustajab hari Jumat, baca Al-Quran Surah Al-Kahfi bertajwid, dan nikmati ibadah hening tanpa iklan komersial."
+  {articleSchema}
+>
+  <p>
+    Hari Jumat menempati kedudukan yang sangat istimewa dalam kalender Islam. Disebut sebagai <em>sayyidul ayyam</em> (penghulu segala hari), hari Jumat dipenuhi dengan limpahan rahmat, ampunan, dan keberkahan bagi siapa saja yang meluangkan waktu untuk mendekatkan diri kepada Allah.
+  </p>
+
+  <p>
+    Salah satu anugerah terbesar yang Allah sediakan pada hari mulia ini adalah keberadaan suatu waktu rahasia yang sangat mustajab untuk berdoa. Pada saat itu, tidaklah seorang hamba muslim memohon kebaikan kepada Allah melainkan pasti akan dikabulkan.
+  </p>
+
+  <blockquote>
+    <p>
+      "Di hari Jumat terdapat suatu waktu, tidaklah seorang hamba muslim mendapatinya sedang ia berdiri melaksanakan salat memohon sesuatu kepada Allah, melainkan Allah akan memberikan apa yang ia minta."
+    </p>
+    <cite>HR. Bukhari dan Muslim, dari sahabat Abu Hurairah radhiyallahu 'anhu</cite>
+  </blockquote>
+
+  <h2>Kapan Tepatnya Waktu Mustajab Tersebut?</h2>
+
+  <p>
+    Para ulama hadits dan fukaha meneliti berbagai riwayat shahih untuk mencari tahu kapan waktu yang dimaksud. Berdasarkan riwayat terkuat, terdapat dua pendapat utama yang paling banyak dipegang oleh para ulama:
+  </p>
+
+  <h3>1. Saat Khutbah Berlangsung Hingga Salat Jumat Selesai</h3>
+  <p>
+    Pendapat pertama bersandar pada hadits riwayat Abu Burdah dari ayahnya, Abu Musa Al-Asy'ari radhiyallahu 'anhu, di mana Rasulullah ﷺ bersabda: <em>"Waktu tersebut adalah antara duduknya imam (di mimbar) hingga selesainya salat"</em> (HR. Muslim).
+  </p>
+  <p>
+    Momen ini adalah saat ketika hati jamaah Jumat terhubung dengan nasihat takwa, duduk bersama dalam keheningan, dan mengaminkan doa khutbah serta doa dalam salat Jumat berjamaah.
+  </p>
+
+  <h3>2. Di Akhir Waktu Ashar Menjelang Matahari Terbenam</h3>
+  <p>
+    Pendapat kedua, yang dinilai paling kuat (<em>rajih</em>) oleh mayoritas sahabat Nabi dan para ulama seperti Imam Ahmad dan Ibnu Qayyim, menyatakan bahwa waktu mustajab berada di <strong>penghujung hari Jumat, yaitu setelah salat Ashar hingga matahari terbenam (masuk waktu Maghrib)</strong>.
+  </p>
+  <p>
+    Rasulullah ﷺ bersabda: <em>"Hari Jumat itu dua belas jam. Tidak ada seorang hamba muslim pun yang memohon sesuatu kepada Allah pada waktu tersebut melainkan Allah akan mengabulkannya. Maka carilah ia di akhir waktu setelah Ashar"</em> (HR. Abu Dawud dan An-Nasa'i).
+  </p>
+
+  <p>
+    Kedua pendapat ini tidak saling bertentangan, melainkan menunjukkan kelapangan kasih sayang Allah agar kita memanfaatkan seluruh kesempatan emas di hari Jumat untuk bermunajat.
+  </p>
+
+  <h2>4 Amalan Pembuka Keberkahan Hari Jumat</h2>
+
+  <p>
+    Untuk menyambut waktu mustajab tersebut dengan hati yang bersih, para ulama menganjurkan beberapa amalan sunnah utama:
+  </p>
+
+  <ul>
+    <li>
+      <strong>Memperbanyak Shalawat:</strong> Rasulullah ﷺ bersabda: <em>"Perbanyaklah shalawat kepadaku pada hari Jumat dan malam Jumat, karena barang siapa bershalawat kepadaku satu kali, Allah akan bershalawat kepadanya sepuluh kali"</em> (HR. Al-Baihaqi).
+    </li>
+    <li>
+      <strong>Membaca Surah Al-Kahfi:</strong> Menyinari kehidupan seorang hamba dengan cahaya petunjuk di antara dua Jumat serta menjadi benteng dari fitnah akhir zaman. Anda dapat membacanya secara langsung atau memadukannya dengan <a href="/panduan/murottal-vs-membaca-mushaf/">menyimak lantunan murottal Al-Quran</a> saat waktu istirahat.
+    </li>
+    <li>
+      <strong>Menjaga Wirid Petang:</strong> Duduk tenang setelah salat Ashar sambil melafalkan <a href="/panduan/dzikir-pagi-dan-petang/">dzikir pagi dan petang</a> adalah cara terbaik menghabiskan jam-jam terakhir hari Jumat.
+    </li>
+    <li>
+      <strong>Bersedekah di Awal Hari:</strong> Sedekah di hari Jumat memiliki keutamaan berlipat ganda layaknya sedekah di bulan Ramadhan dibandingkan bulan-bulan lainnya.
+    </li>
+  </ul>
+
+  <div class="article-callout">
+    <div class="article-callout__badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+      </svg>
+      Fitur Ibadah Hari Jumat
+    </div>
+    <h3>Sambut Keberkahan Hari Jumat Bersama Muslim Leveling</h3>
+    <p>
+      Muslim Leveling membantu Anda menjaga keutamaan hari Jumat dengan fitur yang tenang dan terarah:
+    </p>
+    <ul>
+      <li><strong>Hitung Mundur Waktu Ashar & Maghrib:</strong> Penanda presisi yang mengingatkan Anda saat waktu mustajab ba'da Ashar mulai mendekat.</li>
+      <li><strong>Al-Quran Tajwid Lengkap:</strong> Buka Surah Al-Kahfi dengan mudah disertai panduan tajwid warna dan terjemahan bahasa Indonesia.</li>
+      <li><strong>100% Bebas Iklan Komersial:</strong> Tidak ada iklan video atau banner yang tiba-tiba mengganggu momen khusyuk Anda saat memanjatkan doa.</li>
+      <li><strong>Quest Spesial Hari Jumat:</strong> Selesaikan misi membaca Al-Kahfi dan shalawat dengan apresiasi XP yang memotivasi kebaikan.</li>
+    </ul>
+  </div>
+
+  <h2>Adab Berdoa Agar Munajat Mudah Dikabulkan</h2>
+
+  <p>
+    Ketika waktu mustajab tiba, pastikan Anda memanjatkan doa dengan adab terbaik:
+  </p>
+
+  <ol>
+    <li><strong>Menghadap Kiblat dan Bersuci:</strong> Duduklah dengan tenang menghadap arah Ka'bah, sebagaimana dapat Anda pastikan melalui <a href="/panduan/cara-menentukan-arah-kiblat/">panduan menentukan arah kiblat akurat</a>.</li>
+    <li><strong>Memuji Allah dan Bershalawat:</strong> Awali doa dengan mengagungkan nama-nama Allah (*Asmaul Husna*) dan membaca shalawat kepada Nabi Muhammad ﷺ.</li>
+    <li><strong>Mengakui Dosa dengan Rendah Hati:</strong> Memohon ampunan (*istighfar*) sebelum menyampaikan permohonan hajat pribadi.</li>
+    <li><strong>Yakin Doa Pasti Dikabulkan:</strong> Berdoalah dengan penuh harap (*raja'*) dan rasa takut (*khauf*), serta singkirkan rasa putus asa.</li>
+  </ol>
+
+  <p>
+    Jangan biarkan hari Jumat berlalu seperti hari-hari biasa. Sisihkan setidaknya 15 hingga 30 menit sebelum matahari terbenam untuk duduk hening, mengangkat kedua tangan, dan mencurahkan seluruh isi hati kepada Sang Maha Mendengar.
+  </p>
+</ArticleLayout>

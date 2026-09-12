@@ -11,6 +11,17 @@ export interface GuideItem {
 
 export const guidesData: readonly GuideItem[] = [
   {
+    slug: 'waktu-mustajab-hari-jumat',
+    title: 'Waktu Mustajab Berdoa di Hari Jumat: Kapan Tepatnya dan Amalan Pembukanya?',
+    description:
+      'Pelajari dua waktu paling mustajab untuk berdoa di hari Jumat sesuai hadits shahih, adab munajat, dan amalan pembuka keberkahan bersama Muslim Leveling.',
+    category: 'Panduan Ibadah',
+    publishDate: '2026-09-12',
+    publishDateDisplay: '12 September 2026',
+    readingTime: '5 menit membaca',
+    featured: true,
+  },
+  {
     slug: 'tata-cara-salat-tahajud',
     title: 'Tata Cara Salat Tahajud yang Benar: Niat, Waktu Utama, dan Tips Bangun Malam',
     description:
