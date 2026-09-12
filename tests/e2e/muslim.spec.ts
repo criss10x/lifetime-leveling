@@ -402,6 +402,33 @@ test('guide article murottal-vs-membaca-mushaf publishes Article schema, callout
   await expect(ctaButton).toBeVisible();
 });
 
+test('guide article dzikir-pagi-dan-petang publishes Article schema, callout, and download CTA', async ({ page }) => {
+  await page.goto('/panduan/dzikir-pagi-dan-petang/');
+
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    'Panduan Dzikir Pagi dan Petang: Waktu Terbaik, Manfaat, dan Tips Istiqamah',
+  );
+  await expect(page.locator('.article-breadcrumb')).toContainText('Panduan Ibadah');
+  await expect(page.locator('meta[property="og:type"]')).toHaveAttribute('content', 'article');
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    'href',
+    'https://muslim.lifetimeleveling.com/panduan/dzikir-pagi-dan-petang/',
+  );
+
+  // Schema.org Article in @graph
+  const scriptContent = await page.locator('script[type="application/ld+json"]').textContent();
+  expect(scriptContent).toBeDefined();
+  const parsed = JSON.parse(scriptContent!);
+  const articleEntity = parsed['@graph']?.find((item: any) => item['@type'] === 'Article');
+  expect(articleEntity).toBeDefined();
+  expect(articleEntity.headline).toContain('Panduan Dzikir Pagi dan Petang');
+
+  await expect(page.getByText('Fitur Ritme & Dzikir Harian')).toBeVisible();
+  const ctaButton = page.locator('.article-cta-card a.android-download');
+  await expect(ctaButton).toBeVisible();
+});
+
+
 
 
 
