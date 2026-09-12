@@ -428,6 +428,33 @@ test('guide article dzikir-pagi-dan-petang publishes Article schema, callout, an
   await expect(ctaButton).toBeVisible();
 });
 
+test('guide article cara-menentukan-arah-kiblat publishes Article schema, callout, and download CTA', async ({ page }) => {
+  await page.goto('/panduan/cara-menentukan-arah-kiblat/');
+
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    'Cara Menentukan Arah Kiblat yang Akurat di HP dan Ruangan Tanpa Bingung',
+  );
+  await expect(page.locator('.article-breadcrumb')).toContainText('Panduan Ibadah');
+  await expect(page.locator('meta[property="og:type"]')).toHaveAttribute('content', 'article');
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    'href',
+    'https://muslim.lifetimeleveling.com/panduan/cara-menentukan-arah-kiblat/',
+  );
+
+  // Schema.org Article in @graph
+  const scriptContent = await page.locator('script[type="application/ld+json"]').textContent();
+  expect(scriptContent).toBeDefined();
+  const parsed = JSON.parse(scriptContent!);
+  const articleEntity = parsed['@graph']?.find((item: any) => item['@type'] === 'Article');
+  expect(articleEntity).toBeDefined();
+  expect(articleEntity.headline).toContain('Cara Menentukan Arah Kiblat');
+
+  await expect(page.getByText('Fitur Kompas Kiblat Presisi')).toBeVisible();
+  const ctaButton = page.locator('.article-cta-card a.android-download');
+  await expect(ctaButton).toBeVisible();
+});
+
+
 
 
 
