@@ -1,0 +1,55 @@
+---
+import { getGuides } from '@shared/content/guides';
+import type { Locale } from '@shared/i18n/types';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const guides = getGuides(3);
+const hubHref = locale === 'id' ? '/panduan/' : '/en/panduan/';
+const isId = locale === 'id';
+---
+
+<section class="guides-section reveal" aria-labelledby="guides-title">
+  <div class="guides-section__header">
+    <div class="guides-section__intro">
+      <span class="guides-section__badge">{isId ? 'Panduan Ibadah' : 'Worship Guides'}</span>
+      <h2 id="guides-title">{isId ? 'Panduan & Inspirasi Ibadah' : 'Guides & Worship Insights'}</h2>
+      <p>
+        {isId
+          ? 'Kumpulan artikel dan panduan praktis untuk menjaga ritme ibadah harian dengan pemahaman yang menenangkan.'
+          : 'Practical guides and insights to support your daily worship rhythm with clarity and peace of mind.'}
+      </p>
+    </div>
+    <a class="guides-section__all-link" href={hubHref}>
+      {isId ? 'Lihat Semua Panduan' : 'Browse All Guides'}
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M5 12h14M12 5l7 7-7 7" />
+      </svg>
+    </a>
+  </div>
+
+  <div class="guides-grid">
+    {guides.map((guide) => (
+      <article class="guide-card">
+        <div class="guide-card__meta">
+          <span class="guide-card__category">{guide.category}</span>
+          <span class="guide-card__dot" aria-hidden="true">·</span>
+          <span>{guide.readingTime}</span>
+        </div>
+        <h3 class="guide-card__title">
+          <a href={`/panduan/${guide.slug}/`}>{guide.title}</a>
+        </h3>
+        <p class="guide-card__desc">{guide.description}</p>
+        <a class="guide-card__action" href={`/panduan/${guide.slug}/`} aria-label={`${isId ? 'Baca panduan' : 'Read guide'}: ${guide.title}`}>
+          <span>{isId ? 'Baca panduan' : 'Read guide'}</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+      </article>
+    ))}
+  </div>
+</section>

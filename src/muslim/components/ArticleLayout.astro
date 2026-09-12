@@ -45,7 +45,7 @@ const homeHref = locale === 'id' ? '/' : '/en/';
   image="/brand/muslim-leveling-icon.png"
   article={articleSchema}
 >
-  <ProductNavigation slot="navigation" {locale} path="/" content={content} />
+  <ProductNavigation slot="navigation" {locale} path="/panduan/" content={content} />
 
   <div class="article-wrapper">
     <article class="article-layout">
@@ -53,7 +53,7 @@ const homeHref = locale === 'id' ? '/' : '/en/';
         <ol>
           <li><a href={homeHref}>{locale === 'id' ? 'Beranda' : 'Home'}</a></li>
           <li aria-hidden="true">/</li>
-          <li><span>{category}</span></li>
+          <li><a href={locale === 'id' ? '/panduan/' : '/en/panduan/'}>{category}</a></li>
           <li aria-hidden="true">/</li>
           <li aria-current="page"><span>{title}</span></li>
         </ol>

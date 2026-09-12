@@ -1,0 +1,132 @@
+---
+import SiteShell from '@shared/components/SiteShell.astro';
+import ProductNavigation from '../../components/ProductNavigation.astro';
+import ProductFooter from '../../components/ProductFooter.astro';
+import AndroidDownloadButton from '../../components/AndroidDownloadButton.astro';
+import { muslimProductContent } from '@shared/content/muslim-product';
+import { getGuides } from '@shared/content/guides';
+import '../../styles/muslim.css';
+
+const locale = 'id' as const;
+const path = '/panduan/';
+const content = muslimProductContent[locale];
+const guides = getGuides();
+const pageTitle = 'Panduan & Artikel Ibadah | Muslim Leveling';
+const pageDescription =
+  'Kumpulan panduan ibadah harian, artikel amalan berpahala, dan inspirasi konsistensi spiritual dari Muslim Leveling.';
+---
+
+<SiteShell surface="muslim" {locale} {path} title={pageTitle} description={pageDescription}>
+  <ProductNavigation slot="navigation" {locale} {path} {content} />
+
+  <div class="article-wrapper">
+    <div class="guide-hub">
+      <nav class="article-breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Beranda</a></li>
+          <li aria-hidden="true">/</li>
+          <li aria-current="page"><span>Panduan Ibadah</span></li>
+        </ol>
+      </nav>
+
+      <header class="guide-hub__header">
+        <span class="article-category">Koleksi Panduan</span>
+        <h1>Panduan & Artikel Ibadah</h1>
+        <p class="guide-hub__lead">
+          Temukan panduan praktis, amalan harian berpahala, dan cara menjaga konsistensi ibadah tanpa rasa bersalah bersama Muslim Leveling.
+        </p>
+      </header>
+
+      <section class="guide-hub__list" aria-label="Daftar panduan ibadah">
+        <div class="guides-grid">
+          {guides.map((guide) => (
+            <article class="guide-card guide-card--hub">
+              <div class="guide-card__meta">
+                <span class="guide-card__category">{guide.category}</span>
+                <span class="guide-card__dot" aria-hidden="true">·</span>
+                <time datetime={guide.publishDate}>{guide.publishDateDisplay}</time>
+                <span class="guide-card__dot" aria-hidden="true">·</span>
+                <span>{guide.readingTime}</span>
+              </div>
+              <h2 class="guide-card__title">
+                <a href={`/panduan/${guide.slug}/`}>{guide.title}</a>
+              </h2>
+              <p class="guide-card__desc">{guide.description}</p>
+              <a class="guide-card__action" href={`/panduan/${guide.slug}/`} aria-label={`Baca panduan: ${guide.title}`}>
+                <span>Baca panduan selengkapnya</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="article-cta-card">
+        <div class="article-cta-card__badge">Aplikasi Muslim Leveling</div>
+        <h2>Temani Langkah Ibadahmu Setiap Hari</h2>
+        <p>
+          Download Muslim Leveling secara gratis di Android. Lengkap dengan quest harian, jadwal salat presisi, kompas kiblat, Al-Quran dengan murottal, dan Mode Haid yang empati.
+        </p>
+        <AndroidDownloadButton href={content.googlePlayUrl} label={content.hero.cta} />
+      </section>
+    </div>
+  </div>
+
+  <ProductFooter {content} {locale} />
+</SiteShell>
+
+<script>
+  // ponytail: theme toggle wiring + sticky header shadow on hub page
+  const labels = {
+    id: { dark: 'Tema gelap diaktifkan', light: 'Tema terang diaktifkan' },
+    en: { dark: 'Dark theme enabled', light: 'Light theme enabled' },
+  } as const;
+  const t = document.documentElement.lang === 'en' ? labels.en : labels.id;
+
+  const ready = () => {
+    const body = document.body;
+    const header = document.querySelector<HTMLElement>('body[data-surface="muslim"] > header');
+    const floating = document.querySelector<HTMLElement>('.floating-cta');
+
+    if (header) {
+      const onScroll = () => {
+        const scrolled = window.scrollY > 8;
+        header.classList.toggle('is-scrolled', scrolled);
+        if (floating) floating.classList.toggle('is-hidden', scrolled && window.innerWidth <= 760);
+      };
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }
+
+    const toggle = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+    const announce = document.querySelector<HTMLElement>('[data-theme-announce]');
+
+    if (toggle) {
+      const apply = (next: string) => {
+        document.documentElement.dataset.theme = next;
+        body.dataset.theme = next;
+        toggle.setAttribute('aria-pressed', next === 'dark' ? 'true' : 'false');
+        if (announce) announce.textContent = next === 'dark' ? t.dark : t.light;
+        try {
+          localStorage.setItem('muslim-theme', next);
+        } catch (e) {
+          console.error('theme persist failed', e);
+        }
+      };
+
+      apply(document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light');
+
+      toggle.addEventListener('click', () => {
+        apply(body.dataset.theme === 'dark' ? 'light' : 'dark');
+      });
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', ready, { once: true });
+  } else {
+    ready();
+  }
+</script>

@@ -7,8 +7,8 @@ interface Props { content: MuslimProductContent; locale: Locale; }
 const { content, locale } = Astro.props;
 const local = (path: string) => locale === 'id' ? path : `/en${path}`;
 const labels = locale === 'id'
-  ? { support: 'Bantuan', privacy: 'Kebijakan Privasi', terms: 'Ketentuan Layanan', deletion: 'Hapus akun' }
-  : { support: 'Support', privacy: 'Privacy Policy', terms: 'Terms of Service', deletion: 'Delete Account' };
+  ? { guides: 'Panduan', support: 'Bantuan', privacy: 'Kebijakan Privasi', terms: 'Ketentuan Layanan', deletion: 'Hapus akun' }
+  : { guides: 'Guides', support: 'Support', privacy: 'Privacy Policy', terms: 'Terms of Service', deletion: 'Delete Account' };
 ---
 
 <footer class="product-footer">
@@ -19,6 +19,7 @@ const labels = locale === 'id'
   <div class="product-footer__links">
     <span>© {new Date().getFullYear()} Muslim Leveling</span>
     <nav aria-label={locale === 'id' ? 'Tautan bantuan dan legal' : 'Support and legal links'}>
+      <a href={local('/panduan/')}>{labels.guides}</a>
       <a href={local('/support/')}>{labels.support}</a>
       <a href={local('/privacy/')}>{labels.privacy}</a>
       <a href={local('/terms/')}>{labels.terms}</a>
