@@ -314,4 +314,41 @@ test('guide article amalan-wanita-haid publishes Article schema, Mode Haid callo
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
 });
 
+test('landing page renders guides section and links to hub and articles', async ({ page }) => {
+  await page.goto('/');
+
+  const section = page.locator('.guides-section');
+  await expect(section).toBeVisible();
+  await expect(section.getByRole('heading', { level: 2, name: 'Panduan & Inspirasi Ibadah' })).toBeVisible();
+
+  const allLink = section.getByRole('link', { name: 'Lihat Semua Panduan' });
+  await expect(allLink).toHaveAttribute('href', '/panduan/');
+
+  const articleCard = section.locator('.guide-card').first();
+  await expect(articleCard).toBeVisible();
+  await expect(articleCard.getByText('Panduan Ibadah')).toBeVisible();
+
+  // Footer link
+  const footerGuide = page.locator('.product-footer nav a', { hasText: 'Panduan' });
+  await expect(footerGuide).toHaveAttribute('href', '/panduan/');
+});
+
+test('guide hub page renders catalog and supports bilingual routes', async ({ page }) => {
+  await page.goto('/panduan/');
+
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Panduan & Artikel Ibadah');
+  await expect(page.locator('.guide-card--hub')).toHaveCount(1);
+  await expect(page.locator('.article-breadcrumb')).toContainText('Panduan Ibadah');
+
+  // English hub
+  await page.goto('/en/panduan/');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Worship Guides & Articles');
+  await expect(page.locator('.product-footer nav a', { hasText: 'Guides' })).toHaveAttribute(
+    'href',
+    '/en/panduan/',
+  );
+});
+
+
+
 
