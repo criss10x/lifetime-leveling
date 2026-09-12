@@ -1,0 +1,119 @@
+---
+import ArticleLayout from '../../../components/ArticleLayout.astro';
+import { getGuideBySlug } from '@shared/content/guides';
+
+const guide = getGuideBySlug('dzikir-pagi-dan-petang')!;
+const articleSchema = {
+  headline: guide.title,
+  description: guide.description,
+  datePublished: guide.publishDate,
+  dateModified: guide.publishDate,
+  authorName: 'Muslim Leveling',
+  image: 'https://muslim.lifetimeleveling.com/brand/muslim-leveling-icon.png',
+};
+---
+
+<ArticleLayout
+  title={guide.title}
+  description={guide.description}
+  publishDate={guide.publishDate}
+  publishDateDisplay={guide.publishDateDisplay}
+  readingTime={guide.readingTime}
+  category={guide.category}
+  path={`/panduan/${guide.slug}/`}
+  locale="id"
+  {articleSchema}
+>
+  <p>
+    Setiap hari kita terbangun dengan daftar tanggung jawab yang menanti: pekerjaan kantor, urusan rumah tangga, hingga berbagai target hidup yang menuntut energi penuh. Di tengah ritme yang serba cepat ini, pagi hari sering kali diawali dengan ketergesa-gesaan, sementara petang hari ditutup dengan kelelahan fisik dan mental.
+  </p>
+
+  <p>
+    Islam memberikan resep spiritual yang sangat indah untuk menjaga keseimbangan jiwa melalui dzikir pagi dan petang. Amalan ini bukanlah sekadar rangkaian bacaan panjang yang membebani rutinitas, melainkan benteng perlindungan kokoh yang menenangkan hati dan menjaga pikiran dari rasa cemas yang berlebihan.
+  </p>
+
+  <blockquote>
+    <p>
+      "Wahai orang-orang yang beriman, berdzikirlah (dengan menyebut nama) Allah dengan dzikir yang sebanyak-banyaknya. Dan bertasbihlah kepada-Nya pada waktu pagi dan petang."
+    </p>
+    <cite>QS. Al-Ahzab: 41-42</cite>
+  </blockquote>
+
+  <h2>Kapan Rentang Waktu Terbaik Dzikir Pagi dan Petang?</h2>
+
+  <p>
+    Banyak orang merasa ragu untuk berdzikir karena khawatir waktu yang mereka gunakan sudah terlewat. Memahami rentang waktu syariat membantu kita beribadah dengan tenang tanpa rasa bersalah:
+  </p>
+
+  <ul>
+    <li>
+      <strong>Waktu Dzikir Pagi:</strong> Dimulai sejak terbit fajar (masuk waktu Subuh) hingga matahari terbit. Namun, para ulama besar seperti Imam An-Nawawi dan Ibnu Qayyim menjelaskan bahwa bila seseorang berhalangan atau terlewat, dzikir pagi tetap bernilai pahala dan boleh dibaca hingga waktu dhuha menjelang zawal (masuk waktu Dzuhur).
+    </li>
+    <li>
+      <strong>Waktu Dzikir Petang:</strong> Dimulai setelah salat Ashar hingga matahari terbenam (Maghrib). Apabila Anda masih dalam perjalanan pulang kerja atau memiliki kesibukan mendesak, dzikir petang tetap dapat dilanjutkan hingga permulaan malam sebelum Anda tidur.
+    </li>
+  </ul>
+
+  <p>
+    Kelapangan ini menunjukkan bahwa syariat Islam menghendaki kemudahan bagi umatnya. Jangan batalkan niat berdzikir hanya karena Anda terlambat beberapa saat dari waktu utamanya.
+  </p>
+
+  <h2>Tiga Manfaat Spiritual Utama yang Jarang Disadari</h2>
+
+  <p>
+    Rasulullah ﷺ tidak pernah meninggalkan untaian dzikir pagi dan petang sepanjang hidup beliau. Di balik kalimat-kalimatnya yang ringkas, tersimpan khasiat spiritual yang mendalam:
+  </p>
+
+  <ul>
+    <li>
+      <strong>Benteng Perlindungan Menyeluruh:</strong> Membaca Ayat Kursi dan tiga surah mu'awwidzatain (Al-Ikhlas, Al-Falaq, An-Naas) di waktu pagi dan petang menjadi perisai gaib dari godaan setan, kejahatan makhluk, serta marabahaya yang tidak terlihat.
+    </li>
+    <li>
+      <strong>Ketenangan Hati Melalui Penyerahan Diri:</strong> Doa-doa dalam dzikir pagi petang sarat dengan pengakuan kelemahan diri dan tawakal kepada Allah. Menyerahkan urusan hidup kepada Dzat Yang Maha Mengatur setiap awal dan akhir hari secara ilmiah terbukti menurunkan tingkat stres mental.
+    </li>
+    <li>
+      <strong>Jaminan Keselamatan dan Pengampunan Dosa:</strong> Dalam Sayyidul Istighfar (rajanya istighfar), Rasulullah ﷺ menjanjikan bahwa siapa saja yang membacanya di pagi hari dengan penuh keyakinan lalu meninggal sebelum petang, maka ia termasuk penghuni surga (HR. Bukhari).
+    </li>
+  </ul>
+
+  <div class="article-callout">
+    <div class="article-callout__badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+      </svg>
+      Fitur Ritme & Dzikir Harian
+    </div>
+    <h3>Menjaga Konsistensi Dzikir Bersama Muslim Leveling</h3>
+    <p>
+      Membangun kebiasaan dzikir yang menenangkan kini lebih mudah dengan pendamping ibadah yang menghormati ritme hidup Anda:
+    </p>
+    <ul>
+      <li><strong>Penanda Waktu yang Tenang:</strong> Pantau masuknya waktu Subuh dan Ashar dengan jadwal presisi dan hitung mundur yang membantu Anda menyiapkan waktu luang untuk berdzikir.</li>
+      <li><strong>Quest Ibadah Harian:</strong> Selesaikan misi dzikir dan doa harian sebagai langkah nyata yang diapresiasi dengan perolehan XP dan level.</li>
+      <li><strong>100% Bebas Iklan Komersial:</strong> Nikmati pengalaman ibadah tanpa iklan pop-up atau banner yang mengganggu kekhusyukan doa Anda.</li>
+      <li><strong>Mode Fleksibel:</strong> Lanjutkan kebiasaan baik sesuai kapasitas harian tanpa tekanan sistem streak yang kaku saat Anda sedang menghadapi hari yang berat.</li>
+    </ul>
+  </div>
+
+  <h2>Tips Memulai Kebiasaan Dzikir Tanpa Beban Berat</h2>
+
+  <p>
+    Jika selama ini Anda merasa kesulitan menjaga rutinitas dzikir pagi dan petang, cobalah menerapkan pendekatan bertahap:
+  </p>
+
+  <ul>
+    <li>
+      <strong>Mulai dari Dzikir Pondasi:</strong> Luangkan waktu 3 menit untuk membaca Ayat Kursi dan tiga surah perlindungan (Al-Ikhlas, Al-Falaq, An-Naas masing-masing tiga kali). Ini adalah inti perlindungan harian yang sangat ringan.
+    </li>
+    <li>
+      <strong>Tambahkan Sayyidul Istighfar:</strong> Setelah pondasi di atas menjadi kebiasaan alami selama 7 hari, tambahkan bacaan Sayyidul Istighfar dan doa memohon perlindungan dari mara bahaya (<em>Bismillahilladzi la yadhurru ma'asmihi syai-un...</em>).
+    </li>
+    <li>
+      <strong>Tautkan dengan Momen Rutin:</strong> Sambungkan waktu dzikir dengan kebiasaan yang sudah pasti Anda lakukan, misalnya tepat setelah selesai salat Subuh sebelum beranjak dari sajadah, atau saat duduk tenang di transportasi umum sepulang kerja.
+    </li>
+  </ul>
+
+  <p>
+    Ingatlah sabda Rasulullah ﷺ bahwa amalan yang paling dicintai oleh Allah adalah amalan yang berkelanjutan meskipun jumlahnya sedikit (HR. Bukhari dan Muslim). Mulailah dari satu langkah kecil hari ini, dan rasakan ketenangan hati yang bertambah setiap harinya.
+  </p>
+</ArticleLayout>

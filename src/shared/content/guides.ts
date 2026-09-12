@@ -11,6 +11,17 @@ export interface GuideItem {
 
 export const guidesData: readonly GuideItem[] = [
   {
+    slug: 'dzikir-pagi-dan-petang',
+    title: 'Panduan Dzikir Pagi dan Petang: Waktu Terbaik, Manfaat, dan Tips Istiqamah',
+    description:
+      'Pelajari waktu utama dzikir pagi dan petang, keutamaan spiritualnya, serta tips membiasakannya setiap hari tanpa rasa terbebani bersama Muslim Leveling.',
+    category: 'Panduan Ibadah',
+    publishDate: '2026-09-12',
+    publishDateDisplay: '12 September 2026',
+    readingTime: '5 menit membaca',
+    featured: true,
+  },
+  {
     slug: 'murottal-vs-membaca-mushaf',
     title: 'Mendengarkan Murottal vs Membaca Mushaf: Mana yang Lebih Utama Saat Sibuk?',
     description:
