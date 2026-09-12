@@ -376,6 +376,33 @@ test('guide article kebiasaan-salat-tepat-waktu publishes Article schema, callou
   await expect(ctaButton).toBeVisible();
 });
 
+test('guide article murottal-vs-membaca-mushaf publishes Article schema, callout, and download CTA', async ({ page }) => {
+  await page.goto('/panduan/murottal-vs-membaca-mushaf/');
+
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    'Mendengarkan Murottal vs Membaca Mushaf: Mana yang Lebih Utama Saat Sibuk?',
+  );
+  await expect(page.locator('.article-breadcrumb')).toContainText('Panduan Ibadah');
+  await expect(page.locator('meta[property="og:type"]')).toHaveAttribute('content', 'article');
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    'href',
+    'https://muslim.lifetimeleveling.com/panduan/murottal-vs-membaca-mushaf/',
+  );
+
+  // Schema.org Article in @graph
+  const scriptContent = await page.locator('script[type="application/ld+json"]').textContent();
+  expect(scriptContent).toBeDefined();
+  const parsed = JSON.parse(scriptContent!);
+  const articleEntity = parsed['@graph']?.find((item: any) => item['@type'] === 'Article');
+  expect(articleEntity).toBeDefined();
+  expect(articleEntity.headline).toContain('Mendengarkan Murottal vs Membaca Mushaf');
+
+  await expect(page.getByText('Fitur Quran & Murottal')).toBeVisible();
+  const ctaButton = page.locator('.article-cta-card a.android-download');
+  await expect(ctaButton).toBeVisible();
+});
+
+
 
 
 
