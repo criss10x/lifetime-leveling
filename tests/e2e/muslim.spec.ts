@@ -558,13 +558,28 @@ test('guide article tata-cara-salat-jamak-dan-qashar publishes Article schema, c
   await expect(ctaButton).toBeVisible();
 });
 
+test('guide article panduan-membaca-surah-al-kahfi publishes Article schema, callout, and download CTA', async ({ page }) => {
+  await page.goto('/panduan/panduan-membaca-surah-al-kahfi/');
 
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    'Panduan Membaca Surah Al-Kahfi di Hari Jumat: Tips Membagi Ayat Tanpa Tergesa-gesa',
+  );
+  await expect(page.locator('.article-breadcrumb')).toContainText('Panduan Ibadah');
+  await expect(page.locator('meta[property="og:type"]')).toHaveAttribute('content', 'article');
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    'href',
+    'https://muslim.lifetimeleveling.com/panduan/panduan-membaca-surah-al-kahfi/',
+  );
 
+  // Schema.org Article in @graph
+  const scriptContent = await page.locator('script[type="application/ld+json"]').textContent();
+  expect(scriptContent).toBeDefined();
+  const parsed = JSON.parse(scriptContent!);
+  const articleEntity = parsed['@graph']?.find((item: any) => item['@type'] === 'Article');
+  expect(articleEntity).toBeDefined();
+  expect(articleEntity.headline).toContain('Panduan Membaca Surah Al-Kahfi');
 
-
-
-
-
-
-
-
+  await expect(page.getByText('Fitur Al-Quran & Audio Muslim Leveling')).toBeVisible();
+  const ctaButton = page.locator('.article-cta-card a.android-download');
+  await expect(ctaButton).toBeVisible();
+});
