@@ -480,6 +480,33 @@ test('guide article tata-cara-salat-tahajud publishes Article schema, callout, a
   await expect(ctaButton).toBeVisible();
 });
 
+test('guide article waktu-mustajab-hari-jumat publishes Article schema, callout, and download CTA', async ({ page }) => {
+  await page.goto('/panduan/waktu-mustajab-hari-jumat/');
+
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    'Waktu Mustajab Berdoa di Hari Jumat: Kapan Tepatnya dan Amalan Pembukanya?',
+  );
+  await expect(page.locator('.article-breadcrumb')).toContainText('Panduan Ibadah');
+  await expect(page.locator('meta[property="og:type"]')).toHaveAttribute('content', 'article');
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    'href',
+    'https://muslim.lifetimeleveling.com/panduan/waktu-mustajab-hari-jumat/',
+  );
+
+  // Schema.org Article in @graph
+  const scriptContent = await page.locator('script[type="application/ld+json"]').textContent();
+  expect(scriptContent).toBeDefined();
+  const parsed = JSON.parse(scriptContent!);
+  const articleEntity = parsed['@graph']?.find((item: any) => item['@type'] === 'Article');
+  expect(articleEntity).toBeDefined();
+  expect(articleEntity.headline).toContain('Waktu Mustajab Berdoa di Hari Jumat');
+
+  await expect(page.getByText('Fitur Ibadah Hari Jumat')).toBeVisible();
+  const ctaButton = page.locator('.article-cta-card a.android-download');
+  await expect(ctaButton).toBeVisible();
+});
+
+
 
 
 
