@@ -77,11 +77,97 @@ src/muslim/
 │   ├── ProductHero.astro         # Hero section (eyebrow, h1, tagline, CTA, 2 quick features)
 │   ├── AndroidDownloadButton.astro  # Gold CTA, variant: 'default' | 'hero'
 │   ├── AndroidFrame.astro        # Phone mockup wrapper
+│   ├── ArticleLayout.astro       # Layout for SEO guide articles (breadcrumbs, meta, schema, CTA)
+│   ├── GuidesSection.astro       # Homepage section displaying latest guide cards
 │   └── [FeatureCatalog, DailyLoop, ScreenshotStory, CompassionSection, PrivacyFacts, ProductFooter].astro
 ├── styles/muslim.css             # ONLY stylesheet for Muslim surface
 ├── content/muslim-product.ts     # All copy: hero, features, navigation, meta
-├── pages/                        # index.astro, en/index.astro, privacy/, delete-account/, support/, terms/
+├── pages/                        # index.astro, en/index.astro, panduan/, privacy/, delete-account/, support/, terms/
+src/shared/content/
+├── guides.ts                     # Single source of truth for all SEO articles & guides
+└── muslim-product.ts             # Marketing and app product copy
 ```
+
+## Publishing SEO Articles & Guides (`/panduan/`)
+
+Muslim Leveling uses a **Hub-and-Spoke (Topic Cluster)** architecture for SEO articles.
+- Catalog Hub: `https://muslim.lifetimeleveling.com/panduan/` (and `/en/panduan/`)
+- Article URLs: `https://muslim.lifetimeleveling.com/panduan/[slug]/`
+
+### How to Create a New Article (2-Step Workflow)
+
+When requested to create or publish a new article:
+
+1. **Register metadata in `src/shared/content/guides.ts`**:
+   Add an entry to `guidesData`:
+   ```ts
+   {
+     slug: 'your-article-slug',
+     title: 'Judul Lengkap Artikel (Menarik & Humanis)',
+     description: 'Meta deskripsi ringkas untuk snippet Google dan kartu pratinjau (140-160 karakter).',
+     category: 'Panduan Ibadah', // atau kategori lain yang relevan
+     publishDate: 'YYYY-MM-DD',
+     publishDateDisplay: 'DD MMMM YYYY',
+     readingTime: '5 menit membaca',
+     featured: true, // opsional: true untuk tampil di beranda
+   }
+   ```
+   *Registering here automatically exposes the article in the `/panduan/` catalog hub, the homepage Guides section, and unit tests.*
+
+2. **Create the article page in `src/muslim/pages/panduan/[slug]/index.astro`**:
+   Use `<ArticleLayout>` with schema and copy:
+   ```astro
+   ---
+   import ArticleLayout from '../../../components/ArticleLayout.astro';
+   import { getGuideBySlug } from '@shared/content/guides';
+
+   const guide = getGuideBySlug('your-article-slug')!;
+   const articleSchema = {
+     headline: guide.title,
+     description: guide.description,
+     datePublished: guide.publishDate,
+     dateModified: guide.publishDate,
+     authorName: 'Muslim Leveling',
+     image: 'https://muslim.lifetimeleveling.com/brand/muslim-leveling-icon.png',
+   };
+   ---
+
+   <ArticleLayout
+     title={guide.title}
+     description={guide.description}
+     publishDate={guide.publishDate}
+     publishDateDisplay={guide.publishDateDisplay}
+     readingTime={guide.readingTime}
+     category={guide.category}
+     path={`/panduan/${guide.slug}/`}
+     locale="id"
+     {articleSchema}
+   >
+     <!-- Article content: h2, h3, p, ul, blockquote -->
+
+     <!-- Optional Feature Callout for Muslim Leveling differentiators -->
+     <div class="article-callout">
+       <div class="article-callout__badge">Fitur Pembeda</div>
+       <h3>Nama Fitur di Muslim Leveling</h3>
+       <p>Penjelasan solusi kontekstual dari aplikasi.</p>
+       <ul>
+         <li>Poin manfaat 1</li>
+         <li>Poin manfaat 2</li>
+       </ul>
+     </div>
+   </ArticleLayout>
+   ```
+
+### Writing & SEO Style Rules for Articles:
+- **No Em Dashes**: Never use em dashes (`—`). Use commas, colons, parentheses, or periods instead.
+- **No AI Buzzwords/Clichés**: Avoid words like *delve, leverage, foster, streamline, tapestry, moreover, furthermore, paramount, beacon*.
+- **Tone**: Warm, compassionate, spiritually grounded, authentic Indonesian Muslim vocabulary (*saudariku, datang bulan, ketenangan hati, keistiqamahan, ridha Allah*).
+- **Product Integration**: Seamlessly connect the article's topic with a Muslim Leveling feature (e.g. Mode Haid, daily quests without guilt, prayer times, qibla, murottal, ad-free privacy).
+- **Verification Commands after creating an article**:
+  1. `npm run check:links` (ensure all static links resolve)
+  2. `npm run test:e2e:muslim` (e2e suite verifies routing and schema)
+  3. `npm run build:muslim` (build must succeed cleanly)
+
 
 ## Per-feature commit cadence
 
