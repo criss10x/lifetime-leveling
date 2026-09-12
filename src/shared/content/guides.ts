@@ -11,6 +11,17 @@ export interface GuideItem {
 
 export const guidesData: readonly GuideItem[] = [
   {
+    slug: 'panduan-salat-dhuha',
+    title: 'Panduan Salat Dhuha: Jam Berapa Dimulai, Batas Akhir, dan Rahasia Rezeki Berkah',
+    description:
+      'Pelajari waktu mulai dan batas akhir salat dhuha yang benar, tata cara 2 rakaat, doa mustajab, serta rahasia keberkahan rezeki bersama Muslim Leveling.',
+    category: 'Panduan Ibadah',
+    publishDate: '2026-09-12',
+    publishDateDisplay: '12 September 2026',
+    readingTime: '5 menit membaca',
+    featured: true,
+  },
+  {
     slug: 'waktu-mustajab-hari-jumat',
     title: 'Waktu Mustajab Berdoa di Hari Jumat: Kapan Tepatnya dan Amalan Pembukanya?',
     description:

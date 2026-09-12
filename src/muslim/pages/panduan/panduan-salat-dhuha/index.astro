@@ -1,0 +1,147 @@
+---
+import ArticleLayout from '../../../components/ArticleLayout.astro';
+import { getGuideBySlug } from '@shared/content/guides';
+
+const guide = getGuideBySlug('panduan-salat-dhuha')!;
+const articleSchema = {
+  headline: guide.title,
+  description: guide.description,
+  datePublished: guide.publishDate,
+  dateModified: guide.publishDate,
+  authorName: 'Muslim Leveling',
+  image: 'https://muslim.lifetimeleveling.com/brand/muslim-leveling-icon.png',
+};
+---
+
+<ArticleLayout
+  title={guide.title}
+  description={guide.description}
+  publishDate={guide.publishDate}
+  publishDateDisplay={guide.publishDateDisplay}
+  readingTime={guide.readingTime}
+  category={guide.category}
+  path={`/panduan/${guide.slug}/`}
+  locale="id"
+  ctaTitle="Bangun Kebiasaan Salat Dhuha Tanpa Gangguan Iklan"
+  ctaDescription="Download Muslim Leveling secara gratis di Android. Dapatkan penanda waktu syuruq presisi, quest dhuha harian, dan lingkungan aplikasi yang hening bebas iklan komersial."
+  {articleSchema}
+>
+  <p>
+    Pagi hari sering kali menjadi arena perlombaan melawan waktu. Mulai dari mempersiapkan anak sekolah, mengejar jadwal kereta komuter, hingga tenggelam dalam tumpukan surel dan target kerja di kantor. Di tengah kesibukan yang menguras pikiran ini, ada satu jeda singkat yang mampu mengalirkan ketenangan sekaligus membuka pintu keberkahan hari: salat dhuha.
+  </p>
+
+  <p>
+    Salat dhuha dikenal luas sebagai amalan pembuka rezeki. Namun, banyak muslim yang masih menyimpan keraguan seputar waktu pelaksanaannya: jam berapa sebenarnya waktu dhuha dimulai? Apakah boleh salat tepat setelah matahari terbit? Kapan batas akhirnya sebelum Dzuhur? Dan berapa rakaat yang paling dianjurkan?
+  </p>
+
+  <blockquote>
+    <p>
+      "Pada setiap pagi, setiap persendian dari anggota tubuh kalian wajib disedekahi... Dan semua itu cukup digantikan dengan dua rakaat salat dhuha."
+    </p>
+    <cite>HR. Muslim, dari penuturan sahabat Abu Dzar radhiyallahu 'anhu</cite>
+  </blockquote>
+
+  <h2>Kapan Waktu Salat Dhuha Dimulai dan Kapan Batas Akhirnya?</h2>
+
+  <p>
+    Mengetahui batas waktu yang tepat sangat penting agar salat Anda sah dan terhindar dari waktu yang dilarang untuk beribadah:
+  </p>
+
+  <h3>1. Waktu Dimulainya Salat Dhuha</h3>
+  <p>
+    Waktu dhuha <strong>tidak dimulai tepat saat matahari terbit (waktu syuruq)</strong>. Waktu tepat saat terbitnya matahari adalah salah satu waktu terlarang untuk salat sunnah.
+  </p>
+  <p>
+    Salat dhuha baru boleh didirikan ketika matahari telah naik setinggi satu tombak (sekitar 7 hasta atau sekitar 3 derajat di atas ufuk). Secara praktis, waktu ini bermula <strong>sekitar 15 hingga 20 menit setelah waktu syuruq</strong>. Jika waktu terbit matahari di kota Anda adalah pukul 05.50 WIB, maka waktu awal dhuha masuk sekitar pukul 06.10 WIB.
+  </p>
+
+  <h3>2. Waktu Paling Utama (Afdhal)</h3>
+  <p>
+    Meskipun sudah sah dikerjakan sejak pagi awal, waktu yang paling utama untuk salat dhuha adalah ketika matahari sudah mulai terik dan terasa panasnya, atau yang dalam istilah hadits disebut <em>tarmathul fishal</em> (saat anak unta mulai merasakan panasnya pasir gurun).
+  </p>
+  <p>
+    Waktu utama ini biasanya berada pada <strong>rentang pukul 09.00 hingga 10.30 pagi</strong>. Rasulullah ﷺ bersabda: <em>"Salat orang-orang yang taat (awwabin) adalah saat anak unta kepanasan"</em> (HR. Muslim).
+  </p>
+
+  <h3>3. Batas Akhir Salat Dhuha</h3>
+  <p>
+    Salat dhuha berakhir sekitar <strong>10 hingga 15 menit sebelum masuknya waktu salat Dzuhur</strong>. Saat itu matahari berada tepat tegak lurus di tengah langit (waktu <em>istiwa</em> atau menjelang <em>zawal</em>), yang juga merupakan waktu terlarang untuk salat hingga azan Dzuhur berkumandang.
+  </p>
+
+  <h2>Tata Cara dan Niat Salat Dhuha 2 Rakaat</h2>
+
+  <p>
+    Pelaksanaan salat dhuha sangat ringkas dan dapat diselesaikan dalam waktu kurang dari 5 menit:
+  </p>
+
+  <ul>
+    <li>
+      <strong>Niat:</strong> Cukup dihadirkan di dalam hati dengan tulus, yaitu berniat menunaikan salat sunnah dhuha dua rakaat karena Allah Ta'ala.
+    </li>
+    <li>
+      <strong>Jumlah Rakaat:</strong> Minimal <strong>2 rakaat</strong> (satu kali salam). Anda dapat mengerjakannya sebanyak 4, 6, 8, atau bahkan 12 rakaat dengan salam setiap 2 rakaat.
+    </li>
+    <li>
+      <strong>Arah Kiblat:</strong> Pastikan Anda telah menghadap kiblat dengan tepat di meja kerja atau ruangan Anda, sebagaimana dipandu dalam <a href="/panduan/cara-menentukan-arah-kiblat/">panduan menentukan arah kiblat di HP</a>.
+    </li>
+    <li>
+      <strong>Bacaan Surah:</strong> Pada rakaat pertama dianjurkan membaca Surah Asy-Syams atau Surah Al-Kafirun setelah Al-Fatihah. Pada rakaat kedua membaca Surah Adh-Dhuha atau Surah Al-Ikhlas. Anda juga boleh membaca surah pendek lain yang Anda hafal.
+    </li>
+  </ul>
+
+  <h2>3 Rahasia Keberkahan Rezeki di Balik Salat Dhuha</h2>
+
+  <p>
+    Banyak orang mengartikan rezeki semata-mata sebagai lembaran uang. Namun, para ulama menjelaskan bahwa keberkahan dhuha melingkupi dimensi yang jauh lebih luas:
+  </p>
+
+  <ul>
+    <li>
+      <strong>Sedekah atas 360 Persendian:</strong> Tubuh manusia tersusun atas 360 persendian yang setiap hari membutuhkan rasa syukur. Dua rakaat dhuha dihitung Allah sebagai penunaian sedekah bagi seluruh persendian tersebut, menjaga kesehatan raga dan ketentraman batin.
+    </li>
+    <li>
+      <strong>Jaminan Kecukupan di Akhir Hari:</strong> Dalam sebuah Hadits Qudsi, Allah Ta'ala berfirman: <em>"Wahai anak Adam, rukuklah untuk-Ku empat rakaat di awal siang, niscaya Aku akan mencukupi kebutuhanmu di akhir siang"</em> (HR. Tirmidzi dan Ahmad).
+    </li>
+    <li>
+      <strong>Ketenangan Hati (Qana'ah):</strong> Memulai hari kerja dengan mengingat Allah menjauhkan pikiran dari ketamakan, rasa iri, dan keputusasaan, sehingga rezeki yang didapatkan menjadi berkah dan mencukupi keluarga.
+    </li>
+  </ul>
+
+  <div class="article-callout">
+    <div class="article-callout__badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+      </svg>
+      Fitur Jadwal Salat & Quest Pagi
+    </div>
+    <h3>Membangun Ritme Dhuha Bersama Muslim Leveling</h3>
+    <p>
+      Muslim Leveling membantu Anda menjaga kebiasaan salat dhuha di sela-sela padatnya rutinitas harian:
+    </p>
+    <ul>
+      <li><strong>Penanda Waktu Syuruq Presisi:</strong> Pantau waktu terbit matahari secara otomatis berdasarkan kota Anda di Indonesia agar tidak salah memulai waktu dhuha.</li>
+      <li><strong>Quest Dhuha Harian:</strong> Selesaikan misi dhuha 2 rakaat sebagai bagian dari progres harian yang diapresiasi dengan perolehan XP.</li>
+      <li><strong>100% Bebas Iklan Komersial:</strong> Tidak ada iklan banner atau video yang tiba-tiba mengganggu konsentrasi Anda saat hendak salat.</li>
+      <li><strong>Pendekatan Bertahap:</strong> Mulai dari dua rakaat tanpa tekanan, melengkapi amalan malam seperti <a href="/panduan/tata-cara-salat-tahajud/">salat tahajud</a> dan wirid pagi.</li>
+    </ul>
+  </div>
+
+  <h2>Doa dan Istighfar Setelah Salat Dhuha</h2>
+
+  <p>
+    Setelah salam, Anda dapat melafalkan doa dhuha yang masyhur untuk memohon kelapangan rezeki halal:
+  </p>
+
+  <p>
+    <em>"Allahumma innadh dhuha-a dhuha-uk, wal baha-a baha-uk, wal jamala jamaluk, wal quwwata quwwatuk, wal qudrata qudratuk, wal 'ishmata 'ishmatuk..."</em><br />
+    (Ya Allah, sesungguhnya waktu dhuha adalah waktu dhuha-Mu, keagungan adalah keagungan-Mu, keindahan adalah keindahan-Mu, kekuatan adalah kekuatan-Mu, kekuasaan adalah kekuasaan-Mu, dan perlindungan adalah perlindungan-Mu...)
+  </p>
+
+  <p>
+    Selain itu, ada amalan mulia yang sering dipraktikkan oleh Rasulullah ﷺ seusai dhuha, yaitu membaca istighfar sebanyak seratus kali: <em>"Rabbighfirli wa tub 'alayya, innaka antat tawwabur rahim"</em> (Ya Tuhanku, ampunilah aku dan terimalah taubatku, sesungguhnya Engkau Maha Penerima Taubat lagi Maha Penyayang - HR. Al-Bukhari dalam Al-Adab Al-Mufrad).
+  </p>
+
+  <p>
+    Membangun rutinitas ini sejalan dengan metode <a href="/panduan/kebiasaan-salat-tepat-waktu/">micro-habits dalam beribadah</a>. Alokasikan waktu 5 menit di sela jam kerja Anda, luruskan niat, dan rasakan ketenangan hati yang mengiringi langkah Anda sepanjang hari.
+  </p>
+</ArticleLayout>
