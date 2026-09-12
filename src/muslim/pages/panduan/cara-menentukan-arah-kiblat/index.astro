@@ -1,0 +1,126 @@
+---
+import ArticleLayout from '../../../components/ArticleLayout.astro';
+import { getGuideBySlug } from '@shared/content/guides';
+
+const guide = getGuideBySlug('cara-menentukan-arah-kiblat')!;
+const articleSchema = {
+  headline: guide.title,
+  description: guide.description,
+  datePublished: guide.publishDate,
+  dateModified: guide.publishDate,
+  authorName: 'Muslim Leveling',
+  image: 'https://muslim.lifetimeleveling.com/brand/muslim-leveling-icon.png',
+};
+---
+
+<ArticleLayout
+  title={guide.title}
+  description={guide.description}
+  publishDate={guide.publishDate}
+  publishDateDisplay={guide.publishDateDisplay}
+  readingTime={guide.readingTime}
+  category={guide.category}
+  path={`/panduan/${guide.slug}/`}
+  locale="id"
+  ctaTitle="Tentukan Arah Kiblat Akurat Tanpa Gangguan Iklan"
+  ctaDescription="Download Muslim Leveling secara gratis di Android. Gunakan kompas kiblat presisi, pantau jadwal salat di kota Anda, dan nikmati seluruh fitur ibadah harian tanpa iklan komersial."
+  {articleSchema}
+>
+  <p>
+    Ketika tiba di kamar hotel yang baru, berpindah ke kamar kos, atau sedang singgah di tempat istirahat saat bepergian jauh, salah satu pertanyaan pertama yang terlintas di benak setiap muslim saat azan berkumandang adalah: ke mana arah kiblat yang tepat di ruangan ini?
+  </p>
+
+  <p>
+    Menghadap ke arah Ka'bah di Masjidil Haram merupakan syarat sah salat bagi siapa saja yang memiliki kemampuan untuk mengetahuinya. Di era digital saat ini, ponsel pintar menjadi alat bantu utama. Namun, tidak sedikit pengguna yang dibuat bingung karena jarum kompas digital di layar sering berputar tidak stabil atau menunjukkan arah yang berlawanan.
+  </p>
+
+  <blockquote>
+    <p>
+      "Maka palingkanlah wajahmu ke arah Masjidil Haram. Dan di mana saja kamu berada, palingkanlah wajahmu ke arahnya."
+    </p>
+    <cite>QS. Al-Baqarah: 144</cite>
+  </blockquote>
+
+  <h2>Mengapa Kompas di Ponsel Sering Tidak Akurat?</h2>
+
+  <p>
+    Sebelum menyimpulkan bahwa aplikasi yang Anda gunakan bermasalah, penting untuk memahami cara kerja sensor ponsel. Aplikasi kompas memanfaatkan sensor internal bernama <em>magnetometer</em> yang mengukur medan magnet bumi. Sensor ini sangat sensitif terhadap gangguan lingkungan sekitar:
+  </p>
+
+  <ul>
+    <li>
+      <strong>Casing Ponsel Bermagnet:</strong> Sarung penutup ponsel (*flip cover*) atau dudukan holder mobil yang memiliki lempengan magnet kecil akan membelokkan sensor kompas secara drastis.
+    </li>
+    <li>
+      <strong>Struktur Logam Bangunan:</strong> Di dalam gedung bertingkat, pilar beton bertulang besi, kabel listrik tegangan tinggi, serta laptop yang menyala di dekat meja dapat menciptakan distorsi medan magnet lokal.
+    </li>
+    <li>
+      <strong>Sensor Perlu Dikalibrasi:</strong> Sensor magnetometer perlu disegarkan posisinya setelah perangkat lama berada di dalam saku atau tas.
+    </li>
+  </ul>
+
+  <p>
+    <strong>Trik Praktis Kalibrasi:</strong> Pegang ponsel Anda dengan kuat, lalu gerakkan pergelangan tangan Anda di udara membentuk pola angka delapan (<em>figure-8 motion</em>) sebanyak dua hingga tiga kali. Gerakan ini membantu sensor menata ulang kutub magnetik secara presisi.
+  </p>
+
+  <h2>3 Cara Memastikan Arah Kiblat dengan Benar</h2>
+
+  <h3>1. Membaca Derajat Azimuth Kompas Digital</h3>
+  <p>
+    Untuk wilayah kepulauan Indonesia, arah Ka'bah di Mekkah berada di sebelah barat condong ke arah utara (barat laut). Dalam perhitungan navigasi, arah kiblat di Indonesia umumnya berada pada rentang <strong>290 derajat hingga 295 derajat dari arah utara searah jarum jam</strong> (misalnya Jakarta sekitar 295 derajat, Surabaya sekitar 294 derajat, dan Medan sekitar 292 derajat).
+  </p>
+  <p>
+    Pastikan ponsel diletakkan pada permukaan yang rata dan jauh dari benda logam saat kompas membaca koordinat kota Anda. Mengetahui posisi kiblat yang tepat membuat <a href="/panduan/kebiasaan-salat-tepat-waktu/">kebiasaan salat tepat waktu</a> dapat Anda dirikan dengan hati yang mantap di mana pun Anda berada.
+  </p>
+
+  <h3>2. Berpatokan pada Peredaran Matahari</h3>
+  <p>
+    Jika ponsel Anda kehabisan baterai atau tidak memiliki sensor kompas, posisi matahari dapat menjadi pemandu alami yang sangat andal:
+  </p>
+  <ul>
+    <li>
+      <strong>Matahari Terbit dan Terbenam:</strong> Matahari selalu terbit dari timur dan terbenam ke barat. Karena kiblat Indonesia condong ke barat laut, hadapkan tubuh Anda ke arah terbenamnya matahari, lalu geser sedikit pandangan Anda ke arah kanan (sekitar 20 hingga 25 derajat ke utara).
+    </li>
+    <li>
+      <strong>Fenomena Rashdul Qiblah:</strong> Dua kali dalam setahun, yakni pada tanggal 27 atau 28 Mei (pukul 16.18 WIB) dan 15 atau 16 Juli (pukul 16.27 WIB), matahari melintas tepat di atas Ka'bah. Pada kedua momen tersebut, setiap bayangan benda tegak lurus di bawah sinar matahari di Indonesia akan mengarah tepat lurus ke Ka'bah.
+    </li>
+  </ul>
+
+  <h3>3. Memperhatikan Petunjuk Fasilitas dan Tempat Ibadah</h3>
+  <p>
+    Di kamar hotel, periksalah langit-langit plafon atau bagian dalam laci meja kerja yang sering memuat stiker anak panah kiblat resmi. Selain itu, Anda juga dapat memperhatikan orientasi saf di mushaf atau masjid terdekat di lingkungan sekitar Anda.
+  </p>
+
+  <div class="article-callout">
+    <div class="article-callout__badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+      </svg>
+      Fitur Kompas Kiblat Presisi
+    </div>
+    <h3>Temukan Arah Kiblat yang Tenang Tanpa Iklan</h3>
+    <p>
+      Muslim Leveling menyediakan fitur penunjuk arah kiblat yang dirancang untuk kenyamanan ibadah Anda:
+    </p>
+    <ul>
+      <li><strong>Akurasi Tinggi Berbasis Lokasi:</strong> Kompas menghitung sudut kiblat yang tepat berdasarkan koordinat kota yang Anda pilih di Indonesia.</li>
+      <li><strong>100% Bebas Iklan Komersial:</strong> Tidak ada iklan video pop-up yang bersuara keras dan mengganggu kekhusyukan saat Anda sedang bersiap untuk takbiratul ihram.</li>
+      <li><strong>Bekerja Secara Offline:</strong> Kompas kiblat tetap berfungsi penuh di perangkat tanpa memerlukan sambungan internet aktif di daerah terpencil.</li>
+      <li><strong>Indikator Ketenangan Visual:</strong> Desain jarum yang halus dan mudah dibaca membantu Anda menemukan arah kiblat dalam hitungan detik.</li>
+    </ul>
+  </div>
+
+  <h2>Bagaimana Hukumnya Jika Arah Kiblat Sedikit Bergeser?</h2>
+
+  <p>
+    Para ulama menegaskan bahwa kewajiban menghadap tepat ke bangunan fisik Ka'bah (<em>'ainul ka'bah</em>) hanya berlaku bagi orang yang berada di dalam Masjidil Haram dan dapat melihat Ka'bah secara langsung.
+  </p>
+
+  <p>
+    Bagi kaum muslimin yang berada jauh di luar kota Mekkah, kewajiban syariat adalah menghadap ke arah umumnya (<em>jihatul ka'bah</em>). Rasulullah ﷺ bersabda kepada penduduk Madinah: <em>"Apa yang ada di antara timur dan barat adalah kiblat"</em> (HR. Tirmidzi dan Ibnu Majah).
+  </p>
+
+  <p>
+    Selama Anda telah berusaha berijtihad semaksimal mungkin menggunakan kompas atau pengamatan alam, salat Anda sah di sisi Allah. Menghadap kiblat juga menjadi adab utama saat Anda duduk tenang melafalkan <a href="/panduan/dzikir-pagi-dan-petang/">dzikir pagi dan petang</a> untuk mendekatkan diri kepada Allah.
+  </p>
+</ArticleLayout>

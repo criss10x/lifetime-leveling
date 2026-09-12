@@ -11,6 +11,17 @@ export interface GuideItem {
 
 export const guidesData: readonly GuideItem[] = [
   {
+    slug: 'cara-menentukan-arah-kiblat',
+    title: 'Cara Menentukan Arah Kiblat yang Akurat di HP dan Ruangan Tanpa Bingung',
+    description:
+      'Panduan praktis menentukan arah kiblat akurat menggunakan HP dan metode alami. Atasi kompas error, kalibrasi sensor, dan temukan kiblat tanpa iklan bersama Muslim Leveling.',
+    category: 'Panduan Ibadah',
+    publishDate: '2026-09-12',
+    publishDateDisplay: '12 September 2026',
+    readingTime: '5 menit membaca',
+    featured: true,
+  },
+  {
     slug: 'dzikir-pagi-dan-petang',
     title: 'Panduan Dzikir Pagi dan Petang: Waktu Terbaik, Manfaat, dan Tips Istiqamah',
     description:
