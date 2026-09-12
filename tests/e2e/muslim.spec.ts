@@ -532,6 +532,33 @@ test('guide article panduan-salat-dhuha publishes Article schema, callout, and d
   await expect(ctaButton).toBeVisible();
 });
 
+test('guide article tata-cara-salat-jamak-dan-qashar publishes Article schema, callout, and download CTA', async ({ page }) => {
+  await page.goto('/panduan/tata-cara-salat-jamak-dan-qashar/');
+
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    'Tata Cara Salat Jamak dan Qashar Saat Bepergian: Syarat, Niat, dan Contoh Praktis',
+  );
+  await expect(page.locator('.article-breadcrumb')).toContainText('Panduan Ibadah');
+  await expect(page.locator('meta[property="og:type"]')).toHaveAttribute('content', 'article');
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    'href',
+    'https://muslim.lifetimeleveling.com/panduan/tata-cara-salat-jamak-dan-qashar/',
+  );
+
+  // Schema.org Article in @graph
+  const scriptContent = await page.locator('script[type="application/ld+json"]').textContent();
+  expect(scriptContent).toBeDefined();
+  const parsed = JSON.parse(scriptContent!);
+  const articleEntity = parsed['@graph']?.find((item: any) => item['@type'] === 'Article');
+  expect(articleEntity).toBeDefined();
+  expect(articleEntity.headline).toContain('Tata Cara Salat Jamak dan Qashar');
+
+  await expect(page.getByText('Fitur Navigasi & Waktu Safar')).toBeVisible();
+  const ctaButton = page.locator('.article-cta-card a.android-download');
+  await expect(ctaButton).toBeVisible();
+});
+
+
 
 
 
