@@ -1,0 +1,122 @@
+---
+import ArticleLayout from '../../../components/ArticleLayout.astro';
+import { getGuideBySlug } from '@shared/content/guides';
+
+const guide = getGuideBySlug('murottal-vs-membaca-mushaf')!;
+const articleSchema = {
+  headline: guide.title,
+  description: guide.description,
+  datePublished: guide.publishDate,
+  dateModified: guide.publishDate,
+  authorName: 'Muslim Leveling',
+  image: 'https://muslim.lifetimeleveling.com/brand/muslim-leveling-icon.png',
+};
+---
+
+<ArticleLayout
+  title={guide.title}
+  description={guide.description}
+  publishDate={guide.publishDate}
+  publishDateDisplay={guide.publishDateDisplay}
+  readingTime={guide.readingTime}
+  category={guide.category}
+  path={`/panduan/${guide.slug}/`}
+  locale="id"
+  {articleSchema}
+>
+  <p>
+    Di tengah ritme kehidupan modern yang serba cepat, menjaga interaksi harian dengan Al-Quran sering kali menjadi tantangan tersendiri. Waktu kerja yang panjang, kemacetan di jalan, hingga tuntutan mengurus keluarga terkadang membuat kita kesulitan menyediakan waktu khusus untuk duduk tenang membuka lembaran mushaf fisik.
+  </p>
+
+  <p>
+    Dalam situasi seperti ini, banyak muslim memilih alternatif praktis: menyalakan audio murottal melalui ponsel saat berkendara, memasak, atau di sela-sela jam kerja. Namun, sering kali timbul keraguan di dalam hati: apakah mendengarkan murottal bernilai pahala yang sebanding dengan membaca langsung? Mana yang sebenarnya lebih utama saat waktu kita sangat terbatas?
+  </p>
+
+  <blockquote>
+    <p>
+      "Dan apabila dibacakan Al-Quran, maka dengarkanlah dan perhatikanlah dengan tenang agar kamu mendapat rahmat."
+    </p>
+    <cite>QS. Al-A'raf: 204</cite>
+  </blockquote>
+
+  <h2>Keutamaan Membaca Mushaf Secara Langsung</h2>
+
+  <p>
+    Membaca Al-Quran secara mandiri memiliki keistimewaan yang sangat spesifik dan agung di sisi Allah:
+  </p>
+
+  <ul>
+    <li>
+      <strong>Pahala Berlipat Ganda Tiap Huruf:</strong> Rasulullah ﷺ menegaskan bahwa barang siapa membaca satu huruf dari Kitabullah, baginya satu kebaikan yang dilipatgandakan menjadi sepuluh kali lipat. Beliau mencontohkan bahwa <em>Alif Lam Mim</em> bukanlah satu huruf, melainkan <em>Alif</em> satu huruf, <em>Lam</em> satu huruf, dan <em>Mim</em> satu huruf (HR. Tirmidzi).
+    </li>
+    <li>
+      <strong>Keterlibatan Penuh Panca Indra:</strong> Membaca mushaf melibatkan mata yang memandang firman Allah, lisan yang melafalkan tajwid dan makhraj secara aktif, serta pikiran yang fokus mengikuti susunan kalimat. Keterlibatan aktif ini menghasilkan konsentrasi mental yang sangat tinggi.
+    </li>
+  </ul>
+
+  <h2>Keutamaan Menyimak Lantunan Murottal</h2>
+
+  <p>
+    Di sisi lain, menyimak bacaan Al-Quran bukanlah ibadah kelas dua. Mendengarkan kalam ilahi memiliki kedudukan istimewa yang dicontohkan langsung oleh Rasulullah ﷺ:
+  </p>
+
+  <ul>
+    <li>
+      <strong>Jalan Meraih Rahmat dan Ketenangan:</strong> Dalam Surah Al-A'raf ayat 204 di atas, Allah menjanjikan curahan rahmat bagi siapa saja yang mendengarkan dan menyimak bacaan Al-Quran dengan khusyuk.
+    </li>
+    <li>
+      <strong>Meneladani Sunnah Rasulullah ﷺ:</strong> Suatu hari, Rasulullah ﷺ meminta sahabat Abdullah bin Mas'ud radhiyallahu 'anhu untuk membacakan Al-Quran di hadapan beliau. Ketika Ibnu Mas'ud bertanya mengapa beliau ingin dibacakan padahal Al-Quran diturunkan kepadanya, beliau menjawab: <em>"Aku sangat senang mendengarkannya dari orang lain."</em> Saat disimak hingga Surah An-Nisa ayat 41, air mata beliau pun menetes (HR. Bukhari dan Muslim).
+    </li>
+    <li>
+      <strong>Memudahkan Tadabbur Makna:</strong> Terkadang, saat membaca sendiri, energi kita banyak terserap untuk ketepatan tajwid dan makhraj. Dengan menyimak lantunan tartil dari qari yang fasih, pikiran kita lebih leluasa meresapi keindahan nada dan pesan makna ayat tersebut.
+    </li>
+  </ul>
+
+  <h2>Tinjauan Fiqih: Mana yang Lebih Utama?</h2>
+
+  <p>
+    Para ulama menjelaskan bahwa perbandingan keutamaan dua amalan ini berpijak pada kaidah fikih yang bijaksana: <strong>keutamaan suatu amalan dapat berubah sesuai kondisi dan situasi seseorang</strong> (<em>al-afdhaliyyah tatafawatu bihasabil ahwal</em>).
+  </p>
+
+  <p>
+    Secara hukum asal dalam kondisi ideal, membaca mushaf secara langsung dengan lisan lebih utama karena melibatkan aksi ibadah yang lebih banyak dan pahala per huruf yang dijanjikan.
+  </p>
+
+  <p>
+    Namun, ketika Anda berada dalam kondisi mobilitas tinggi (seperti sedang menyetir mobil, naik kereta komuter, berjalan kaki, atau mengerjakan pekerjaan rumah), membaca mushaf secara fisik menjadi tidak memungkinkan atau bahkan berbahaya. Dalam kondisi ini, <strong>mendengarkan murottal jauh lebih utama daripada membiarkan pikiran Anda melamun atau telinga Anda terpapar hal-hal yang sia-sia</strong>.
+  </p>
+
+  <div class="article-callout">
+    <div class="article-callout__badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+      </svg>
+      Fitur Quran & Murottal
+    </div>
+    <h3>Dukungan Lengkap untuk Kedua Cara Berinteraksi dengan Al-Quran</h3>
+    <p>
+      Muslim Leveling dirancang untuk memfasilitasi kebutuhan ibadah Anda dalam berbagai situasi sehari-hari:
+    </p>
+    <ul>
+      <li><strong>Mode Baca Interaktif:</strong> Teks Al-Quran lengkap dengan panduan tajwid berwarna, transliterasi Latin, dan terjemahan bahasa Indonesia untuk sesi tilawah yang khusyuk saat Anda memiliki waktu luang.</li>
+      <li><strong>Pemutar Murottal Jernih:</strong> Pilihan rekaman qari terkemuka yang dapat didengarkan kapan saja, membantu Anda tetap terhubung dengan kalamullah saat di perjalanan atau sedang beraktivitas.</li>
+      <li><strong>Bebas Iklan Sepenuhnya:</strong> Tidak ada iklan video atau banner komersial yang tiba-tiba muncul dan merusak kekhidmatan lantunan Al-Quran Anda.</li>
+      <li><strong>Quest Harian Terpadu:</strong> Aktivitas tilawah dan murottal Anda tercatat sebagai capaian quest harian yang menyemangati keistiqamahan.</li>
+    </ul>
+  </div>
+
+  <h2>Tips Memadukan Keduanya Setiap Hari</h2>
+
+  <p>
+    Anda tidak perlu memilih salah satu dan meninggalkan yang lain. Keduanya bisa saling melengkapi secara harmonis dalam jadwal harian Anda:
+  </p>
+
+  <ul>
+    <li><strong>Alokasikan 10 Menit Membaca Langsung:</strong> Pilih waktu yang paling tenang, misalnya setelah salat subuh atau sebelum tidur malam, untuk membaca satu lembar mushaf dengan teliti.</li>
+    <li><strong>Isi Waktu Transisi dengan Murottal:</strong> Jadikan durasi perjalanan pergi dan pulang kerja sebagai waktu istimewa untuk mendengarkan surah-surah favorit Anda.</li>
+  </ul>
+
+  <p>
+    Yang terpenting bukanlah membandingkan mana yang sempurna, melainkan memastikan bahwa tidak ada satu hari pun yang terlewatkan tanpa kehadiran cahaya Al-Quran di dalam hati kita.
+  </p>
+</ArticleLayout>

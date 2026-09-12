@@ -11,6 +11,17 @@ export interface GuideItem {
 
 export const guidesData: readonly GuideItem[] = [
   {
+    slug: 'murottal-vs-membaca-mushaf',
+    title: 'Mendengarkan Murottal vs Membaca Mushaf: Mana yang Lebih Utama Saat Sibuk?',
+    description:
+      'Bimbang antara mendengarkan murottal atau membaca mushaf saat jadwal padat? Simak perbandingan keutamaan, tinjauan fiqih, dan tips menjaganya setiap hari.',
+    category: 'Panduan Ibadah',
+    publishDate: '2026-09-12',
+    publishDateDisplay: '12 September 2026',
+    readingTime: '5 menit membaca',
+    featured: true,
+  },
+  {
     slug: 'kebiasaan-salat-tepat-waktu',
     title: 'Cara Membangun Kebiasaan Salat Tepat Waktu dengan Pendekatan Micro-Habits',
     description:
