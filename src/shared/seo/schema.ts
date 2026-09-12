@@ -2,6 +2,15 @@ import { SURFACES, type SurfaceName } from '../config/surfaces';
 import { canonicalUrl } from './metadata';
 import type { Locale } from '../i18n/types';
 
+export interface ArticleMetadata {
+  headline: string;
+  description: string;
+  datePublished: string;
+  dateModified?: string;
+  authorName?: string;
+  image?: string;
+}
+
 export interface StructuredDataOptions {
   surface: SurfaceName;
   locale: Locale;
@@ -11,6 +20,7 @@ export interface StructuredDataOptions {
   faq?: {
     items: readonly { question: string; answer: string }[];
   };
+  article?: ArticleMetadata;
 }
 
 export function getStructuredData({
@@ -20,6 +30,7 @@ export function getStructuredData({
   title,
   description,
   faq,
+  article,
 }: StructuredDataOptions): Record<string, unknown>[] {
   const pageUrl = canonicalUrl(surface, locale, path);
   const isRoot = path === '/' || path === '';
@@ -95,10 +106,40 @@ export function getStructuredData({
       },
     };
 
+    const graph: Record<string, unknown>[] = [org, webpage];
+
+    if (article) {
+      graph.push({
+        '@type': 'Article',
+        headline: article.headline,
+        description: article.description,
+        datePublished: article.datePublished,
+        dateModified: article.dateModified ?? article.datePublished,
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': pageUrl,
+        },
+        author: {
+          '@type': 'Organization',
+          name: article.authorName ?? 'Muslim Leveling',
+          url: SURFACES.muslim.site,
+        },
+        publisher: {
+          '@type': 'Organization',
+          name: 'Muslim Leveling',
+          logo: {
+            '@type': 'ImageObject',
+            url: `${SURFACES.muslim.site}/brand/muslim-leveling-icon.png`,
+          },
+        },
+        image: article.image ?? `${SURFACES.muslim.site}/brand/muslim-leveling-icon.png`,
+      });
+    }
+
     return [
       {
         '@context': 'https://schema.org',
-        '@graph': [org, webpage],
+        '@graph': graph,
       },
     ];
   }

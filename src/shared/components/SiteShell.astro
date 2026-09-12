@@ -1,6 +1,7 @@
 ---
 import type { SurfaceName } from '../config/surfaces';
 import type { Locale } from '../i18n/types';
+import type { ArticleMetadata } from '../seo/schema';
 import '../styles/foundations.css';
 import BaseHead from './BaseHead.astro';
 import LocaleSwitcher from './LocaleSwitcher.astro';
@@ -14,9 +15,10 @@ interface Props {
   image?: string;
   directionContract?: string;
   faq?: { items: readonly { question: string; answer: string }[] };
+  article?: ArticleMetadata;
 }
 
-const { surface, locale, path, title, description, image, directionContract, faq } = Astro.props;
+const { surface, locale, path, title, description, image, directionContract, faq, article } = Astro.props;
 const skipLabel = locale === 'id' ? 'Lewati ke konten utama' : 'Skip to main content';
 const escapedDirectionContract = directionContract?.replaceAll('--', '—');
 ---
@@ -24,7 +26,7 @@ const escapedDirectionContract = directionContract?.replaceAll('--', '—');
 <!doctype html>
 <html lang={locale}>
   <head>
-    <BaseHead {surface} {locale} {path} {title} {description} {image} {faq} />
+    <BaseHead {surface} {locale} {path} {title} {description} {image} {faq} {article} />
   </head>
   <body data-surface={surface}>
     {import.meta.env.DEV && escapedDirectionContract && <Fragment set:html={`<!-- ${escapedDirectionContract} -->`} />}

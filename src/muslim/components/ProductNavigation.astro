@@ -11,6 +11,8 @@ interface Props {
 
 const { locale, path, content } = Astro.props;
 const homeHref = locale === 'id' ? '/' : '/en/';
+const isHome = path === '/' || path === '/en/' || path === '';
+const sectionPrefix = isHome ? '' : homeHref;
 ---
 
 <nav class="product-navigation" aria-label={locale === 'id' ? 'Navigasi utama' : 'Primary navigation'}>
@@ -19,9 +21,9 @@ const homeHref = locale === 'id' ? '/' : '/en/';
     <span>{content.navigation.product}</span>
   </a>
   <nav class="product-navigation__sections" aria-label={locale === 'id' ? 'Lompat ke bagian' : 'Jump to section'}>
-    <a href="#feature-catalog-title">{locale === 'id' ? 'Fitur' : 'Features'}</a>
-    <a href="#quran-murottal-title">{locale === 'id' ? 'Layar' : 'Screens'}</a>
-    <a href="#privacy-title">{locale === 'id' ? 'Privasi' : 'Privacy'}</a>
+    <a href={`${sectionPrefix}#feature-catalog-title`}>{locale === 'id' ? 'Fitur' : 'Features'}</a>
+    <a href={`${sectionPrefix}#quran-murottal-title`}>{locale === 'id' ? 'Layar' : 'Screens'}</a>
+    <a href={`${sectionPrefix}#privacy-title`}>{locale === 'id' ? 'Privasi' : 'Privacy'}</a>
   </nav>
   <div class="product-navigation__actions">
     <span class="product-navigation__platform">{content.navigation.android}</span>

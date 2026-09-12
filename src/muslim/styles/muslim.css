@@ -297,3 +297,280 @@ body[data-surface='muslim'] .locale-switcher__link[aria-current='page'] { backgr
   .reveal { opacity: 1; transform: none; transition: none; }
   .product-hero__proof { animation: none !important; }
 }
+
+/* Article Layout & Typography */
+.article-wrapper {
+  background: var(--muslim-surface);
+  min-height: calc(100vh - 12rem);
+}
+
+.article-layout {
+  width: min(100% - 2rem, 48rem);
+  margin-inline: auto;
+  padding-block: clamp(2rem, 5vw, 4rem) clamp(3rem, 6vw, 5rem);
+}
+
+.article-breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0 0 2rem;
+  list-style: none;
+  font-size: 0.85rem;
+  color: var(--muslim-text-muted);
+}
+
+.article-breadcrumb a {
+  color: var(--muslim-text-muted);
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.article-breadcrumb a:hover,
+.article-breadcrumb a:focus-visible {
+  color: var(--muslim-text);
+  text-decoration: underline;
+}
+
+.article-breadcrumb [aria-current='page'] {
+  color: var(--muslim-text);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 26ch;
+}
+
+.article-header {
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--muslim-border);
+}
+
+.article-category {
+  display: inline-block;
+  padding: 0.3rem 0.85rem;
+  border-radius: 9999px;
+  background: var(--muslim-surface-alt);
+  color: var(--muslim-surface-brand);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 1.1rem;
+}
+
+:root[data-theme='dark'] .article-category {
+  background: var(--muslim-surface-brand);
+  color: var(--muslim-text-gold);
+}
+
+.article-header h1 {
+  margin: 0 0 1.25rem;
+  color: var(--muslim-text);
+  font-family: 'Archivo Variable', sans-serif;
+  font-size: clamp(2.2rem, 5.5vw, 3.4rem);
+  font-variation-settings: 'wdth' 108, 'wght' 780;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+:root[data-theme='dark'] .article-header h1 {
+  color: var(--muslim-text-on-deep);
+}
+
+.article-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--muslim-text-muted);
+}
+
+.article-meta__dot {
+  opacity: 0.6;
+}
+
+/* Article Content Body */
+.article-content {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--muslim-text);
+}
+
+.article-content p {
+  margin: 0 0 1.6rem;
+}
+
+.article-content h2 {
+  margin: 3.2rem 0 1.2rem;
+  color: var(--muslim-green-deep);
+  font-family: 'Archivo Variable', sans-serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-variation-settings: 'wdth' 106, 'wght' 720;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+}
+
+:root[data-theme='dark'] .article-content h2 {
+  color: var(--muslim-text-on-deep);
+}
+
+.article-content h3 {
+  margin: 2.2rem 0 0.8rem;
+  color: var(--muslim-text);
+  font-family: 'Archivo Variable', sans-serif;
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+}
+
+.article-content ul,
+.article-content ol {
+  margin: 0 0 1.75rem;
+  padding-left: 1.5rem;
+}
+
+.article-content li {
+  margin-bottom: 0.6rem;
+}
+
+.article-content li strong {
+  color: var(--muslim-text);
+}
+
+.article-content blockquote {
+  margin: 2rem 0;
+  padding: 1.25rem 1.75rem;
+  border-left: 4px solid var(--muslim-gold);
+  background: var(--muslim-surface-soft);
+  border-radius: 0 0.75rem 0.75rem 0;
+  font-style: italic;
+  color: var(--muslim-text);
+}
+
+.article-content blockquote p {
+  margin: 0;
+}
+
+.article-content blockquote cite {
+  display: block;
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  font-style: normal;
+  font-weight: 600;
+  color: var(--muslim-text-muted);
+}
+
+.article-content a {
+  color: var(--muslim-green-deep);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  font-weight: 600;
+}
+
+:root[data-theme='dark'] .article-content a {
+  color: var(--muslim-text-gold);
+}
+
+/* Feature Callout Box */
+.article-callout {
+  margin: 2.75rem 0;
+  padding: 1.75rem 2rem;
+  background: var(--muslim-surface-soft);
+  border: 1px solid var(--muslim-border);
+  border-radius: 1rem;
+}
+
+:root[data-theme='dark'] .article-callout {
+  background: var(--muslim-surface-alt);
+  border-color: var(--muslim-border-on-deep);
+}
+
+.article-callout__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 9999px;
+  background: var(--muslim-surface-deep);
+  color: var(--muslim-text-gold);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 0.85rem;
+}
+
+.article-callout h3 {
+  margin: 0 0 0.75rem;
+  color: var(--muslim-text);
+  font-size: 1.25rem;
+  font-weight: 720;
+}
+
+.article-callout p {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--muslim-text);
+}
+
+.article-callout ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: 0.95rem;
+  color: var(--muslim-text);
+}
+
+.article-callout li {
+  margin-bottom: 0.4rem;
+}
+
+/* Article CTA Card */
+.article-cta-card {
+  margin-top: 3.5rem;
+  padding: clamp(2.2rem, 5vw, 3.2rem);
+  background: var(--muslim-surface-deep);
+  border-radius: 1.25rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 12%);
+}
+
+.article-cta-card__badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background: var(--muslim-border-on-deep);
+  color: var(--muslim-text-gold);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.article-cta-card h2 {
+  margin: 0;
+  color: var(--muslim-text-on-deep);
+  font-family: 'Archivo Variable', sans-serif;
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+  font-variation-settings: 'wdth' 106, 'wght' 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.article-cta-card p {
+  max-width: 34rem;
+  margin: 0;
+  color: var(--muslim-text-on-deep-muted);
+  font-size: 1.02rem;
+  line-height: 1.65;
+}

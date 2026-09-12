@@ -1,0 +1,144 @@
+---
+import SiteShell from '@shared/components/SiteShell.astro';
+import ProductNavigation from './ProductNavigation.astro';
+import ProductFooter from './ProductFooter.astro';
+import AndroidDownloadButton from './AndroidDownloadButton.astro';
+import { muslimProductContent } from '@shared/content/muslim-product';
+import type { Locale } from '@shared/i18n/types';
+import type { ArticleMetadata } from '@shared/seo/schema';
+import '../styles/muslim.css';
+
+interface Props {
+  title: string;
+  description: string;
+  publishDate: string;
+  publishDateDisplay: string;
+  readingTime: string;
+  category: string;
+  path: string;
+  locale?: Locale;
+  articleSchema: ArticleMetadata;
+}
+
+const {
+  title,
+  description,
+  publishDate,
+  publishDateDisplay,
+  readingTime,
+  category,
+  path,
+  locale = 'id',
+  articleSchema,
+} = Astro.props;
+
+const content = muslimProductContent[locale];
+const homeHref = locale === 'id' ? '/' : '/en/';
+---
+
+<SiteShell
+  surface="muslim"
+  {locale}
+  {path}
+  {title}
+  {description}
+  image="/brand/muslim-leveling-icon.png"
+  article={articleSchema}
+>
+  <ProductNavigation slot="navigation" {locale} path="/" content={content} />
+
+  <div class="article-wrapper">
+    <article class="article-layout">
+      <nav class="article-breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href={homeHref}>{locale === 'id' ? 'Beranda' : 'Home'}</a></li>
+          <li aria-hidden="true">/</li>
+          <li><span>{category}</span></li>
+          <li aria-hidden="true">/</li>
+          <li aria-current="page"><span>{title}</span></li>
+        </ol>
+      </nav>
+
+      <header class="article-header">
+        <span class="article-category">{category}</span>
+        <h1>{title}</h1>
+        <div class="article-meta">
+          <time datetime={publishDate}>{publishDateDisplay}</time>
+          <span class="article-meta__dot" aria-hidden="true">·</span>
+          <span>{readingTime}</span>
+        </div>
+      </header>
+
+      <div class="article-content">
+        <slot />
+      </div>
+
+      <section class="article-cta-card">
+        <div class="article-cta-card__badge">Muslim Leveling Android</div>
+        <h2>{locale === 'id' ? 'Jaga Konsistensi Ibadah Tanpa Rasa Bersalah' : 'Maintain Your Worship Rhythm Without Guilt'}</h2>
+        <p>
+          {locale === 'id'
+            ? 'Download Muslim Leveling secara gratis di Android. Aktifkan Mode Haid saat periode datang bulan agar quest salat terjeda dengan adil, streak kebaikanmu tetap aman, dan hatimu tetap tenang.'
+            : 'Download Muslim Leveling for free on Android. Enable Period Mode during menstruation to pause prayer quests fairly, preserve your daily streak, and find peace in your routine.'}
+        </p>
+        <AndroidDownloadButton href={content.googlePlayUrl} label={content.hero.cta} />
+      </section>
+    </article>
+  </div>
+
+  <ProductFooter {content} {locale} />
+</SiteShell>
+
+<script>
+  // ponytail: theme toggle wiring + sticky header shadow on article pages
+  const labels = {
+    id: { dark: 'Tema gelap diaktifkan', light: 'Tema terang diaktifkan' },
+    en: { dark: 'Dark theme enabled', light: 'Light theme enabled' },
+  } as const;
+  const t = document.documentElement.lang === 'en' ? labels.en : labels.id;
+
+  const ready = () => {
+    const body = document.body;
+    const header = document.querySelector<HTMLElement>('body[data-surface="muslim"] > header');
+    const floating = document.querySelector<HTMLElement>('.floating-cta');
+
+    if (header) {
+      const onScroll = () => {
+        const scrolled = window.scrollY > 8;
+        header.classList.toggle('is-scrolled', scrolled);
+        if (floating) floating.classList.toggle('is-hidden', scrolled && window.innerWidth <= 760);
+      };
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }
+
+    const toggle = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+    const announce = document.querySelector<HTMLElement>('[data-theme-announce]');
+
+    if (toggle) {
+      const apply = (next: string) => {
+        document.documentElement.dataset.theme = next;
+        body.dataset.theme = next;
+        toggle.setAttribute('aria-pressed', next === 'dark' ? 'true' : 'false');
+        if (announce) announce.textContent = next === 'dark' ? t.dark : t.light;
+        try {
+          localStorage.setItem('muslim-theme', next);
+        } catch (e) {
+          console.error('theme persist failed', e);
+        }
+      };
+
+      apply(document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light');
+
+      toggle.addEventListener('click', () => {
+        apply(body.dataset.theme === 'dark' ? 'light' : 'dark');
+      });
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', ready, { once: true });
+  } else {
+    ready();
+  }
+</script>
