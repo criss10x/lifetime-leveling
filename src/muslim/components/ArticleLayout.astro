@@ -4,6 +4,7 @@ import ProductNavigation from './ProductNavigation.astro';
 import ProductFooter from './ProductFooter.astro';
 import AndroidDownloadButton from './AndroidDownloadButton.astro';
 import { muslimProductContent } from '@shared/content/muslim-product';
+import { getGuides } from '@shared/content/guides';
 import type { Locale } from '@shared/i18n/types';
 import type { ArticleMetadata } from '@shared/seo/schema';
 import '../styles/muslim.css';
@@ -18,6 +19,8 @@ interface Props {
   path: string;
   locale?: Locale;
   articleSchema: ArticleMetadata;
+  ctaTitle?: string;
+  ctaDescription?: string;
 }
 
 const {
@@ -30,10 +33,27 @@ const {
   path,
   locale = 'id',
   articleSchema,
+  ctaTitle,
+  ctaDescription,
 } = Astro.props;
 
 const content = muslimProductContent[locale];
 const homeHref = locale === 'id' ? '/' : '/en/';
+
+const defaultCtaTitle =
+  locale === 'id' ? 'Jaga Konsistensi Ibadah Setiap Hari' : 'Maintain Your Worship Rhythm Every Day';
+const defaultCtaDesc =
+  locale === 'id'
+    ? 'Download Muslim Leveling secara gratis di Android. Bangun ritme ibadah harian yang tenang melalui quest ibadah, jadwal salat presisi, Al-Quran tajwid, dan pengingat dzikir bebas iklan.'
+    : 'Download Muslim Leveling for free on Android. Build a calm daily worship rhythm with quests, accurate prayer times, Quran with tajweed, and ad-free reminders.';
+
+const finalCtaTitle = ctaTitle ?? defaultCtaTitle;
+const finalCtaDesc = ctaDescription ?? defaultCtaDesc;
+
+const currentSlug = path.replace(/^\/(?:en\/)?panduan\//, '').replace(/\/$/, '');
+const relatedGuides = getGuides()
+  .filter((g) => g.slug !== currentSlug)
+  .slice(0, 2);
 ---
 
 <SiteShell
@@ -75,14 +95,33 @@ const homeHref = locale === 'id' ? '/' : '/en/';
 
       <section class="article-cta-card">
         <div class="article-cta-card__badge">Muslim Leveling Android</div>
-        <h2>{locale === 'id' ? 'Jaga Konsistensi Ibadah Tanpa Rasa Bersalah' : 'Maintain Your Worship Rhythm Without Guilt'}</h2>
-        <p>
-          {locale === 'id'
-            ? 'Download Muslim Leveling secara gratis di Android. Aktifkan Mode Haid saat periode datang bulan agar quest salat terjeda dengan adil, streak kebaikanmu tetap aman, dan hatimu tetap tenang.'
-            : 'Download Muslim Leveling for free on Android. Enable Period Mode during menstruation to pause prayer quests fairly, preserve your daily streak, and find peace in your routine.'}
-        </p>
+        <h2>{finalCtaTitle}</h2>
+        <p>{finalCtaDesc}</p>
         <AndroidDownloadButton href={content.googlePlayUrl} label={content.hero.cta} />
       </section>
+
+      {relatedGuides.length > 0 && (
+        <section class="article-related" aria-labelledby="related-guides-title">
+          <h2 id="related-guides-title">{locale === 'id' ? 'Panduan Terkait Lainnya' : 'Related Worship Guides'}</h2>
+          <div class="article-related__grid">
+            {relatedGuides.map((item) => (
+              <a href={locale === 'id' ? `/panduan/${item.slug}/` : `/en/panduan/${item.slug}/`} class="guide-card guide-card--related">
+                <div class="guide-card__meta">
+                  <span class="guide-card__category">{item.category}</span>
+                  <span class="guide-card__dot" aria-hidden="true">·</span>
+                  <span>{item.readingTime}</span>
+                </div>
+                <h3 class="guide-card__title">{item.title}</h3>
+                <p class="guide-card__desc">{item.description}</p>
+                <div class="guide-card__cta">
+                  <span>{locale === 'id' ? 'Baca selengkapnya' : 'Read guide'}</span>
+                  <span aria-hidden="true">&rarr;</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
     </article>
   </div>
 

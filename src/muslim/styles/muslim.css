@@ -577,6 +577,74 @@ body[data-surface='muslim'] .locale-switcher__link[aria-current='page'] { backgr
   line-height: 1.65;
 }
 
+/* Related Guides Section */
+.article-related {
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--muslim-border);
+}
+
+.article-related h2 {
+  margin: 0 0 1.5rem;
+  color: var(--muslim-green-deep);
+  font-family: 'Archivo Variable', sans-serif;
+  font-size: clamp(1.4rem, 3vw, 1.85rem);
+  font-variation-settings: 'wdth' 106, 'wght' 700;
+  letter-spacing: -0.03em;
+}
+
+:root[data-theme='dark'] .article-related h2 {
+  color: var(--muslim-text-on-deep);
+}
+
+.article-related__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 1.25rem;
+}
+
+.guide-card--related {
+  text-decoration: none;
+  color: inherit;
+}
+
+.guide-card--related .guide-card__title {
+  font-size: 1.08rem;
+  line-height: 1.35;
+  margin: 0 0 0.6rem;
+  color: var(--muslim-text);
+  font-weight: 700;
+}
+
+:root[data-theme='dark'] .guide-card--related .guide-card__title {
+  color: var(--muslim-text-on-deep);
+}
+
+.guide-card--related .guide-card__desc {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--muslim-text-muted);
+  margin: 0 0 1.1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.guide-card--related .guide-card__cta {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--muslim-green-deep);
+}
+
+:root[data-theme='dark'] .guide-card--related .guide-card__cta {
+  color: var(--muslim-text-gold);
+}
+
 /* Guides Section & Hub Cards */
 .guides-section {
   padding-block: clamp(4rem, 8vw, 8rem);
