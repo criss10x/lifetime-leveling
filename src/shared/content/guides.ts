@@ -11,6 +11,17 @@ export interface GuideItem {
 
 export const guidesData: readonly GuideItem[] = [
   {
+    slug: 'tata-cara-salat-tahajud',
+    title: 'Tata Cara Salat Tahajud yang Benar: Niat, Waktu Utama, dan Tips Bangun Malam',
+    description:
+      'Panduan lengkap tata cara salat tahajud, niat, waktu sepertiga malam terbaik, doa mustajab, serta tips konsisten bangun malam bersama Muslim Leveling.',
+    category: 'Panduan Ibadah',
+    publishDate: '2026-09-12',
+    publishDateDisplay: '12 September 2026',
+    readingTime: '6 menit membaca',
+    featured: true,
+  },
+  {
     slug: 'cara-menentukan-arah-kiblat',
     title: 'Cara Menentukan Arah Kiblat yang Akurat di HP dan Ruangan Tanpa Bingung',
     description:

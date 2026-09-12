@@ -1,0 +1,149 @@
+---
+import ArticleLayout from '../../../components/ArticleLayout.astro';
+import { getGuideBySlug } from '@shared/content/guides';
+
+const guide = getGuideBySlug('tata-cara-salat-tahajud')!;
+const articleSchema = {
+  headline: guide.title,
+  description: guide.description,
+  datePublished: guide.publishDate,
+  dateModified: guide.publishDate,
+  authorName: 'Muslim Leveling',
+  image: 'https://muslim.lifetimeleveling.com/brand/muslim-leveling-icon.png',
+};
+---
+
+<ArticleLayout
+  title={guide.title}
+  description={guide.description}
+  publishDate={guide.publishDate}
+  publishDateDisplay={guide.publishDateDisplay}
+  readingTime={guide.readingTime}
+  category={guide.category}
+  path={`/panduan/${guide.slug}/`}
+  locale="id"
+  ctaTitle="Bangun Kebiasaan Tahajud yang Tenang"
+  ctaDescription="Download Muslim Leveling secara gratis di Android. Raih kemuliaan ibadah malam dengan penanda waktu sepertiga malam, quest harian terarah, dan aplikasi bebas iklan komersial."
+  {articleSchema}
+>
+  <p>
+    Di antara gemerlap dan hiruk-pikuk aktivitas siang hari, ada satu waktu hening yang disediakan khusus bagi jiwa yang rindu kedamaian: keheningan sepertiga malam terakhir. Pada saat sebagian besar manusia terlelap dalam mimpi, seorang hamba yang melangkahkan kaki mengambil air wudhu untuk salat tahajud sedang mengetuk pintu rahmat Allah yang terbuka lebar.
+  </p>
+
+  <p>
+    Salat tahajud adalah ibadah sunnah yang memiliki kedudukan paling mulia setelah salat fardhu. Namun, tidak sedikit umat muslim yang merasa ragu untuk memulainya karena dihantui kekhawatiran: apakah harus tidur terlebih dahulu? Jam berapa waktu terbaiknya? Berapa rakaat yang wajib dikerjakan? Dan bagaimana agar tubuh tidak lemas menjalani rutinitas esok harinya?
+  </p>
+
+  <blockquote>
+    <p>
+      "Dan pada sebagian malam, lakukanlah salat tahajud (sebagai suatu ibadah) tambahan bagimu; mudah-mudahan Tuhanmu mengangkatmu ke tempat yang terpuji."
+    </p>
+    <cite>QS. Al-Isra: 79</cite>
+  </blockquote>
+
+  <h2>Syarat Utama: Apakah Harus Tidur Terlebih Dahulu?</h2>
+
+  <p>
+    Secara bahasa, kata <em>tahajud</em> berasal dari kata <em>al-hujud</em> yang memiliki arti meninggalkan tidur. Oleh karena itu, mayoritas ulama (jumhur) dari mazhab Syafi'i, Maliki, dan Hanbali menjelaskan bahwa <strong>salat sunnah malam hari baru dinamakan tahajud apabila dikerjakan setelah seseorang tidur malam terlebih dahulu</strong>, meskipun tidurnya hanya berlangsung sebentar setelah salat Isya.
+  </p>
+
+  <p>
+    Jika seseorang melaksanakan salat sunnah di malam hari sebelum tidur, salat tersebut tetap sah dan bernilai pahala besar, tetapi lebih tepat dinamakan sebagai <em>salat sunnah mutlak</em> atau <em>qiyamul lail</em>.
+  </p>
+
+  <h2>Kapan Waktu Terbaik Melaksanakan Salat Tahajud?</h2>
+
+  <p>
+    Rentang waktu pelaksanaan salat tahajud terbentang mulai dari setelah waktu Isya hingga menjelang terbitnya fajar (masuknya waktu Subuh). Para ulama membagi waktu malam menjadi tiga bagian:
+  </p>
+
+  <ul>
+    <li>
+      <strong>Sepertiga Pertama (Sekitar Pukul 20.00 hingga 22.00):</strong> Waktu ini baik bagi Anda yang merasa sangat kelelahan setelah bekerja dan khawatir tidak sanggup bangun di tengah malam.
+    </li>
+    <li>
+      <strong>Sepertiga Kedua (Sekitar Pukul 22.00 hingga 01.00):</strong> Waktu yang utama, saat ketenangan malam mulai meliputi alam semesta.
+    </li>
+    <li>
+      <strong>Sepertiga Terakhir (Sekitar Pukul 01.00 hingga Sebelum Subuh):</strong> <strong>Waktu paling utama dan paling mustajab</strong>. Pada rentang waktu inilah Allah Yang Maha Pengasih turun ke langit dunia dengan cara yang layak bagi keagungan-Nya.
+    </li>
+  </ul>
+
+  <blockquote>
+    <p>
+      "Rabb kita tabaraka wa ta'ala turun ke langit dunia setiap malam pada sepertiga malam terakhir, lalu berfirman: Siapa yang berdoa kepada-Ku niscaya Aku kabulkan, siapa yang meminta kepada-Ku niscaya Aku beri, dan siapa yang memohon ampunan kepada-Ku niscaya Aku ampuni."
+    </p>
+    <cite>HR. Bukhari dan Muslim</cite>
+  </blockquote>
+
+  <h2>Tata Cara dan Jumlah Rakaat Salat Tahajud</h2>
+
+  <p>
+    Salat tahajud memiliki tata cara yang sangat fleksibel dan tidak memberatkan:
+  </p>
+
+  <ul>
+    <li>
+      <strong>Jumlah Rakaat:</strong> Dikerjakan minimal <strong>2 rakaat</strong> (satu kali salam). Anda dapat melanjutkannya menjadi 4, 6, 8, atau lebih sesuai kemampuan, lalu ditutup dengan salat witir (1 atau 3 rakaat).
+    </li>
+    <li>
+      <strong>Niat Salat Tahajud:</strong> Niat cukup dihadirkan di dalam hati secara tulus, yaitu menyengaja salat sunnah tahajud dua rakaat semata-mata karena Allah Ta'ala.
+    </li>
+    <li>
+      <strong>Bacaan Surah:</strong> Tidak ada kewajiban membaca surah panjang. Anda dapat membaca surah pendek yang Anda hafal dengan tartil dan penuh penghayatan.
+    </li>
+    <li>
+      <strong>Arah Kiblat yang Tepat:</strong> Sebelum memulai, pastikan posisi berdiri Anda telah menghadap kiblat dengan benar, sebagaimana dijelaskan dalam <a href="/panduan/cara-menentukan-arah-kiblat/">panduan menentukan arah kiblat di ruangan</a>.
+    </li>
+  </ul>
+
+  <h2>Doa Mustajab Setelah Salat Tahajud</h2>
+
+  <p>
+    Setelah menyelesaikan salat tahajud dan beristighfar, perbanyaklah doa memohon kebaikan dunia dan akhirat. Rasulullah ﷺ biasa memanjatkan doa agung berikut saat bertahajud:
+  </p>
+
+  <p>
+    <em>"Allahumma lakal hamdu anta nurus samawati wal ardhi wa man fihinna, wa lakal hamdu anta qayyimus samawati wal ardhi wa man fihinna..."</em><br />
+    (Ya Allah, bagi-Mu segala puji, Engkaulah cahaya langit dan bumi serta apa yang ada di dalamnya. Bagi-Mu segala puji, Engkaulah Pemelihara langit dan bumi serta apa yang ada di dalamnya...)
+  </p>
+
+  <p>
+    Saat-saat menjelang fajar ini juga sangat indah bila disambung dengan membaca istighfar dan wirid hingga masuk waktu Subuh, yang menjadi awalan sempurna untuk <a href="/panduan/dzikir-pagi-dan-petang/">dzikir pagi dan petang</a>.
+  </p>
+
+  <div class="article-callout">
+    <div class="article-callout__badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+      </svg>
+      Fitur Ritme Malam & Quest
+    </div>
+    <h3>Menjaga Kebiasaan Tahajud Tanpa Rasa Tertekan</h3>
+    <p>
+      Muslim Leveling dirancang untuk menemani langkah ibadah Anda dengan pendekatan yang menenangkan:
+    </p>
+    <ul>
+      <li><strong>Penanda Waktu Sepertiga Malam:</strong> Mengetahui hitung mundur akurat menuju sepertiga malam terakhir dan jadwal Subuh di kota Anda.</li>
+      <li><strong>Quest Ibadah Malam:</strong> Catat keberhasilan salat tahajud sebagai langkah kecil yang diapresiasi dengan perolehan XP dan level.</li>
+      <li><strong>100% Bebas Iklan:</strong> Tidak ada iklan komersial yang bersuara tiba-tiba dan memecah kekhusyukan munajat malam Anda.</li>
+      <li><strong>Ritme yang Manusiawi:</strong> Jika suatu malam Anda kelelahan dan terlewat, lanjutkan ibadah berikutnya tanpa beban streak yang menghakimi.</li>
+    </ul>
+  </div>
+
+  <h2>Tips Konsisten Bangun Malam dengan Pendekatan Micro-Habits</h2>
+
+  <p>
+    Kunci istiqamah tahajud bukanlah memaksa diri salat 11 rakaat secara tiba-tiba, melainkan menerapkan prinsip <a href="/panduan/kebiasaan-salat-tepat-waktu/">micro-habits dalam ibadah</a>:
+  </p>
+
+  <ul>
+    <li><strong>Pasang Niat dan Berwudhu Sebelum Tidur:</strong> Berniatlah dengan sungguh-sungguh sebelum memejamkan mata, dan tidurlah dalam keadaan suci.</li>
+    <li><strong>Kurangi Makan Malam Berlebih:</strong> Perut yang terlalu penuh membuat tubuh terasa berat dan memicu rasa kantuk yang sangat dalam.</li>
+    <li><strong>Mulai dari 2 Rakaat yang Ringan:</strong> Berjanjilah pada diri sendiri untuk hanya mengerjakan 2 rakaat singkat. Begitu beban mental terasa ringan, kaki akan jauh lebih mudah melangkah meninggalkan kasur.</li>
+  </ul>
+
+  <p>
+    Dua rakaat yang dikerjakan dengan hati yang khusyuk di keheningan malam jauh lebih berharga daripada angan-angan ibadah panjang yang tidak pernah terlaksana. Mulailah malam ini dengan satu langkah kecil.
+  </p>
+</ArticleLayout>
