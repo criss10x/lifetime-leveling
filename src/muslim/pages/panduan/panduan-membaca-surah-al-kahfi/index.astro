@@ -1,0 +1,132 @@
+---
+import ArticleLayout from '../../../components/ArticleLayout.astro';
+import { getGuideBySlug } from '@shared/content/guides';
+
+const guide = getGuideBySlug('panduan-membaca-surah-al-kahfi')!;
+const articleSchema = {
+  headline: guide.title,
+  description: guide.description,
+  datePublished: guide.publishDate,
+  dateModified: guide.publishDate,
+  authorName: 'Muslim Leveling',
+  image: 'https://muslim.lifetimeleveling.com/brand/muslim-leveling-icon.png',
+};
+---
+
+<ArticleLayout
+  title={guide.title}
+  description={guide.description}
+  publishDate={guide.publishDate}
+  publishDateDisplay={guide.publishDateDisplay}
+  readingTime={guide.readingTime}
+  category={guide.category}
+  path={`/panduan/${guide.slug}/`}
+  locale="id"
+  ctaTitle="Tilawah Surah Al-Kahfi dengan Tenang Tanpa Iklan"
+  ctaDescription="Download Muslim Leveling secara gratis di Android. Nikmati mushaf Al-Quran bertajwid lengkap, fitur penanda ayat otomatis, dan pemutar audio murottal jernih tanpa gangguan iklan komersial."
+  {articleSchema}
+>
+  <p>
+    Malam Jumat dan hari Jumat senantiasa menghadirkan suasana ketenangan tersendiri bagi seorang muslim. Di antara berbagai amalan sunnah mingguan yang dianjurkan Rasulullah ﷺ, membaca Surah Al-Kahfi adalah salah satu amalan yang paling dicintai umat Islam di seluruh penjuru dunia.
+  </p>
+
+  <p>
+    Namun, dalam realitas kehidupan sehari-hari yang padat dengan pekerjaan, tugas kuliah, atau mengurus rumah tangga, surah yang terdiri atas 110 ayat ini terkadang terasa sangat panjang untuk diselesaikan dalam satu kali duduk. Akibatnya, sebagian orang merasa terbebani dan akhirnya menunda hingga waktu Jumat berlalu tanpa sempat membacanya.
+  </p>
+
+  <blockquote>
+    <p>
+      "Barang siapa yang membaca Surah Al-Kahfi pada hari Jumat, dia akan disinari cahaya di antara dua Jumat."
+    </p>
+    <cite>HR. An-Nasa'i dan Al-Baihaqi, dishahihkan oleh Al-Albani</cite>
+  </blockquote>
+
+  <h2>Dua Keutamaan Agung Membaca Surah Al-Kahfi</h2>
+
+  <p>
+    Rasulullah ﷺ secara khusus mengistimewakan Surah ke-18 dalam Al-Quran ini dengan dua ganjaran yang luar biasa:
+  </p>
+
+  <ul>
+    <li>
+      <strong>Cahaya Petunjuk di Antara Dua Jumat:</strong> Membaca Al-Kahfi memberikan cahaya spiritual di dalam hati dan kehidupan seorang muslim, membimbing langkahnya dari satu Jumat ke Jumat berikutnya agar terhindar dari kesesatan dan kegelisahan batin.
+    </li>
+    <li>
+      <strong>Benteng Perlindungan dari Fitnah Terbesar (Dajjal):</strong> Rasulullah ﷺ bersabda: <em>"Barang siapa membaca sepuluh ayat pertama dari Surah Al-Kahfi, maka ia akan terlindungi dari fitnah Dajjal"</em> (HR. Muslim). Dalam riwayat lain disebutkan sepuluh ayat terakhir. Empat kisah besar di dalam surah ini (Ashabul Kahfi, Pemilik Dua Kebun, Nabi Musa dan Khidir, serta Dzulqarnain) adalah penawar empat fitnah terbesar manusia: fitnah agama, harta, ilmu, dan kekuasaan.
+    </li>
+  </ul>
+
+  <h2>Kapan Rentang Waktu yang Sah untuk Membaca Al-Kahfi?</h2>
+
+  <p>
+    Dalam penanggalan Islam (Hijriyah), pergantian hari dimulai sejak terbenamnya matahari. Oleh sebab itu, rentang waktu sunnah membaca Surah Al-Kahfi sangat lapang:
+  </p>
+
+  <ul>
+    <li><strong>Waktu Mulai:</strong> Sejak terbenamnya matahari pada hari <strong>Kamis sore (masuk malam Jumat)</strong>.</li>
+    <li><strong>Waktu Berakhir:</strong> Hingga terbenamnya matahari pada hari <strong>Jumat sore (masuk waktu Maghrib malam Sabtu)</strong>.</li>
+  </ul>
+
+  <p>
+    Anda memiliki rentang waktu penuh selama 24 jam. Ini berarti Anda tidak harus menyelesaikan seluruh ayat dalam satu waktu tertentu saja.
+  </p>
+
+  <h2>Metode Praktis Membagi 110 Ayat Menjadi 4 Sesi Ringan</h2>
+
+  <p>
+    Daripada menunda karena merasa tidak memiliki waktu luang selama 30 hingga 45 menit sekaligus, terapkan metode pembagian bertahap yang ringan dan mudah dijaga:
+  </p>
+
+  <h3>Sesi 1: Malam Jumat (Ba'da Maghrib atau Isya) - Ayat 1 sampai 31</h3>
+  <p>
+    Membaca kisah para pemuda Ashabul Kahfi yang berlindung di dalam gua demi mempertahankan keimanan. Panjang bacaan sekitar 3 hingga 4 halaman mushaf standar dan membutuhkan waktu sekitar 7 hingga 10 menit.
+  </p>
+
+  <h3>Sesi 2: Jumat Pagi (Ba'da Subuh) - Ayat 32 sampai 59</h3>
+  <p>
+    Menyimak kisah pemilik dua kebun yang mengajarkan kerendahan hati bahwa seluruh nikmat dan kekayaan bersumber dari Allah. Waktu subuh yang tenang sangat ideal untuk membaca 3 halaman ini dengan penuh tadabbur.
+  </p>
+
+  <h3>Sesi 3: Siang Hari (Ba'da Salat Jumat atau Dzuhur) - Ayat 60 sampai 82</h3>
+  <p>
+    Merenungkan perjalanan menuntut ilmu antara Nabi Musa 'alaihissalam dan Nabi Khidir yang sarat pelajaran tentang hikmah tersembunyi di balik takdir Allah. Bagian ini hanya sekitar 3 halaman.
+  </p>
+
+  <h3>Sesi 4: Sore Hari (Ba'da Ashar) - Ayat 83 sampai 110</h3>
+  <p>
+    Menuntaskan kisah kepemimpinan adil Raja Dzulqarnain dan penutup tauhid yang agung. Waktu ba'da Ashar ini sekaligus bertepatan dengan salah satu <a href="/panduan/waktu-mustajab-hari-jumat/">waktu paling mustajab untuk berdoa di hari Jumat</a>.
+  </p>
+
+  <h2>Membaca Sendiri vs Mendengarkan Murottal di Perjalanan</h2>
+
+  <p>
+    Bila Anda sedang bepergian, mengemudi kendaraan, atau berada dalam mobilitas kerja yang tidak memungkinkan membuka lembaran mushaf, menyimak lantunan tartil Surah Al-Kahfi melalui audio qari adalah alternatif yang sangat mulia.
+  </p>
+
+  <p>
+    Sebagaimana dibahas dalam ulasan <a href="/panduan/murottal-vs-membaca-mushaf/">keutamaan murottal vs membaca mushaf</a>, menyimak kalamullah dengan khusyuk tetap mendatangkan curahan rahmat dan ketenangan jiwa di sepanjang perjalanan Anda.
+  </p>
+
+  <div class="article-callout">
+    <div class="article-callout__badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+      </svg>
+      Fitur Al-Quran & Audio Muslim Leveling
+    </div>
+    <h3>Tilawah Al-Kahfi Tanpa Distraksi Iklan</h3>
+    <p>
+      Muslim Leveling dirancang agar sesi membaca Al-Quran Anda di hari Jumat terasa tenang dan khusyuk:
+    </p>
+    <ul>
+      <li><strong>Panduan Tajwid Warna Lengkap:</strong> Membantu kelancaran membaca ayat-ayat panjang dengan hukum tajwid dan panjang bacaan yang jelas.</li>
+      <li><strong>Penanda Terakhir Baca Otomatis:</strong> Saat Anda membagi bacaan menjadi 4 sesi, aplikasi mengingat ayat terakhir Anda tanpa perlu khawatir terlupa.</li>
+      <li><strong>Pemutar Murottal Jernih:</strong> Dengarkan lantunan Surah Al-Kahfi dari pilihan qari terkemuka saat sedang di jalan.</li>
+      <li><strong>100% Bebas Iklan Komersial:</strong> Tidak ada iklan banner atau pop-up komersial yang mengganggu tilawah suci Anda.</li>
+    </ul>
+  </div>
+
+  <p>
+    Jadikan Surah Al-Kahfi sebagai cahaya pelindung pekan Anda. Mulailah dari satu sesi kecil malam ini, dan lengkapi keindahan hari Jumat Anda dengan <a href="/panduan/dzikir-pagi-dan-petang/">dzikir pagi dan petang</a> yang menyejukkan hati.
+  </p>
+</ArticleLayout>

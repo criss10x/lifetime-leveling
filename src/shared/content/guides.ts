@@ -11,6 +11,17 @@ export interface GuideItem {
 
 export const guidesData: readonly GuideItem[] = [
   {
+    slug: 'panduan-membaca-surah-al-kahfi',
+    title: 'Panduan Membaca Surah Al-Kahfi di Hari Jumat: Tips Membagi Ayat Tanpa Tergesa-gesa',
+    description:
+      'Pelajari keutamaan membaca Surah Al-Kahfi di hari Jumat, waktu membacanya, dan tips membagi 110 ayat agar ringan diamalkan bersama Muslim Leveling.',
+    category: 'Panduan Ibadah',
+    publishDate: '2026-09-12',
+    publishDateDisplay: '12 September 2026',
+    readingTime: '5 menit membaca',
+    featured: true,
+  },
+  {
     slug: 'tata-cara-salat-jamak-dan-qashar',
     title: 'Tata Cara Salat Jamak dan Qashar Saat Bepergian: Syarat, Niat, dan Contoh Praktis',
     description:
