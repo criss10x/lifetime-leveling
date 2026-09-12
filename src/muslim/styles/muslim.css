@@ -35,6 +35,7 @@ body[data-surface='muslim'] {
 :root[data-theme='dark'] .daily-loop h2,
 :root[data-theme='dark'] .screenshot-story h2,
 :root[data-theme='dark'] .privacy-facts h2,
+:root[data-theme='dark'] .faq-section h2,
 :root[data-theme='dark'] .product-footer p { color: var(--muslim-text-on-deep); }
 
 /* ponytail: pre-paint script writes data-theme on <html>; cascade to body via :where so light/dark tokens flip before <body> renders. */
@@ -90,6 +91,7 @@ body[data-surface='muslim'] .locale-switcher__link[aria-current='page'] { backgr
 .screenshot-story__content,
 .compassion-section > div,
 .privacy-facts,
+.faq-section,
 .product-footer { width: min(100% - 2rem, 77rem); margin-inline: auto; }
 
 .product-navigation { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
@@ -239,6 +241,22 @@ body[data-surface='muslim'] .locale-switcher__link[aria-current='page'] { backgr
 .privacy-facts__links { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; }
 .privacy-facts a, .product-footer a { color: var(--muslim-green-deep); font-weight: 800; text-decoration-thickness: 0.1em; text-underline-offset: 0.2em; }
 
+.faq-section { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(18rem, 1.2fr); gap: 2rem clamp(2rem, 6vw, 6rem); padding-block: clamp(4rem, 8vw, 8rem); border-top: 1px solid var(--muslim-border); background: var(--muslim-surface); }
+.faq-section__header h2 { max-width: 14ch; margin: 0; color: var(--muslim-green-deep); font-size: clamp(2.3rem, 5vw, 4.5rem); font-variation-settings: 'wdth' 108, 'wght' 700; letter-spacing: -0.04em; line-height: 0.96; text-wrap: balance; }
+.faq-section__header p { max-width: 40ch; margin: 1.15rem 0 0; color: var(--muslim-text-muted); font-size: 1.05rem; line-height: 1.65; }
+.faq-list { display: flex; flex-direction: column; gap: 0.85rem; }
+.faq-item { background: var(--muslim-tile); border: 1px solid var(--muslim-border); border-radius: 0.85rem; transition: border-color 160ms ease, background-color 160ms ease; overflow: hidden; }
+.faq-item[open] { background: var(--muslim-tile-strong); border-color: var(--muslim-border-on-deep); }
+.faq-item__trigger { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.2rem 1.4rem; cursor: pointer; list-style: none; font-weight: 700; font-size: 1.05rem; color: var(--muslim-text); user-select: none; }
+.faq-item__trigger::-webkit-details-marker { display: none; }
+.faq-item__trigger:focus-visible { outline: 2px solid var(--muslim-gold); outline-offset: -2px; }
+.faq-item__chevron { flex-shrink: 0; width: 1.25rem; height: 1.25rem; color: var(--muslim-text-gold); transition: transform 220ms ease; }
+.faq-item[open] .faq-item__chevron { transform: rotate(180deg); }
+.faq-item__content { padding: 0 1.4rem 1.25rem; }
+.faq-item__content p { margin: 0; color: var(--muslim-text-muted); font-size: 0.95rem; line-height: 1.7; }
+:root[data-theme='dark'] .faq-item { border-color: var(--muslim-border-on-deep); }
+:root[data-theme='dark'] .faq-item[open] { border-color: var(--muslim-gold); }
+
 .product-footer { padding-block: 1.5rem 2.5rem; background: var(--muslim-surface); color: var(--muslim-text); }
 .product-footer__close { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding-block: clamp(3rem, 7vw, 6rem); border-top: 1px solid var(--muslim-border); }
 .product-footer__close p { max-width: 25rem; margin: 0; color: var(--muslim-green-deep); font-family: 'Archivo Variable', sans-serif; font-size: clamp(1.5rem, 3vw, 2.5rem); font-variation-settings: 'wdth' 106, 'wght' 680; letter-spacing: -0.04em; line-height: 1; }
@@ -252,7 +270,7 @@ body[data-surface='muslim'] .locale-switcher__link[aria-current='page'] { backgr
   body[data-surface='muslim'] .locale-switcher__link::after { font-size: 0.72rem; font-weight: 800; }
   body[data-surface='muslim'] .locale-switcher__link:first-child::after { content: 'ID'; }
   body[data-surface='muslim'] .locale-switcher__link:last-child::after { content: 'EN'; }
-  .product-hero__grid, .feature-catalog__intro, .daily-loop__content, .screenshot-story__content, .privacy-facts { grid-template-columns: minmax(0, 1fr); }
+  .product-hero__grid, .feature-catalog__intro, .daily-loop__content, .screenshot-story__content, .privacy-facts, .faq-section { grid-template-columns: minmax(0, 1fr); }
   .feature-catalog { width: min(100% - 1rem, 83rem); }
   .feature-catalog__panel { padding: 1.5rem; border-radius: 1rem; }
   .feature-catalog__intro > p { margin-top: 0.3rem; }

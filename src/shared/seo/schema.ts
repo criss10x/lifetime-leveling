@@ -8,6 +8,9 @@ export interface StructuredDataOptions {
   path: string;
   title: string;
   description: string;
+  faq?: {
+    items: readonly { question: string; answer: string }[];
+  };
 }
 
 export function getStructuredData({
@@ -16,6 +19,7 @@ export function getStructuredData({
   path,
   title,
   description,
+  faq,
 }: StructuredDataOptions): Record<string, unknown>[] {
   const pageUrl = canonicalUrl(surface, locale, path);
   const isRoot = path === '/' || path === '';
@@ -55,10 +59,26 @@ export function getStructuredData({
         },
       };
 
+      const graph: Record<string, unknown>[] = [org, app];
+
+      if (faq && faq.items.length > 0) {
+        graph.push({
+          '@type': 'FAQPage',
+          mainEntity: faq.items.map((item) => ({
+            '@type': 'Question',
+            name: item.question,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: item.answer,
+            },
+          })),
+        });
+      }
+
       return [
         {
           '@context': 'https://schema.org',
-          '@graph': [org, app],
+          '@graph': graph,
         },
       ];
     }

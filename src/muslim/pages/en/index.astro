@@ -9,6 +9,7 @@ import themePreference from '../../assets/screens/theme-preference.png';
 import { muslimProductContent } from '@shared/content/muslim-product';
 import CompassionSection from '../../components/CompassionSection.astro';
 import DailyLoop from '../../components/DailyLoop.astro';
+import FaqSection from '../../components/FaqSection.astro';
 import FeatureCatalog from '../../components/FeatureCatalog.astro';
 import PrivacyFacts from '../../components/PrivacyFacts.astro';
 import ProductFooter from '../../components/ProductFooter.astro';
@@ -31,5 +32,6 @@ const content = muslimProductContent[locale];
   <ScreenshotStory item={content.screenshots[6]} image={themePreference} variant="theme" />
   <CompassionSection {content} />
   <PrivacyFacts {content} {locale} />
+  <FaqSection {content} />
   <ProductFooter {content} {locale} />
 </ProductShell>

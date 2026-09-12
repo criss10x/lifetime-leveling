@@ -12,13 +12,14 @@ interface Props {
   description: string;
   image?: string;
   twitterCard?: 'summary' | 'summary_large_image';
+  faq?: { items: readonly { question: string; answer: string }[] };
 }
 
-const { surface, locale, path, title, description, image, twitterCard } = Astro.props;
+const { surface, locale, path, title, description, image, twitterCard, faq } = Astro.props;
 const canonical = canonicalUrl(surface, locale, path);
 const socialImage = image ? new URL(image, canonical).toString() : undefined;
 const cardType = twitterCard ?? (image?.includes('icon') ? 'summary' : socialImage ? 'summary_large_image' : 'summary');
-const structuredData = getStructuredData({ surface, locale, path, title, description });
+const structuredData = getStructuredData({ surface, locale, path, title, description, faq });
 ---
 
 <meta charset="utf-8" />

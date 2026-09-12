@@ -28,6 +28,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
   title={content.meta.title}
   description={content.meta.description}
   image="/brand/muslim-leveling-icon.png"
+  faq={content.faq}
   {directionContract}
 >
   <ProductNavigation slot="navigation" {locale} {path} {content} />
@@ -70,7 +71,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
     const motionQuery = window.matchMedia('(prefers-reduced-motion: no-preference)');
     const targets = document.querySelectorAll<HTMLElement>(
-      '.feature-catalog, .daily-loop, .screenshot-story, .compassion-section, .privacy-facts',
+      '.feature-catalog, .daily-loop, .screenshot-story, .compassion-section, .privacy-facts, .faq-section',
     );
     targets.forEach((el) => el.classList.add('reveal'));
     if (motionQuery.matches && 'IntersectionObserver' in window) {

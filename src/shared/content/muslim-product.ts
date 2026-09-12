@@ -31,6 +31,11 @@ export interface MuslimProductContent {
   }[];
   readonly compassion: { readonly title: string; readonly body: string };
   readonly privacyFacts: { readonly title: string; readonly body: string; readonly facts: readonly string[] };
+  readonly faq: {
+    readonly title: string;
+    readonly body: string;
+    readonly items: readonly { readonly question: string; readonly answer: string }[];
+  };
 }
 
 const googlePlayUrl = 'https://play.google.com/store/apps/details?id=id.muslimleveling.muslim_leveling';
@@ -103,6 +108,37 @@ export const muslimProductContent: Record<Locale, MuslimProductContent> = {
         'Laporan crash yang dianonimkan membantu meningkatkan aplikasi.',
       ],
     },
+    faq: {
+      title: 'Pertanyaan yang sering diajukan',
+      body: 'Hal-hal yang paling sering ditanyakan tentang Muslim Leveling, privasi data, dan ritme ibadah.',
+      items: [
+        {
+          question: 'Mengapa Muslim Leveling gratis dan tanpa iklan?',
+          answer:
+            'Ibadah membutuhkan kekhusyukan dan ketenangan. Kami percaya membaca Al-Quran atau mengecek jadwal salat tidak boleh diinterupsi iklan banner maupun pop-up komersial. Aplikasi ini dirancang murni sebagai sarana pendamping ibadah tanpa pelacak pemasaran.',
+        },
+        {
+          question: 'Bagaimana cara kerja Mode Haid dalam menjaga progres?',
+          answer:
+            'Mode Haid dirancang agar siklus alami bulanan tidak merusak catatan streak atau mengurangi evaluasi ibadahmu. Saat diaktifkan, kewajiban salat dihentikan sementara secara adil tanpa rasa bersalah, dan kamu tetap dapat melanjutkan tilawah murottal atau modul belajar Islam.',
+        },
+        {
+          question: 'Apakah aplikasi ini bisa digunakan tanpa koneksi internet?',
+          answer:
+            'Ya. Fitur utama seperti membaca Al-Quran, kompas kiblat, modul belajar, dan tracking quest lokal berfungsi penuh secara offline. Internet hanya dibutuhkan saat mengunduh audio murottal atau sinkronisasi backup opsional ke akun Google.',
+        },
+        {
+          question: 'Dari mana sumber jadwal salat dan bagaimana akurasinya?',
+          answer:
+            'Perhitungan jadwal salat menggunakan koordinat kota di Indonesia yang terintegrasi dengan eQuran.id dan MyQuran.com sesuai standar Kementerian Agama RI. Anda dapat memilih kota secara manual tanpa harus mengaktifkan izin lokasi.',
+        },
+        {
+          question: 'Bagaimana cara memindahkan atau mencadangkan progres ibadah?',
+          answer:
+            'Anda dapat masuk dengan Google secara opsional. Progres level, XP, dan pencapaian akan tersimpan aman di server database Supabase yang terhubung ke akun Anda, sehingga mudah dipulihkan saat berpindah perangkat Android.',
+        },
+      ],
+    },
   },
   en: {
     googlePlayUrl,
@@ -169,6 +205,37 @@ export const muslimProductContent: Record<Locale, MuslimProductContent> = {
         'No ads.',
         'No marketing trackers.',
         'Anonymized crash reports help improve the app.',
+      ],
+    },
+    faq: {
+      title: 'Frequently asked questions',
+      body: 'The most common questions about Muslim Leveling, privacy, and your daily worship rhythm.',
+      items: [
+        {
+          question: 'Why is Muslim Leveling free and ad-free?',
+          answer:
+            'Worship requires focus and calm. We believe reciting the Quran or checking prayer times should never be interrupted by commercial banner ads or pop-ups. The app is built purely as a worship companion free of marketing trackers.',
+        },
+        {
+          question: 'How does Haid (menstruation) Mode keep progress fair?',
+          answer:
+            'Haid Mode is designed so natural monthly cycles do not break your streak or reset your progress. When activated, prayer requirements pause fairly without guilt, and you can still engage in listening to murottal or learning Islamic modules.',
+        },
+        {
+          question: 'Can the app be used offline without an internet connection?',
+          answer:
+            'Yes. Core features including Quran reading, qibla compass, learning modules, and local quest tracking work completely offline. An internet connection is only needed when downloading murottal audio or syncing optional backups to your Google account.',
+        },
+        {
+          question: 'Where do prayer times come from and how accurate are they?',
+          answer:
+            'Prayer times use official Indonesian municipal coordinates aligned with eQuran.id and MyQuran.com calculations (following Ministry of Religious Affairs standards). You can select your city manually without granting location permissions.',
+        },
+        {
+          question: 'How can I back up or transfer my worship progress?',
+          answer:
+            'You can optionally sign in with Google. Your level, XP, and achievements will be backed up securely to an encrypted Supabase database tied to your account, restoring seamlessly when switching Android devices.',
+        },
       ],
     },
   },
