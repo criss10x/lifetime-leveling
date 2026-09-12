@@ -11,6 +11,17 @@ export interface GuideItem {
 
 export const guidesData: readonly GuideItem[] = [
   {
+    slug: 'kebiasaan-salat-tepat-waktu',
+    title: 'Cara Membangun Kebiasaan Salat Tepat Waktu dengan Pendekatan Micro-Habits',
+    description:
+      'Panduan praktis melatih kebiasaan salat lima waktu tepat waktu tanpa merasa terbebani. Terapkan metode micro-habits dan jaga konsistensi bersama Muslim Leveling.',
+    category: 'Panduan Ibadah',
+    publishDate: '2026-09-12',
+    publishDateDisplay: '12 September 2026',
+    readingTime: '5 menit membaca',
+    featured: true,
+  },
+  {
     slug: 'amalan-wanita-haid',
     title: 'Amalan Berpahala untuk Wanita Saat Haid: Menjaga Ritme Ibadah Tanpa Rasa Bersalah',
     description:

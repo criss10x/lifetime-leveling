@@ -1,0 +1,118 @@
+---
+import ArticleLayout from '../../../components/ArticleLayout.astro';
+import { getGuideBySlug } from '@shared/content/guides';
+
+const guide = getGuideBySlug('kebiasaan-salat-tepat-waktu')!;
+const articleSchema = {
+  headline: guide.title,
+  description: guide.description,
+  datePublished: guide.publishDate,
+  dateModified: guide.publishDate,
+  authorName: 'Muslim Leveling',
+  image: 'https://muslim.lifetimeleveling.com/brand/muslim-leveling-icon.png',
+};
+---
+
+<ArticleLayout
+  title={guide.title}
+  description={guide.description}
+  publishDate={guide.publishDate}
+  publishDateDisplay={guide.publishDateDisplay}
+  readingTime={guide.readingTime}
+  category={guide.category}
+  path={`/panduan/${guide.slug}/`}
+  locale="id"
+  {articleSchema}
+>
+  <p>
+    Hampir setiap muslim mendambakan kekhusyukan dan ketepatan waktu dalam mendirikan salat lima waktu. Namun, dalam kenyataan hidup sehari-hari yang padat, azan yang berkumandang sering kali disambut dengan bisikan di dalam hati: "Tanggung, selesaikan tugas ini sebentar lagi," atau "Nanti saja, waktunya masih panjang."
+  </p>
+
+  <p>
+    Tanpa disadari, waktu terus bergulir hingga mendekati batas akhir salat. Ketika hal ini berulang, muncul rasa bersalah yang mengikis motivasi spiritual. Banyak orang mengira bahwa masalah utama menunda salat adalah lemahnya iman semata. Padahal, sering kali yang terjadi adalah hambatan psikologis dalam memulai suatu tindakan (friksi awal atau <em>activation energy</em>).
+  </p>
+
+  <blockquote>
+    <p>
+      "Amalan yang paling dicintai oleh Allah adalah amalan yang berkelanjutan (kontinu) meskipun sedikit."
+    </p>
+    <cite>HR. Bukhari dan Muslim, dari penuturan Ummul Mukminin Aisyah radhiyallahu 'anha</cite>
+  </blockquote>
+
+  <h2>Mengapa Tekanan Berat Justru Menghambat Konsistensi?</h2>
+
+  <p>
+    Ketika seseorang berniat memperbaiki salatnya, godaan yang sering muncul adalah memasang target yang terlampau drastis dalam satu waktu: langsung ingin salat khusyuk selama satu jam, berdzikir panjang ratusan kali, dan salat sunnah lengkap tanpa jeda.
+  </p>
+
+  <p>
+    Otak manusia secara alami menolak perubahan besar yang terasa menakutkan dan menguras energi mental. Ketika target terasa terlalu berat, kita cenderung memilih menunda untuk menghindari ketidaknyamanan tersebut.
+  </p>
+
+  <p>
+    Kunci keberhasilan membangun kebiasaan seumur hidup terletak pada <strong>micro-habits</strong>, yaitu memecah kebiasaan menjadi langkah-langkah yang sangat kecil sehingga mustahil untuk ditolak oleh rasa malas.
+  </p>
+
+  <h2>4 Langkah Praktis Membangun Kebiasaan Salat dengan Micro-Habits</h2>
+
+  <p>
+    Berikut empat strategi berbasis psikologi kebiasaan yang selaras dengan nilai Islam untuk membantu Anda salat di awal waktu:
+  </p>
+
+  <h3>1. Pasangkan Pemicu dengan Aksi Terkecil (Habit Stacking)</h3>
+  <p>
+    Kebiasaan baru akan jauh lebih mudah menempel jika dikaitkan dengan rutinitas yang sudah pasti terjadi setiap hari. Jadikan azan sebagai pemicu (cue) alami.
+  </p>
+  <p>
+    Namun, jangan langsung berpikir tentang berdiri membaca surah panjang. Cukup buat komitmen kecil satu aksi saja: <strong>"Begitu azan selesai berkumandang, aku langsung bangkit dari kursi dan menuju tempat wudhu."</strong> Fokus Anda hanya satu, yaitu membasahi wajah dan anggota tubuh dengan air wudhu.
+  </p>
+
+  <h3>2. Terapkan Aturan Dua Menit</h3>
+  <p>
+    Rasa malas biasanya hanya berkuasa pada dua menit pertama sebelum memulai. Ketika Anda sudah berwudhu dan berdiri di atas sajadah, kelembaman rasa malas telah berhasil dipatahkan. Memulai adalah bagian tersulit. Begitu Anda selesai takbiratul ihram, tubuh dan pikiran akan mengikuti alur gerakan salat dengan sendirinya.
+  </p>
+
+  <h3>3. Kurangi Friksi Lingkungan</h3>
+  <p>
+    Desainlah lingkungan sekitar agar memudahkan ketaatan dan mempersulit kelalaian:
+  </p>
+  <ul>
+    <li><strong>Sediakan sajadah yang selalu siap:</strong> Jangan biarkan perlengkapan salat tersimpan di lemari yang sulit dijangkau.</li>
+    <li><strong>Jauhkan gawai saat waktu salat tiba:</strong> Taruh ponsel dalam keadaan hening atau layar menghadap ke bawah agar notifikasi pesan tidak memecah fokus Anda.</li>
+    <li><strong>Ketahui jadwal salat dengan pasti:</strong> Mengetahui hitung mundur menuju waktu salat berikutnya membuat pikiran bersiap lebih tenang tanpa tergesa-gesa.</li>
+  </ul>
+
+  <h3>4. Rayakan Kemenangan Harian Anda</h3>
+  <p>
+    Setiap kali Anda berhasil melaksanakan salat di awal waktu, berhentilah sejenak untuk bersyukur. Akuilah keberhasilan kecil itu di dalam hati. Rasa puas batin ini melepaskan sinyal positif di otak yang membuat Anda termotivasi untuk mengulanginya di waktu salat berikutnya.
+  </p>
+
+  <div class="article-callout">
+    <div class="article-callout__badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+      </svg>
+      Quest & Leveling Ibadah
+    </div>
+    <h3>Mengubah Rutinitas Menjadi Perjalanan Progres yang Nyata</h3>
+    <p>
+      Muslim Leveling menerapkan konsep pembentukan kebiasaan modern ke dalam ibadah harian Anda tanpa mengurangi nilai kesucian syariat:
+    </p>
+    <ul>
+      <li><strong>Quest Salat Harian:</strong> Setiap salat lima waktu diperlakukan sebagai quest penting yang memberikan kepuasan saat diselesaikan satu per satu.</li>
+      <li><strong>Pencapaian XP dan Level:</strong> Konsistensi Anda tercatat dalam bentuk progres tingkatan, memberikan apresiasi visual atas usaha istiqamah Anda setiap hari.</li>
+      <li><strong>Jadwal Salat Presisi & Hitung Mundur:</strong> Waktu salat akurat berdasarkan lokasi dengan tampilan hitung mundur yang membantu Anda menata ritme kerja dan istirahat.</li>
+      <li><strong>Bebas Iklan Pengganggu:</strong> Tidak ada iklan pop-up komersial yang merusak konsentrasi ibadah Anda.</li>
+    </ul>
+  </div>
+
+  <h2>Mulai dari Satu Salat Terdekat</h2>
+
+  <p>
+    Anda tidak perlu menunggu hari Senin, awal bulan, atau momentum tahun baru untuk memperbaiki kebiasaan salat. Perubahan besar dalam hidup selalu dimulai dari satu keputusan kecil yang diambil pada saat ini.
+  </p>
+
+  <p>
+    Lihatlah jam sekarang. Kapan waktu salat berikutnya tiba? Buatlah janji sederhana pada diri sendiri: begitu waktu itu tiba, tinggalkan layar sejenak, melangkahlah mengambil wudhu, dan sambutlah panggilan Rabb Anda dengan hati yang lapang.
+  </p>
+</ArticleLayout>
