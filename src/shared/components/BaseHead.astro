@@ -75,6 +75,26 @@ const structuredData = getStructuredData({ surface, locale, path, title, descrip
   'https://connect.facebook.net/en_US/fbevents.js');
   fbq('init', '2487223211773467');
   fbq('track', 'PageView');
+
+  document.addEventListener('click', function (e) {
+    var el = e.target instanceof Element ? e.target : e.target && e.target.parentElement;
+    var target = el && el.closest ? el.closest('a') : null;
+    if (!target) return;
+    var href = target.getAttribute('href') || '';
+    if (
+      href.indexOf('play.google.com/store/apps/details?id=id.muslimleveling.muslim_leveling') !== -1 ||
+      target.classList.contains('android-download') ||
+      target.classList.contains('product-navigation__cta') ||
+      target.classList.contains('floating-cta')
+    ) {
+      if (typeof window.fbq === 'function') {
+        window.fbq('track', 'Lead', {
+          content_name: 'Muslim Leveling Android',
+          content_category: 'App Download',
+        });
+      }
+    }
+  });
 </script>
 <noscript>
   <img
