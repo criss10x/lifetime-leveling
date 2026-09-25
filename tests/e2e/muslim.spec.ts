@@ -583,3 +583,23 @@ test('guide article panduan-membaca-surah-al-kahfi publishes Article schema, cal
   const ctaButton = page.locator('.article-cta-card a.android-download');
   await expect(ctaButton).toBeVisible();
 });
+
+test('landing page includes Meta Pixel script and noscript fallback', async ({ page }) => {
+  await page.goto('/');
+
+  // Verify Meta Pixel script tag in head with correct pixel ID
+  const hasPixelScript = await page.evaluate(() => {
+    const scripts = Array.from(document.querySelectorAll('head script'));
+    return scripts.some((s) => s.textContent?.includes('2487223211773467') && s.textContent?.includes('fbq'));
+  });
+  expect(hasPixelScript).toBe(true);
+
+  // Verify noscript fallback tag in head contains pixel URL
+  const noscriptContent = await page.locator('head noscript').first().textContent();
+  expect(noscriptContent).toContain('https://www.facebook.com/tr?id=2487223211773467');
+  expect(noscriptContent).toContain('ev=PageView');
+
+  // Verify fbq function is defined on window
+  const isFbqDefined = await page.evaluate(() => typeof (window as any).fbq === 'function');
+  expect(isFbqDefined).toBe(true);
+});
