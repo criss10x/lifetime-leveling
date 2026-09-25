@@ -603,3 +603,42 @@ test('landing page includes Meta Pixel script and noscript fallback', async ({ p
   const isFbqDefined = await page.evaluate(() => typeof (window as any).fbq === 'function');
   expect(isFbqDefined).toBe(true);
 });
+
+test('clicking Google Play download CTA dispatches Meta Pixel Lead event', async ({ page }) => {
+  await page.goto('/');
+
+  // Monitor calls to window.fbq and prevent actual popup navigation
+  await page.evaluate(() => {
+    (window as any).__fbqCalls = [];
+    const origFbq = (window as any).fbq;
+    (window as any).fbq = function (...args: any[]) {
+      (window as any).__fbqCalls.push(args);
+      if (origFbq) origFbq.apply(this, args);
+    };
+
+    // Prevent navigation to external site during test
+    document.addEventListener(
+      'click',
+      (e) => {
+        const link = (e.target as HTMLElement).closest('a');
+        if (link?.href.includes('play.google.com')) {
+          e.preventDefault();
+        }
+      },
+      false,
+    );
+  });
+
+  // Click the hero CTA
+  const heroCta = page.locator('.android-download--hero').first();
+  await heroCta.click();
+
+  // Verify Lead event with metadata was triggered
+  const calls = await page.evaluate(() => (window as any).__fbqCalls);
+  const leadCall = calls.find((c: any[]) => c[0] === 'track' && c[1] === 'Lead');
+  expect(leadCall).toBeDefined();
+  expect(leadCall[2]).toEqual({
+    content_name: 'Muslim Leveling Android',
+    content_category: 'App Download',
+  });
+});
