@@ -1,0 +1,16 @@
+{
+  "name": "Lifetime Leveling",
+  "short_name": "Lifetime",
+  "description": "Apps that make progress feel real.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#09070f",
+  "theme_color": "#09070f",
+  "icons": [
+    {
+      "src": "/brand/lifetime-leveling-crest.png",
+      "sizes": "1254x1254",
+      "type": "image/png"
+    }
+  ]
+}
