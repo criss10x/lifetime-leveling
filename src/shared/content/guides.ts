@@ -11,6 +11,17 @@ export interface GuideItem {
 
 export const guidesData: readonly GuideItem[] = [
   {
+    slug: 'kumpulan-doa-sehari-hari-shahih',
+    title: 'Kumpulan Doa Sehari-hari yang Shahih Beserta Artinya untuk Ketenangan Hati',
+    description:
+      'Daftar kumpulan doa sehari-hari yang shahih bersumber dari Al-Quran dan hadits nabi beserta artinya. Raih ketenangan batin bersama aplikasi Muslim Leveling.',
+    category: 'Panduan Ibadah',
+    publishDate: '2026-10-01',
+    publishDateDisplay: '1 Oktober 2026',
+    readingTime: '6 menit membaca',
+    featured: true,
+  },
+  {
     slug: 'panduan-membaca-surah-al-kahfi',
     title: 'Panduan Membaca Surah Al-Kahfi di Hari Jumat: Tips Membagi Ayat Tanpa Tergesa-gesa',
     description:
