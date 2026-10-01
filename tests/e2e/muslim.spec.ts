@@ -584,6 +584,32 @@ test('guide article panduan-membaca-surah-al-kahfi publishes Article schema, cal
   await expect(ctaButton).toBeVisible();
 });
 
+test('guide article kumpulan-doa-sehari-hari-shahih publishes Article schema, callout, and download CTA', async ({ page }) => {
+  await page.goto('/panduan/kumpulan-doa-sehari-hari-shahih/');
+
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+    'Kumpulan Doa Sehari-hari yang Shahih Beserta Artinya untuk Ketenangan Hati',
+  );
+  await expect(page.locator('.article-breadcrumb')).toContainText('Panduan Ibadah');
+  await expect(page.locator('meta[property="og:type"]')).toHaveAttribute('content', 'article');
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    'href',
+    'https://muslim.lifetimeleveling.com/panduan/kumpulan-doa-sehari-hari-shahih/',
+  );
+
+  // Schema.org Article in @graph
+  const scriptContent = await page.locator('script[type="application/ld+json"]').textContent();
+  expect(scriptContent).toBeDefined();
+  const parsed = JSON.parse(scriptContent!);
+  const articleEntity = parsed['@graph']?.find((item: any) => item['@type'] === 'Article');
+  expect(articleEntity).toBeDefined();
+  expect(articleEntity.headline).toContain('Kumpulan Doa Sehari-hari yang Shahih');
+
+  await expect(page.getByText('Fitur Doa & Dzikir Muslim Leveling')).toBeVisible();
+  const ctaButton = page.locator('.article-cta-card a.android-download');
+  await expect(ctaButton).toBeVisible();
+});
+
 test('landing page includes Meta Pixel script and noscript fallback', async ({ page }) => {
   await page.goto('/');
 
